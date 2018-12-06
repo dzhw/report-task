@@ -1,0 +1,62 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_mgs5muv6ht4x7hysnfje2zjh2b
+% Encoding created by otftotfm on Thu Mar  2 22:49:36 2017
+% Command line follows encoding
+/AutoEnc_mgs5muv6ht4x7hysnfje2zjh2b [
+%00
+  /gravecomb /acutecomb /uni0302 /tildecomb /uni0308 /uni030B /uni030A /uni030C
+  /uni0306 /uni0304 /uni0307 /cedilla /ogonek /quotesinglbase /asterisk /C
+%10
+  /bracketleft /bracketright /quotedblbase /exclamdown /questiondown /.notdef /.notdef /.notdef
+  /arrowleft /arrowright /.notdef /.notdef /.notdef /.notdef /endash /afii61664
+%20
+  /.notdef /.notdef /.notdef /.notdef /dollar /.notdef /.notdef /quotesingle
+  /.notdef /.notdef /.notdef /.notdef /comma /.notdef /period /fraction
+%30
+  /zero.oldstyle /one.oldstyle /two.oldstyle /three.oldstyle /four.oldstyle /five.oldstyle /six.oldstyle /seven.oldstyle
+  /eight.oldstyle /nine.oldstyle /.notdef /.notdef /.notdef /minus /.notdef /.notdef
+%40
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%50
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /uni2126
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /arrowup /arrowdown
+%60
+  /grave /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%70
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /asciitilde /.notdef
+%80
+  /breve /caron /hungarumlaut /uni030F /dagger /daggerdbl /uni2016 /perthousand
+  /bullet /.notdef /dollar /.notdef /florin /colonmonetary /uni20A9 /uni20A6
+%90
+  /.notdef /uni20B1 /lira /.notdef /uni203D /.notdef /dong /trademark
+  /.notdef /.notdef /uni0E3F /afii61352 /.notdef /estimated /openbullet /uni2120
+%A0
+  /.notdef /.notdef /cent /sterling /currency /yen /brokenbar /section
+  /dieresis /copyright /ordfeminine /.notdef /logicalnot /uni2117 /registered /macron
+%B0
+  /degree /plusminus /uni00B2 /uni00B3 /acute /uni00B5 /paragraph /periodcentered
+  /.notdef /uni00B9 /ordmasculine /radical /onequarter /onehalf /threequarters /Euro
+%C0
+  /.notdef /H22073 /.notdef /.notdef /.notdef /.notdef /lozenge /circle
+  /H18533 /.notdef /bar /bar /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /multiply /ellipsis
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /arrowleft /arrowup /arrowright /arrowdown /arrowboth /arrowupdn /uni2196 /uni2197
+  /uni2198 /uni2199 /arrowleft /arrowup /arrowright /arrowdown /arrowboth /arrowupdn
+%F0
+  /uni2196 /uni2197 /uni2198 /uni2199 /.notdef /.notdef /divide /.notdef
+  /uniFB04 /uniFB03 /uniFB00 /uniFB02 /l /uniFB01 /i /f
+] def
+% Command line: 'otftotfm --automatic --encoding=fontools_ts1
+% --tfm-directory=. --vf-directory=. --type1-directory=.
+% --truetype-directory=. --encoding-directory=. --map-file=./Calibri.map
+% --no-updmap --coding-scheme=TEX TEXT COMPANION SYMBOLS 1---TS1
+% --feature=onum --feature=tnum --ligkern=f i =: fi --ligkern=f l =: fl
+% --ligkern=f f =: ff --ligkern=ff i =: ffi --ligkern=ff l =: ffl
+% Calibri.otf Calibri-tlf-ts1'

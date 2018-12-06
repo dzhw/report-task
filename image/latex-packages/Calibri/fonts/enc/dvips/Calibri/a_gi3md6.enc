@@ -1,0 +1,59 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_gi3md62fbk6gc4wtu44prvgfdg
+% Encoding created by otftotfm on Thu Mar  2 22:49:14 2017
+% Command line follows encoding
+/AutoEnc_gi3md62fbk6gc4wtu44prvgfdg [
+%00
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%10
+  /zero /one /two /three /four /five /six /seven
+  /eight /nine /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%20
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%30
+  /uni2070 /uni00B9 /uni00B2 /uni00B3 /uni2074 /uni2075 /uni2076 /uni2077
+  /uni2078 /uni2079 /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%40
+  /uni2080 /uni2081 /uni2082 /uni2083 /uni2084 /uni2085 /uni2086 /uni2087
+  /uni2088 /uni2089 /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%50
+  /zero.numr /one.numr /two.numr /three.numr /four.numr /five.numr /six.numr /seven.numr
+  /eight.numr /nine.numr /.notdef /.notdef /.notdef /.notdef /.notdef /fraction
+%60
+  /zero.dnom /one.dnom /two.dnom /three.dnom /four.dnom /five.dnom /six.dnom /seven.dnom
+  /eight.dnom /nine.dnom /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%70
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%80
+  /.notdef /.notdef /.notdef /arrowleft /arrowright /arrowleft /arrowright /arrowleft
+  /arrowright /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /uni24EA /uni2460 /uni2461 /uni2462 /uni2463 /uni2464 /uni2465 /uni2466
+  /uni2467 /uni2468 /uni2469 /uni246A /uni246B /uni246C /uni246D /uni246E
+%B0
+  /uni246F /uni2470 /uni2471 /uni2472 /uni2473 /.notdef /.notdef /.notdef
+  /uni24FF /uni2776 /uni2777 /uni2778 /uni2779 /uni277A /uni277B /uni277C
+%C0
+  /uni277D /uni277E /uni277F /uni24EB /uni24EC /uni24ED /uni24EE /uni24EF
+  /uni24F0 /uni24F1 /uni24F2 /uni24F3 /uni24F4 /.notdef /.notdef /.notdef
+%D0
+  /onethird /twothirds /uni2155 /uni2156 /uni2157 /uni2158 /uni2159 /uni215A
+  /oneeighth /threeeighths /fiveeighths /seveneighths /uni215F /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=u --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga Calibri.otf Calibri-lf-u'

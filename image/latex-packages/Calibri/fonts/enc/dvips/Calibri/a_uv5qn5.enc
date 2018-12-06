@@ -1,0 +1,60 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_uv5qn5jsfqhxsqbdm6soi2uymg
+% Encoding created by otftotfm on Thu Mar  2 22:52:40 2017
+% Command line follows encoding
+/AutoEnc_uv5qn5jsfqhxsqbdm6soi2uymg [
+%00
+  /uni02CB /uni02CA /circumflex.sc /tilde.sc /dieresis.sc /uni02BA /ring.sc /caron.sc
+  /breve.sc /macron.sc /dotaccent.sc /cedilla /ogonek /space /uni030D /uni030E
+%10
+  /uni030F /uni0311 /uni0321 /uni0322 /uni02BE /uni02BF /uni032A /uni032B
+  /uni02DF /I.c2sc /uni0237 /uni02D6 /uni02D4 /uni02D5 /uni033A /uni02EB
+%20
+  /uni033B /uni01C3.c2sc /uni02C8 /uni033C /.notdef /.notdef /uni0360 /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /uni0244.c2sc /uni0197.c2sc /uni0245.c2sc /uni025C /uni0265 /uni0250 /uni0252 /uni0264
+  /uni019F.c2sc /uni018E.c2sc /uni02D0 /uni02D1 /.notdef /equal /.notdef /question
+%40
+  /uni018F.c2sc /uni0251 /Beta.c2sc /uni0255 /Eth.c2sc /uni0190.c2sc /uni0278 /uni0194.c2sc
+  /uni0266 /uni026A /uni029D /uni0281 /uni028E /uni0271 /Eng.c2sc /uni0186.c2sc
+%50
+  /uni0294 /uni0295 /uni027E /uni01A9.c2sc /Theta.c2sc /uni01B1.c2sc /uni01B2.c2sc /uni019C.c2sc
+  /Chi.c2sc /uni028F /uni01B7.c2sc /bracketleft /afii64937 /bracketright /uni02FA /uni02F9
+%60
+  /uni02BB /A.c2sc /B.c2sc /C.c2sc /D.c2sc /E.c2sc /F.c2sc /uni0261
+  /H.c2sc /I.c2sc /J.c2sc /K.c2sc /L.c2sc /M.c2sc /N.c2sc /O.c2sc
+%70
+  /P.c2sc /Q.c2sc /R.c2sc /S.c2sc /T.c2sc /U.c2sc /V.c2sc /W.c2sc
+  /X.c2sc /Y.c2sc /Z.c2sc /uni01C1.c2sc /uni01C0.c2sc /uni01C2.c2sc /uni02DE /uni02CC
+%80
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /SF110000 /.notdef /.notdef /.notdef /uni2197 /uni2198
+  /uni1DC4 /uni1DC5 /uni1DC8 /uni1DC9 /.notdef /.notdef /.notdef /.notdef
+%A0
+  /uni0243.c2sc /Dcroat.c2sc /uni0221 /uni1D91 /uni1D07 /G.c2sc /.notdef /uni0285
+  /uni1D0A /uni029E /uni023D.c2sc /Lambda.c2sc /uni019B /.notdef /uni0235 /.notdef
+%B0
+  /Omega.c2sc /Omega.c2sc /uni0286 /uni01AB /uni0236 /uni02A6 /uni02AE /uni02AF
+  /uni0293 /uni01B8.c2sc /afii10046.c2sc /afii10044.c2sc /uni02C0 /uni02C2 /uni02C3 /.notdef
+%C0
+  /uni1D00 /uni0187.c2sc /uni0297 /uni02A4 /uni025A /uni029A /uni025E /uni025D
+  /.notdef /uni029B /uni0267 /uni029C /uni0196.c2sc /.notdef /uni0198.c2sc /uni029F
+%D0
+  /uni026E /uni0277 /uni01A4.c2sc /uni02A0 /uni027C /uni027A /uni01AC.c2sc /uni0276
+  /uni0287 /uni02A7 /uni1D1C /uni0296 /uni02A1 /uni02A2 /uni0224.c2sc /uni01F7.c2sc
+%E0
+  /uni0299 /uni0181.c2sc /uni018A.c2sc /uni0189.c2sc /uni0193.c2sc /uni0262 /AE.c2sc /Ccedilla.c2sc
+  /Hbar.c2sc /uni025F /uni0284 /uni2C62.c2sc /uni026C /uni026D /uni0270 /uni0273
+%F0
+  /uni0274 /uni019D.c2sc /uni0298 /uni2C64.c2sc /uni0279 /uni027B /uni01A6.c2sc /OE.c2sc
+  /Oslash.c2sc /uni0282 /uni01AE.c2sc /uni028D /uni0290 /uni0291 /Thorn.c2sc /uni01F6.c2sc
+] def
+% Command line: 'otftotfm --automatic --encoding=t3 --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=pnum --feature=smcp
+% --unicoding=germandbls =: SSsmall Calibril.otf Calibri-Light-lf-sc-t3'

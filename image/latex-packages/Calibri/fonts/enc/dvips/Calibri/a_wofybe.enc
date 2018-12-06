@@ -1,0 +1,60 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_wofybevgov5l44qf26wh2tp2pf
+% Encoding created by otftotfm on Thu Mar  2 22:52:52 2017
+% Command line follows encoding
+/AutoEnc_wofybevgov5l44qf26wh2tp2pf [
+%00
+  /afii10059 /afii10058 /afii10145 /afii10047 /afii10055 /afii10053 /afii10051 /afii10060
+  /afii10059.c2sc /afii10058.c2sc /afii10145.c2sc /afii10047.c2sc /afii10055.c2sc /afii10053.c2sc /afii10051.c2sc /afii10060.c2sc
+%10
+  /afii10048 /afii10024 /afii10027 /afii10023 /afii10148 /afii10147 /afii10054 /afii10049
+  /afii10048.c2sc /afii10024.c2sc /afii10027.c2sc /afii10023.c2sc /afii10148.c2sc /afii10147.c2sc /afii10054.c2sc /afii10049.c2sc
+%20
+  /dieresis.sc /exclam /quotedblright /afii10146 /breve.sc /percent /acute.sc /quoteright
+  /parenleft /parenright /asterisk /afii10146.c2sc /comma /hyphen /period /slash
+%30
+  /zero.oldstyle /one.oldstyle /two.oldstyle /three.oldstyle /four.oldstyle /five.oldstyle /six.oldstyle /seven.oldstyle
+  /eight.oldstyle /nine.oldstyle /colon /semicolon /guillemotleft /I.c2sc /guillemotright /question
+%40
+  /breve.sc /afii10017 /afii10018 /afii10040 /afii10021 /afii10022 /afii10038 /afii10020
+  /afii10039 /afii10026 /afii10057 /afii10028 /afii10029 /afii10030 /afii10031 /afii10032
+%50
+  /afii10033 /afii10041 /afii10034 /afii10035 /afii10036 /afii10037 /afii10019 /afii10043
+  /afii10042 /afii10045 /afii10025 /bracketleft /quotedblleft /bracketright /afii10046 /afii10044
+%60
+  /quoteleft /afii10017.c2sc /afii10018.c2sc /afii10040.c2sc /afii10021.c2sc /afii10022.c2sc /afii10038.c2sc /afii10020.c2sc
+  /afii10039.c2sc /afii10026.c2sc /afii10057.c2sc /afii10028.c2sc /afii10029.c2sc /afii10030.c2sc /afii10031.c2sc /afii10032.c2sc
+%70
+  /afii10033.c2sc /afii10041.c2sc /afii10034.c2sc /afii10035.c2sc /afii10036.c2sc /afii10037.c2sc /afii10019.c2sc /afii10043.c2sc
+  /afii10042.c2sc /afii10045.c2sc /afii10025.c2sc /endash /emdash /afii61352 /afii10046.c2sc /afii10044.c2sc
+%80
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=ot2 --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=smcp --feature=tnum
+% --unicoding=germandbls =: SSsmall Calibril.otf Calibri-Light-tlf-sc-ot2'

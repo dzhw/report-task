@@ -1,0 +1,60 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_dtgjhtl4fnck6zhxqyqhpkrsxg
+% Encoding created by otftotfm on Thu Mar  2 22:52:49 2017
+% Command line follows encoding
+/AutoEnc_dtgjhtl4fnck6zhxqyqhpkrsxg [
+%00
+  /Gamma /uni2206 /Theta /Lambda /Xi /Pi /Sigma /Upsilon
+  /Phi /Psi /uni2126 /alpha /beta /gamma /delta /uni03F5
+%10
+  /zeta /eta /theta /iota /kappa /lambda /uni00B5 /nu
+  /xi /pi /rho /sigma /tau /upsilon /phi /chi
+%20
+  /psi /omega /epsilon /theta1 /omega1 /uni03F1 /sigma1 /phi1
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%30
+  /zero /one /two /three /four /five /six /seven
+  /eight /nine /period /comma /less /slash /greater /.notdef
+%40
+  /partialdiff /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /.notdef /.notdef /.notdef /.notdef /.notdef
+%60
+  /afii61289 /a /b /c /d /e /f /g
+  /h /i /j /k /l /m /n /o
+%70
+  /p /q /r /s /t /u /v /w
+  /x /y /z /dotlessi /uni0237 /.notdef /.notdef /uni0311
+%80
+  /asterisk /uniFB00 /uniFB01 /uniFB02 /uniFB03 /uniFB04 /f_b.liga /f_h.liga
+  /f_j.liga /f_k.liga /f_t.liga /t_f.liga /t_i.liga /t_t.liga /f_f_b.liga /f_f_h.liga
+%90
+  /f_f_j.liga /f_f_k.liga /f_f_t.liga /t_t_f.liga /t_t_i.liga /f_dotlessi.liga /t_dotlessi.liga /f_uni0237.liga
+  /f_f_dotlessi.liga /f_f_uni0237.liga /t_t_dotlessi.liga /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=oml --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=tnum --letterspacing=55
+% --boundary-char=. Calibril.otf Calibri-Light-tlf-oml'

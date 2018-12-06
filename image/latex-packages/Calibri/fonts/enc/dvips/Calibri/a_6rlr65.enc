@@ -1,0 +1,60 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_6rlr65fr5mtjqgdie7r3tf4zyf
+% Encoding created by otftotfm on Thu Mar  2 22:49:44 2017
+% Command line follows encoding
+/AutoEnc_6rlr65fr5mtjqgdie7r3tf4zyf [
+%00
+  /Alpha.c2sc /uni2206 /Beta.c2sc /Delta.c2sc /Pi.c2sc /Pi /Sigma /uni00B5
+  /ellipsis /.notdef /uni2126 /uniFB00 /uniFB01 /uniFB02 /uniFB03 /uniFB04
+%10
+  /I.c2sc /uni0237 /grave /acute /caron /breve /macron /ring
+  /cedilla /.notdef /AE.c2sc /OE.c2sc /Oslash.c2sc /AE /OE /Oslash
+%20
+  /space /exclam /quotedblright /numbersign /dollar /percent /ampersand.c2sc /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /zero.c2sc /one.c2sc /two.c2sc /three.c2sc /four.c2sc /five.c2sc /six.c2sc /seven.c2sc
+  /eight.c2sc /nine.c2sc /colon /semicolon /exclamdown /equal /questiondown /question
+%40
+  /at.c2sc /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /quotedblleft /bracketright /circumflex /dotaccent
+%60
+  /quoteleft /A.c2sc /B.c2sc /C.c2sc /D.c2sc /E.c2sc /F.c2sc /G.c2sc
+  /H.c2sc /I.c2sc /J.c2sc /K.c2sc /L.c2sc /M.c2sc /N.c2sc /O.c2sc
+%70
+  /P.c2sc /Q.c2sc /R.c2sc /S.c2sc /T.c2sc /U.c2sc /V.c2sc /W.c2sc
+  /X.c2sc /Y.c2sc /Z.c2sc /endash /emdash /hungarumlaut /tilde /dieresis
+%80
+  /Euro /Aogonek /Cacute /greater /greaterequal /approxequal /Eogonek /Iogonek
+  /less /lessequal /Lslash /Nacute /asciitilde /asciicircum /.notdef /dagger
+%90
+  /daggerdbl /Sacute /Scaron /Scommaaccent /degree /Tcommaaccent /ogonek /Uogonek
+  /Ydieresis /Zacute /Zcaron /Zdotaccent /IJ /braceleft /braceright /section
+%A0
+  /.notdef /Aogonek.c2sc /Cacute.c2sc /registered /copyright /divide /Eogonek.c2sc /Iogonek.c2sc
+  /minus /multiply /Lslash.c2sc /Nacute.c2sc /plusminus /infinity /guillemotleft /guillemotright
+%B0
+  /paragraph /Sacute.c2sc /Scaron.c2sc /Scommaaccent.c2sc /bullet /Tcommaaccent.c2sc /.notdef /Uogonek.c2sc
+  /Ydieresis.c2sc /Zacute.c2sc /Zcaron.c2sc /Zdotaccent.c2sc /IJ.c2sc /periodcentered /quotedbl /quotesingle
+%C0
+  /Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /backslash /Ccedilla
+  /Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis
+%D0
+  /Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /currency
+  /perthousand /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /bar
+%E0
+  /Agrave.c2sc /Aacute.c2sc /Acircumflex.c2sc /Atilde.c2sc /Adieresis.c2sc /Aring.c2sc /underscore /Ccedilla.c2sc
+  /Egrave.c2sc /Eacute.c2sc /Ecircumflex.c2sc /Edieresis.c2sc /Igrave.c2sc /Iacute.c2sc /Icircumflex.c2sc /Idieresis.c2sc
+%F0
+  /Eth.c2sc /Ntilde.c2sc /Ograve.c2sc /Oacute.c2sc /Ocircumflex.c2sc /Otilde.c2sc /Odieresis.c2sc /.notdef
+  /.notdef /Ugrave.c2sc /Uacute.c2sc /Ucircumflex.c2sc /Udieresis.c2sc /Yacute.c2sc /Thorn.c2sc /quotedblbase
+] def
+% Command line: 'otftotfm --automatic --encoding=qx --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=onum --feature=smcp --feature=tnum
+% --unicoding=germandbls =: SSsmall Calibri.otf Calibri-tosf-sc-qx'

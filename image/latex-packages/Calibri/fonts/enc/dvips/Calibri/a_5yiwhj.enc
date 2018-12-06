@@ -1,0 +1,61 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_5yiwhj4mdz66cb57yjcydk56vf
+% Encoding created by otftotfm on Thu Mar  2 22:49:36 2017
+% Command line follows encoding
+/AutoEnc_5yiwhj4mdz66cb57yjcydk56vf [
+%00
+  /Gamma /uni2206 /Theta /Lambda /Xi /Pi /Sigma /Upsilon
+  /Phi /Psi /uni2126 /Alpha.c2sc /Beta.c2sc /Gamma.c2sc /Delta.c2sc /Epsilon.c2sc
+%10
+  /Zeta.c2sc /Eta.c2sc /Theta.c2sc /Iota.c2sc /Kappa.c2sc /Lambda.c2sc /uni00B5 /Nu.c2sc
+  /Xi.c2sc /Pi.c2sc /Rho.c2sc /Sigma.c2sc /Tau.c2sc /Upsilon.c2sc /Phi.c2sc /Chi.c2sc
+%20
+  /Psi.c2sc /Omega.c2sc /Epsilon.c2sc /Theta.c2sc /Pi.c2sc /Rho.c2sc /sigma1 /Phi.c2sc
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%30
+  /zero /one /two /three /four /five /six /seven
+  /eight /nine /period /comma /less /slash /greater /.notdef
+%40
+  /partialdiff /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /.notdef /.notdef /.notdef /.notdef /.notdef
+%60
+  /afii61289 /A.c2sc /B.c2sc /C.c2sc /D.c2sc /E.c2sc /F.c2sc /G.c2sc
+  /H.c2sc /I.c2sc /J.c2sc /K.c2sc /L.c2sc /M.c2sc /N.c2sc /O.c2sc
+%70
+  /P.c2sc /Q.c2sc /R.c2sc /S.c2sc /T.c2sc /U.c2sc /V.c2sc /W.c2sc
+  /X.c2sc /Y.c2sc /Z.c2sc /I.c2sc /uni0237 /.notdef /.notdef /uni0311
+%80
+  /asterisk /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
+% Command line: 'otftotfm --automatic --encoding=oml --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=smcp --feature=tnum
+% --unicoding=germandbls =: SSsmall --letterspacing=55 --boundary-char=.
+% Calibri.otf Calibri-tlf-sc-oml'

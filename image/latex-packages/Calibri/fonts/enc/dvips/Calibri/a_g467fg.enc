@@ -1,0 +1,60 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_g467fgfk7upkorxcwlgaw6b3gd
+% Encoding created by otftotfm on Thu Mar  2 22:52:38 2017
+% Command line follows encoding
+/AutoEnc_g467fgfk7upkorxcwlgaw6b3gd [
+%00
+  /grave.sc /acute.sc /circumflex.sc /tilde.sc /dieresis.sc /hungarumlaut.sc /ring.sc /caron.sc
+  /breve.sc /macron.sc /dotaccent.sc /cedilla /ogonek /uni04C0 /.notdef /.notdef
+%10
+  /quotedblleft /quotedblright /uni0311 /uni030F /breve.sc /endash /emdash /.notdef
+  /zero.dnom /I.c2sc /uni0237 /uniFB00 /uniFB01 /uniFB02 /uniFB03 /uniFB04
+%20
+  /uni02FD /exclam /quotedbl /numbersign /dollar.pnum /percent /ampersand.c2sc /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /zero.pnum.oldstyle /one.pnum.oldstyle /two.pnum.oldstyle /three.pnum.oldstyle /four.pnum.oldstyle /five.pnum.oldstyle /six.pnum.oldstyle /seven.pnum.oldstyle
+  /eight.pnum.oldstyle /nine.pnum.oldstyle /colon /semicolon /less /equal /greater /question
+%40
+  /at.c2sc /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+%60
+  /quoteleft /A.c2sc /B.c2sc /C.c2sc /D.c2sc /E.c2sc /F.c2sc /G.c2sc
+  /H.c2sc /I.c2sc /J.c2sc /K.c2sc /L.c2sc /M.c2sc /N.c2sc /O.c2sc
+%70
+  /P.c2sc /Q.c2sc /R.c2sc /S.c2sc /T.c2sc /U.c2sc /V.c2sc /W.c2sc
+  /X.c2sc /Y.c2sc /Z.c2sc /braceleft /bar /braceright /asciitilde /hyphen
+%80
+  /.notdef /uni0492 /.notdef /uni0494 /uni04BA /uni0496 /.notdef /uni04E0
+  /afii10058 /uni049A /.notdef /uni04C3 /.notdef /uni04A2 /uni04A4 /uni04C7
+%90
+  /uni04E8 /.notdef /afii10062 /uni04AE /.notdef /uni04B2 /.notdef /uni04CB
+  /uni04B6 /afii10059 /uni04D8 /.notdef /afii10023 /afii61352 /currency /section
+%A0
+  /.notdef /uni0492.c2sc /.notdef /uni0494.c2sc /uni04BA.c2sc /uni0496.c2sc /.notdef /uni04E0.c2sc
+  /afii10058.c2sc /uni049A.c2sc /.notdef /uni04C3.c2sc /.notdef /uni04A2.c2sc /uni04A4.c2sc /uni04C7.c2sc
+%B0
+  /uni04E8.c2sc /.notdef /afii10062.c2sc /uni04AE.c2sc /.notdef /uni04B2.c2sc /.notdef /uni04CB.c2sc
+  /uni04B6.c2sc /afii10059.c2sc /uni04D8.c2sc /.notdef /afii10023.c2sc /quotedblbase /guillemotleft /guillemotright
+%C0
+  /afii10017 /afii10018 /afii10019 /afii10020 /afii10021 /afii10022 /afii10024 /afii10025
+  /afii10026 /afii10027 /afii10028 /afii10029 /afii10030 /afii10031 /afii10032 /afii10033
+%D0
+  /afii10034 /afii10035 /afii10036 /afii10037 /afii10038 /afii10039 /afii10040 /afii10041
+  /afii10042 /afii10043 /afii10044 /afii10045 /afii10046 /afii10047 /afii10048 /afii10049
+%E0
+  /afii10017.c2sc /afii10018.c2sc /afii10019.c2sc /afii10020.c2sc /afii10021.c2sc /afii10022.c2sc /afii10024.c2sc /afii10025.c2sc
+  /afii10026.c2sc /afii10027.c2sc /afii10028.c2sc /afii10029.c2sc /afii10030.c2sc /afii10031.c2sc /afii10032.c2sc /afii10033.c2sc
+%F0
+  /afii10034.c2sc /afii10035.c2sc /afii10036.c2sc /afii10037.c2sc /afii10038.c2sc /afii10039.c2sc /afii10040.c2sc /afii10041.c2sc
+  /afii10042.c2sc /afii10043.c2sc /afii10044.c2sc /afii10045.c2sc /afii10046.c2sc /afii10047.c2sc /afii10048.c2sc /afii10049.c2sc
+] def
+% Command line: 'otftotfm --automatic --encoding=t2b --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=pnum --feature=smcp
+% --unicoding=germandbls =: SSsmall Calibril.otf Calibri-Light-lf-sc-t2b'

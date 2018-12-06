@@ -1,0 +1,59 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_gylrnnf3lvv6ncswrrlcptukoh
+% Encoding created by otftotfm on Thu Mar  2 22:49:10 2017
+% Command line follows encoding
+/AutoEnc_gylrnnf3lvv6ncswrrlcptukoh [
+%00
+  /grave /acute /circumflex /tilde /dieresis /hungarumlaut /ring /caron
+  /breve /macron /dotaccent /cedilla /ogonek /quotesinglbase /guilsinglleft /guilsinglright
+%10
+  /quotedblleft /quotedblright /quotedblbase /guillemotleft /guillemotright /endash /emdash /afii61664
+  /zero.dnom /dotlessi /uni0237 /uniFB00 /uniFB01 /uniFB02 /uniFB03 /uniFB04
+%20
+  /space /exclam /quotedbl /numbersign /dollar.pnum /percent /ampersand /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /zero.pnum /one.pnum /two.pnum /three.pnum /four.pnum /five.pnum /six.pnum /seven.pnum
+  /eight.pnum /nine.pnum /colon /semicolon /less /equal /greater /question
+%40
+  /at /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+%60
+  /quoteleft /a /b /c /d /e /f /g
+  /h /i /j /k /l /m /n /o
+%70
+  /p /q /r /s /t /u /v /w
+  /x /y /z /braceleft /bar /braceright /asciitilde /f_b.liga
+%80
+  /Euro.pnum /f_h.liga /f_j.liga /florin /f_k.liga /ellipsis /dagger /daggerdbl
+  /f_t.liga /perthousand /t_f.liga /t_i.liga /OE /t_t.liga /f_f_b.liga /f_f_h.liga
+%90
+  /f_f_j.liga /f_f_k.liga /f_f_t.liga /t_t_f.liga /t_t_i.liga /bullet /f_imacron.liga /f_iogonek.liga
+  /f_dotlessi.liga /trademark /f_lcommaaccent.liga /t_imacron.liga /oe /t_iogonek.liga /t_dotlessi.liga /f_f_imacron.liga
+%A0
+  /space /f_f_iogonek.liga /cent /sterling.pnum /currency /f_f_dotlessi.liga /brokenbar /section
+  /Oslash /copyright /Rcommaaccent /f_f_uni0237.liga /logicalnot /hyphen /registered /AE
+%B0
+  /degree /plusminus /uni00B2 /uni00B3 /t_t_imacron.liga /uni00B5 /paragraph /periodcentered
+  /oslash /uni00B9 /rcommaaccent /t_t_iogonek.liga /onequarter /onehalf /threequarters /ae
+%C0
+  /Aogonek /Iogonek /Amacron /Cacute /Adieresis /Aring /Eogonek /Emacron
+  /Ccaron /Eacute /Zacute /Edotaccent /Gcommaaccent /Kcommaaccent /Imacron /Lcommaaccent
+%D0
+  /Scaron /Nacute /Ncommaaccent /Oacute /Omacron /Otilde /Odieresis /multiply
+  /Uogonek /Lslash /Sacute /Umacron /Udieresis /Zdotaccent /Zcaron /germandbls
+%E0
+  /aogonek /iogonek /amacron /cacute /adieresis /aring /eogonek /emacron
+  /ccaron /eacute /zacute /edotaccent /gcommaaccent /kcommaaccent /imacron /lcommaaccent
+%F0
+  /scaron /nacute /ncommaaccent /oacute /omacron /otilde /odieresis /divide
+  /uogonek /lslash /sacute /umacron /udieresis /zdotaccent /zcaron /t_t_dotlessi.liga
+] def
+% Command line: 'otftotfm --automatic --encoding=l7x --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=pnum Calibri.otf Calibri-lf-l7x'

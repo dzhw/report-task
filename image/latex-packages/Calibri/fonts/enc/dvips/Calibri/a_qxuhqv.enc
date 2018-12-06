@@ -1,0 +1,59 @@
+% THIS FILE WAS AUTOMATICALLY GENERATED -- DO NOT EDIT
+
+%%AutoEnc_qxuhqvwjttuabydjldzzcbkijd
+% Encoding created by otftotfm on Thu Mar  2 22:49:24 2017
+% Command line follows encoding
+/AutoEnc_qxuhqvwjttuabydjldzzcbkijd [
+%00
+  /alpha /uni2206 /beta /delta /pi /Pi /Sigma /uni00B5
+  /ellipsis /.notdef /uni2126 /uniFB00 /uniFB01 /uniFB02 /uniFB03 /uniFB04
+%10
+  /dotlessi /uni0237 /grave /acute /caron /breve /macron /ring
+  /cedilla /germandbls /ae /oe /oslash /AE /OE /Oslash
+%20
+  /space /exclam /quotedblright /numbersign /dollar /percent /ampersand /quoteright
+  /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+%30
+  /zero /one /two /three /four /five /six /seven
+  /eight /nine /colon /semicolon /exclamdown /equal /questiondown /question
+%40
+  /at /A /B /C /D /E /F /G
+  /H /I /J /K /L /M /N /O
+%50
+  /P /Q /R /S /T /U /V /W
+  /X /Y /Z /bracketleft /quotedblleft /bracketright /circumflex /dotaccent
+%60
+  /quoteleft /a /b /c /d /e /f /g
+  /h /i /j /k /l /m /n /o
+%70
+  /p /q /r /s /t /u /v /w
+  /x /y /z /endash /emdash /hungarumlaut /tilde /dieresis
+%80
+  /Euro /Aogonek /Cacute /greater /greaterequal /approxequal /Eogonek /Iogonek
+  /less /lessequal /Lslash /Nacute /asciitilde /asciicircum /f_h.liga /dagger
+%90
+  /daggerdbl /Sacute /Scaron /Scommaaccent /degree /Tcommaaccent /ogonek /Uogonek
+  /Ydieresis /Zacute /Zcaron /Zdotaccent /IJ /braceleft /braceright /section
+%A0
+  /f_b.liga /aogonek /cacute /registered /copyright /divide /eogonek /iogonek
+  /minus /multiply /lslash /nacute /plusminus /infinity /guillemotleft /guillemotright
+%B0
+  /paragraph /sacute /scaron /scommaaccent /bullet /tcommaaccent /.notdef /uogonek
+  /ydieresis /zacute /zcaron /zdotaccent /ij /periodcentered /quotedbl /quotesingle
+%C0
+  /Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /backslash /Ccedilla
+  /Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis
+%D0
+  /Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /currency
+  /perthousand /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /bar
+%E0
+  /agrave /aacute /acircumflex /atilde /adieresis /aring /underscore /ccedilla
+  /egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis
+%F0
+  /eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /f_j.liga
+  /f_k.liga /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /quotedblbase
+] def
+% Command line: 'otftotfm --automatic --encoding=qx --tfm-directory=.
+% --vf-directory=. --type1-directory=. --truetype-directory=.
+% --encoding-directory=. --map-file=./Calibri.map --no-updmap --feature=kern
+% --feature=liga --feature=lnum --feature=tnum Calibri.otf Calibri-tlf-qx'
