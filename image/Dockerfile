@@ -13,13 +13,8 @@ FROM thomasweise/texlive
 MAINTAINER Robert Birkelbach <birkelbach@dzhw.eu>
 RUN mkdir /usr/share/texlive/texmf-dist/tex/latex/calibri
 
-ADD latex-packages/Calibri/fonts/enc /usr/share/texlive/texmf-dist/fonts/enc
-ADD latex-packages/Calibri/fonts/map /usr/share/texlive/texmf-dist/fonts/map
-ADD latex-packages/Calibri/fonts/tfm/microsoft/Calibri /usr/share/texlive/texmf-dist/fonts/tfm/public/microsoft/Calibri
-ADD latex-packages/Calibri/fonts/vf /usr/share/texlive/texmf-dist/fonts/vf
-ADD latex-packages/Calibri/fonts/opentype /usr/share/texlive/texmf-dist/fonts/opentype
-ADD latex-packages/Calibri/fonts/type1 /usr/share/texlive/texmf-dist/fonts/type1
-ADD latex-packages/Calibri/tex/latex/microsoft/Calibri /usr/share/texlive/texmf-dist/tex/latex
-RUN texhash && mktexlsr
+ADD latex-packages/Calibri /usr/share/texlive/texmf-dist/
+RUN echo "Map Calibri.map" >> /usr/share/texlive/texmf-dist/web2c/updmap.cfg
+RUN fc-cache && texhash && mktexlsr && sudo updmap-sys
 
 ENTRYPOINT ["/bin/__boot__.sh"]
