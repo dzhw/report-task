@@ -1,2 +1,2 @@
-docker run -v "/home/birkelbach/Downloads/template(30)":/doc/ -t -i thomasweise/texlive 
+docker run -v "pathtogeneratedtexfiles":/doc/ -t -i thomasweise/texlive 
 
