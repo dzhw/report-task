@@ -1,0 +1,1152 @@
+%%
+%% This is file `dsreport.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% dsreport.dtx  (with options: `package')
+%%
+%% -----------------------------------------------------------------
+%% Author:     le-tex publishing services
+%% Maintainer: le-tex publishing services
+%%
+%% Diese Datei ist Teil des dsreport-Pakets zur Erstellung
+%% von Daten- und Methodenberichten sowie Datensatzreports
+%%
+%%       Copyright (C) 2017 Deutsches Zentrum für Hochschul-
+%%                          und Wissenschaftsforschung GmbH
+%% -----------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}[2015/01/01]
+\ProvidesPackage{dsreport}
+    [2017/05/26 v0.95 DZHW Berichte]
+\usepackage[breakwords]{truncate}
+\ifx\directlua\undefined\else\ifnum\luatexversion>84\relax
+  \IfFileExists{luatex85.sty}{\RequirePackage{luatex85}}{}
+\fi\fi
+\emergencystretch1em
+\clubpenalty\@M
+\widowpenalty\@M
+\DeclareMathSizes{16bp}{16bp}{12bp}{8bp}
+\def\itemize{%
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+    \advance\@itemdepth\@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+    \expandafter
+    \list
+      \csname\@itemitem\endcsname
+      {\def\makelabel##1{##1\hss}}%
+  \fi}
+\def\@title{\@latex@warning@no@line{No \noexpand\title given}\@ehc}
+\def\subject#1{\gdef\@subject{#1}}
+\let\@subject\nobreakspace
+\def\subtitle#1{\gdef\@subtitle{#1}}
+\let\@subtitle\nobreakspace
+\def\version#1{\gdef\@version{#1}}
+\let\@version\nobreakspace
+\gdef\@date{\month@ngerman\space\the\year}
+\long\def\impressum#1{\gdef\@impressum{#1}}
+\let\@impressum\nobreakspace
+\def\bibliogrAngaben#1{\gdef\@bibliogrAngaben{#1}}
+\def\@bibliogrAngaben{XXXXXXXX}
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par}%
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      #7}%
+    \ifnum #2=\@ne
+      \ifx\@grifffeld\@empty
+      \else
+        \gdef\@grifffeld{#7}%
+      \fi
+    \fi
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}}
+\def\fussy{%
+  \emergencystretch1em
+  \tolerance 200%
+  \hfuzz .1\p@
+  \vfuzz\hfuzz}
+\def\@hangfrom#1{\hangindent15mm\noindent\hb@xt@\hangindent{#1\hss}}
+\def\@starttoc#1{%
+  \begingroup
+    \fontsize{10bp}{12.5bp}\selectfont
+    \makeatletter
+    \@input{\jobname.#1}%
+    \if@filesw
+      \expandafter\newwrite\csname tf@#1\endcsname
+      \immediate\openout \csname tf@#1\endcsname \jobname.#1\relax
+    \fi
+    \@nobreakfalse
+  \endgroup}
+\def\@dottedtocline#1#2#3#4#5{%
+  \ifnum #1>\c@tocdepth \else
+    \vskip1mm
+    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#4}\nobreak
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill
+     \nobreak
+     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+     \par}%
+    \vskip0.5mm
+  \fi}
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\@ifclassloaded{book}
+  {\relax}
+  {\PackageWarningNoLine{dsreport}
+     {Es wird nicht die Dokuemntklasse 'book' verwendet.\MessageBreak
+      Siehe Paketdokumentation}}
+\DeclareOption{marginalspalte}{\let\@margincollayout\relax}
+\DeclareOption{bildschirm}{\let\m@de=b}
+\DeclareOption{druck}     {\let\m@de=d}
+\DeclareOption{entwurf}   {\let\m@de=e}
+\DeclareOption{heros}{\let\@heros\relax}
+\DeclareOption{calibriformeln}{\let\@calibriformeln\relax}
+\ExecuteOptions{bildschirm}
+\ProcessOptions
+\setlength\paperheight{297mm}
+\setlength\paperwidth {210mm}
+\@twosidetrue
+\@mparswitchtrue
+\@openrighttrue
+\@twocolumnfalse
+\renewcommand\normalsize{%
+   \@setfontsize\normalsize{10bp}{14.5bp}%
+   \abovedisplayskip 10bp \@plus2bp \@minus5bp
+   \abovedisplayshortskip \z@ \@plus3bp
+   \belowdisplayshortskip 6bp \@plus3bp \@minus3bp
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalsize
+\renewcommand\small{%
+   \@setfontsize\small{8bp}{11bp}%
+   \abovedisplayskip 7.5bp \@plus3bp \@minus4bp
+   \abovedisplayshortskip \z@ \@plus2bp
+   \belowdisplayshortskip 3.5bp \@plus2bp \@minus2bp
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4bp \@plus2bp \@minus2bp
+               \parsep 2bp \@plus1bp \@minus1bp
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\footnotesize{%
+   \@setfontsize\footnotesize{8bp}{11bp}%
+   \abovedisplayskip 6bp \@plus2bp \@minus4bp
+   \abovedisplayshortskip \z@ \@plus1bp
+   \belowdisplayshortskip 3bp \@plus1bp \@minus2bp
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 3bp \@plus1bp \@minus1bp
+               \parsep 2bp \@plus1bp \@minus1bp
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\large{\@setfontsize\large{10bp}{12bp}}
+\renewcommand\Large{\@setfontsize\Large{12bp}{14.5bp}}
+\renewcommand\LARGE{\@setfontsize\LARGE{12bp}{14.5bp}}
+\renewcommand\Huge{\@setfontsize\Huge{16bp}{19.2bp}}
+\setlength\parindent{6mm}
+\setlength\smallskipamount{3.625bp\@plus0.90625bp\@minus0.90625bp}
+\setlength\medskipamount{7.25bp\@plus1.8125bp\@minus1.8125bp}
+\setlength\bigskipamount{14.5bp\@plus3.625bp\@minus3.625bp}
+\def\showinmm#1{%
+  \@tempdima=0.35146 #1\relax
+  \edef\@tempa{\strip@pt\@tempdima\space mm}
+  \show\@tempa}
+\newdimen\rasterbreite
+\rasterbreite31.25mm
+\marginparsep5mm
+\setlength\textwidth     {140mm}
+\setlength\marginparwidth{21mm}
+\setlength\oddsidemargin {22mm}
+\setlength\evensidemargin{\dimexpr\oddsidemargin+\marginparsep+\marginparwidth}
+\ifx\@margincollayout\relax
+  \long\def\@savemarbox#1#2{%adapted from latex.ltx!!
+    \global\setbox#1%
+    \color@vbox
+    \vtop{%
+      \hsize\marginparwidth
+      \@parboxrestore
+      \@marginparreset
+      \hskip\z@skip
+      \checkoddpage
+      \ifodd\cp@tempcnt\RaggedRight\else\RaggedLeft\fi
+      \textcolor{spot}{#2}%
+      \@minipagefalse
+      \outer@nobreak
+    }%
+    \color@endbox}
+  \g@addto@macro\mainmatter{%
+    \xdef\@margincolreset{%
+      \textwidth\the\textwidth
+      \columnwidth\textwidth
+      \linewidth\textwidth
+      \hsize\textwidth
+      \evensidemargin\the\evensidemargin
+      \marginparwidth\the\marginparwidth
+      \marginparsep\the\marginparsep}%
+    \advance\textwidth-10mm\relax
+    \columnwidth\textwidth
+    \linewidth\textwidth
+    \hsize\textwidth
+    \advance\evensidemargin10mm\relax
+    \advance\marginparwidth10mm\relax}
+  \g@addto@macro\backmatter{%
+    \@margincolreset}
+\fi
+\setlength\topmargin {14.5mm}
+\setlength\headheight{3.7mm}
+\setlength\headsep   {\dimexpr36mm-\topmargin-\headheight}
+\setlength\topskip   {10bp}
+\setlength\maxdepth  {0.5\topskip}
+\setlength\textheight{235mm}
+\setlength\footskip  {13.5mm}
+\setlength\footnotesep   {6.65bp}
+\setlength{\skip\footins}{23.5bp \@plus 4bp \@minus 2bp}
+\setlength\floatsep       {12bp \@plus 2bp \@minus 2bp}
+\setlength\textfloatsep   {20bp \@plus 2bp \@minus 4bp}
+\setlength\intextsep      {12bp \@plus 2bp \@minus 2bp}
+\setlength\dblfloatsep    {12bp \@plus 2bp \@minus 2bp}
+\setlength\dbltextfloatsep{20bp \@plus 2bp \@minus 4bp}
+\setlength\partopsep{\baselineskip}
+\topsep \z@
+\parsep \z@
+\itemsep\z@
+\def\@listi  {\leftmargin\leftmargini}
+\let\@listI\@listi
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \partopsep\z@}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+\parskip\z@
+\newdimen\bleed \bleed3mm\relax
+\newcount\c@grifffeld \c@grifffeld\m@ne
+\let\@grifffeld\@empty
+\DeclareRobustCommand*\grifffeld[1]{%
+  \let\old@grifffeld\@grifffeld
+  \gdef\@grifffeld{#1}%
+  \ifx\@grifffeld\old@grifffeld\else
+    \global\advance\c@grifffeld\@ne
+  \fi}
+\def\@griffregister{%
+  \ifx\@grifffeld\@empty\else
+    \rlap{\null\hskip\dimexpr\paperwidth-2\oddsidemargin+\marginparsep\smash{%
+      \lower\dimexpr\headsep+30mm+10mm*\c@grifffeld\hbox{%
+        \rlap{\textcolor{spot}{\vrule\@width\dimexpr\oddsidemargin-\marginparsep+\bleed\@height30mm}}%
+        \hb@xt@10mm{\hss\rotatebox{90}{\kern2mm\textcolor{white}{\bfseries\Large\@grifffeld}}\hss}}%
+    }}%
+  \fi}
+\def\ps@headings{%
+  \def\@evenhead{%
+    \color{black!50}%
+    \null\hfill
+    \smash{\lower1.6mm\llap{\vrule\@width\dimexpr\paperwidth-2\oddsidemargin\@height0.5bp\@depth\z@}}%
+    \llap{\hb@xt@\dimexpr\paperwidth-2\oddsidemargin{\leftmark\hss}}}%
+  \def\@oddhead{%
+    \@griffregister
+    \color{black!50}%
+    \smash{\lower1.6mm\rlap{\vrule\@width\dimexpr\paperwidth-2\oddsidemargin\@height0.5bp\@depth\z@}}%
+    \hb@xt@\dimexpr\paperwidth-2\oddsidemargin{\null\hfill\rightmark}\hss}%
+  \def\@evenfoot{%
+    \null\hfill
+    \llap{\hb@xt@\dimexpr\paperwidth-2\oddsidemargin-26mm{%
+        \llap{\thepage\kern4mm}%
+        \!\textbar\kern4mm\color{black!50}\footnotesize\truncate{12cm}{\@title}\normalcolor\hfill
+        \smash{\lower1bp\hbox{\includegraphics[height=4.25mm]{fdz-logo_ohne-text}}}}}}%
+  \def\@oddfoot{%
+    \hb@xt@\dimexpr\paperwidth-2\oddsidemargin-26mm{%
+        \smash{\lower1bp\hbox{\includegraphics[height=4.25mm]{fdz-logo_ohne-text}}}\hfill
+        \color{black!50}\footnotesize\truncate{11cm}{\@title}\kern4mm\normalcolor\textbar\!}%
+    \rlap{\kern4mm\thepage}}%
+  \let\@mkboth\markboth
+  \def\chaptermark##1{%
+    \markboth
+      {\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter\thechapter\space\fi
+       \fi
+       ##1}
+      {\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter\thechapter\space\fi
+       \fi
+       ##1}}%
+  \def\sectionmark##1{}}
+\let\ps@plain\ps@headings
+\def\ps@variables{%
+  \def\@oddhead{%
+    \@griffregister
+    \color{black!50}%
+    \smash{\lower1.6mm\rlap{\vrule\@width\dimexpr\paperwidth-2\oddsidemargin\@height0.5bp\@depth\z@}}%
+    \truncate{9.5cm}{\@title}\hfill\truncate{7cm}{\rightmark}}%
+  \def\@oddfoot{%
+    \hfill\thepage\hfill
+    \smash{\lower1bp\llap{\includegraphics[height=4.25mm]{fdz-logo_ohne-text}}}}%
+  \let\@mkboth\markboth
+  \def\chaptermark##1{%
+    \markboth
+      {\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter\thechapter\space\fi
+       \fi
+       ##1}
+      {\ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter\thechapter\space\fi
+       \fi
+       ##1}}%
+  \def\sectionmark##1{\markright{\ifnum\c@secnumdepth>\z@\thesection\space\fi##1}}}
+\pagestyle{headings}
+\renewcommand\maketitle{%
+  \begingroup
+  \let\footnotesize\small
+  \let\footnoterule\relax
+  \let \footnote \thanks
+  \pagestyle{empty}%
+  \parindent\z@
+  \null\vfil
+  \oddsidemargin43mm\relax
+  \hsize144mm\relax
+  \raggedright
+  \vskip39mm
+  {\fontsize{18bp}{24bp}\selectfont\@author\par}%
+  \vskip4mm\relax
+  {\fontsize{28bp}{36bp}\selectfont\@title\par}%
+  \vskip11mm\relax
+  {\color{spot}\fontsize{18bp}{24bp}\selectfont\@subtitle\hfil\break\vskip\baselineskip
+   \@version\par}
+  \vfill
+  {\null\hfill\fontsize{28bp}{28bp}\selectfont\@subject\par}%
+  \vskip-3mm
+  {\null\hfill\fontsize{18bp}{18bp}\selectfont\@date\par}%
+  \vskip2mm
+  \hspace*{\dimexpr-\oddsidemargin-\bleed}\includegraphics{blauer_balken}\par
+  \vskip3mm\relax
+  \leavevmode\rlap{\includegraphics[width=34.5mm,trim=0 22mm 0 0]{fdz-logo_mit-text}}%
+  \hskip\dimexpr111mm-\oddsidemargin-6.7mm\relax
+  \includegraphics[width=26.5mm,trim=0 6.7mm 0 0]{bmbf-logo_gef_vom}%
+  \par
+  \newpage
+  \evensidemargin23mm\relax
+  \small\raggedright
+  \vspace*{-8.5mm}%
+  Dieses Werk steht unter der Creative Commons Namensnennung -- Nicht kommerziell --
+  Weitergabe unter gleichen Bedingungen 3.0 Deutschland Lizenz (CC-BY-NC-SA)\\
+  \url{https://creativecommons.org/licenses/by-nc-sa/3.0/de/w}\\[\baselineskip]
+  \includegraphics[width=28mm]{by-nc-sa_eu}\par
+  \vskip30.5mm
+  \@bibliogrAngaben\par
+  \vfill
+  \@impressum\par\vskip\baselineskip
+  Deutsches Zentrum für Hochschul- und Wissenschaftsforschung GmbH\\
+  Forschungsdatenzentrum\\
+  Lange Laube 12 | 30159 Hannover | \url{https://fdz.dzhw.eu}\\
+  \@date
+  \eject
+  \endgroup
+  \setcounter{footnote}{0}%
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax}
+\AtEndDocument{%
+  \clearpage
+  \pagestyle{empty}%
+  \parindent\z@
+  \ifodd\c@page\null\clearpage\fi
+  \null\par
+  \vfill
+  \hspace*{\dimexpr\textwidth+\oddsidemargin+\bleed}
+  \llap{\includegraphics[angle=180]{blauer_balken}}\par
+  \vspace*{13.5mm}}
+\setcounter{secnumdepth}{3}
+\renewcommand\frontmatter{%
+    \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{Roman}}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                       \if@mainmatter
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                                   {\protect\numberline{\thechapter}#1}%
+                       \else
+                         \addcontentsline{toc}{chapter}{#1}%
+                       \fi
+                    \else
+                      \addcontentsline{toc}{chapter}{#1}%
+                    \fi
+                    \chaptermark{#1}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
+\def\@makechapterhead#1{%
+  \vspace*{\dimexpr\baselineskip-\topskip}%
+  {\parindent\z@\RaggedRight
+   \normalfont\Huge\color{spot}%
+   \interlinepenalty\@M
+   \ifnum \c@secnumdepth >\m@ne
+     \if@mainmatter
+       \expandafter\ifx\@chapapp\appendixname
+         \@chapapp\space\thechapter:\space
+       \else
+         \@hangfrom{\thechapter}%
+       \fi
+     \fi
+   \fi
+    #1\par\nobreak
+   \vskip2mm}}
+\def\@schapter#1{%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \if@twocolumn
+    \@topnewpage[\@makeschapterhead{#1}]%
+  \else
+    \@makeschapterhead{#1}%
+    \@afterheading
+  \fi}
+\def\@makeschapterhead#1{%
+  \vspace*{\dimexpr\baselineskip-\topskip}%
+  {\parindent\z@ \RaggedRight
+   \normalfont\Huge\color{spot}
+   \interlinepenalty\@M
+   #1\par\nobreak
+   \vskip2mm}}
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-4mm}%
+                                   {1sp}%
+                                   {\color{spot}\normalfont\Large}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-1mm}%
+                                     {1sp}%
+                                     {\color{spot}\normalfont\large}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-1mm}%
+                                     {1sp}%
+                                     {\color{spot}\normalfont\large}}
+\setlength\leftmargini  {6mm}
+\leftmargin  \leftmargini
+\setlength\leftmarginii {6mm}
+\setlength  \labelwidth{\leftmargini}
+\addtolength\labelwidth{-\labelsep}
+\renewcommand\labelitemi{\textcolor{spot}{\vrule\@width2mm\@height2.2mm\@depth-0.2mm}}
+\renewcommand\labelitemii{\textcolor{spot!60}{\vrule\@width2mm\@height2.2mm\@depth-0.2mm}}
+\renewcommand\labelitemiii{\textcolor{spot!60}{\lower0.2ex\hbox{\Huge\fontencoding{TS1}\selectfont\char"C8}}}
+\RequirePackage{remreset}
+\@removefromreset{figure}{chapter}
+\@removefromreset{table}{chapter}
+\def\thefigure{\@arabic\c@figure}
+\def\thetable{\@arabic\c@table}
+\renewcommand\@pnumwidth{10mm}
+\renewcommand\@tocrmarg{12mm}
+\renewcommand\@dotsep{0.5}
+\renewcommand\tableofcontents{%
+  \cleardoublepage
+  \thispagestyle{plain}%
+  \@afterindentfalse
+  \chaptermark{\contentsname}%
+  \@makeschapterhead{\contentsname}%
+  \@afterheading
+  \@starttoc{toc}}
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip2mm
+    \setlength\@tempdima{6mm}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak
+      \leaders\hbox{\mdseries$\m@th\mkern \@dotsep mu\hbox{.}\mkern\@dotsep mu$}\hfill
+      \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+    \vskip1.5mm
+  \fi}
+\renewcommand*\l@section{\@dottedtocline{1}{6mm}{7mm}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{13mm}{16mm}}
+\renewcommand\listoffigures{%
+  \clearpage
+  \thispagestyle{plain}%
+  \@afterindentfalse
+  \chaptermark{\listfigurename}%
+  \@makeschapterhead{\listfigurename}%
+  \@afterheading
+  \@starttoc{lof}}
+\renewcommand*\l@figure{\@dottedtocline{1}{\z@}{19mm}}
+\renewcommand\listoftables{%
+  \clearpage
+  \thispagestyle{plain}%
+  \@afterindentfalse
+  \chaptermark{\listtablename}%
+  \@makeschapterhead{\listtablename}%
+  \@afterheading
+  \@starttoc{lot}}
+\let\l@table\l@figure
+\bibindent\parindent
+\renewenvironment{theindex}
+ {\begin{multicols}{2}[\chapter*{\indexname}]%
+    \parindent\z@
+    \parskip\z@ \@plus .3bp\relax
+    \columnseprule \z@
+    \columnsep 35bp
+    \let\item\@idxitem}
+ {\end{multicols}\clearpage}
+\renewcommand\@idxitem{\par\let\idxlevel=\@ne\hangindent\parindent}
+\renewcommand\subitem{\par
+  \ifx\idxlevel\@ne\let\idxlevel=\tw@\nopagebreak\fi
+  \hangindent\parindent\leavevmode\hb@xt@0.75em{\textendash\hss}}
+\renewcommand\subsubitem{\par
+  \ifx\idxlevel\tw@\let\idxlevel=\thr@@\nopagebreak\fi
+  \hangindent\parindent\leavevmode\hb@xt@1.5em{\kern0.75em\textendash\hss}}
+\renewcommand\indexspace{\par\vskip14.5bp\@plus5bp\@minus3bp\relax}
+\renewcommand\footnoterule{%
+  \kern-9bp
+  \hrule\@width51mm
+  \kern8.33bp}
+\renewcommand\@makefntext[1]{%
+  \parindent\z@
+  \hangindent6mm
+  \leavevmode
+  \hb@xt@\hangindent{\@makefnmark\hss}#1}
+\columnsep\marginparsep
+\raggedbottom
+\def\variablesmatter{%
+  \xdef\@twosidereset{%
+    \noexpand\@twosidetrue\noexpand\@mparswitchtrue
+    \textwidth\the\textwidth
+    \columnwidth\textwidth
+    \linewidth\textwidth
+    \hsize\textwidth
+    \evensidemargin\the\evensidemargin
+    \noexpand\pagestyle{headings}%
+    \let\noexpand\ps@plain\noexpand\ps@headings
+    \let\noexpand\@startsection\noexpand\orig@startsection}
+  \cleardoublepage
+  \@twosidefalse\@mparswitchfalse
+  \textwidth166mm\relax
+  \columnwidth\textwidth
+  \linewidth\textwidth
+  \hsize\textwidth
+  \evensidemargin\oddsidemargin
+  \pagestyle{variables}%
+  \let\ps@plain\ps@variables
+  \let\orig@startsection\@startsection
+  \def\@startsection##1{%
+    \def\@tempa{##1}\def\@tempb{section}\ifx\@tempa\@tempb
+      \ifnum\c@section>\z@\clearpage\fi
+    \fi
+    \orig@startsection{##1}}%
+    \write\@auxout{\string\gdef\string\l@section{\string\@dottedtocline{1}{6mm}{12mm}}}%
+    \write\@auxout{\string\gdef\string\l@subsection{\string\@dottedtocline{2}{18mm}{16mm}}}%
+  \g@addto@macro\backmatter{\@twosidereset}}
+\ifx\XeTeXcharclass\@undefined
+  \ifx\directlua\undefined\ifnum\pdfoutput>\z@
+    \IfFileExists{dummy-space.pfb}{\pdfinterwordspaceon}{}
+    \RequirePackage{cmap}
+  \fi\fi
+  \InputIfFileExists{glyphtounicode.tex}{}{}
+  \pdfgentounicode=1
+\fi
+\RequirePackage[intlimits,tbtags]{amsmath}
+\@ifpackageloaded{fontspec}
+ {}
+ {\let\addfontfeature\@gobble
+  \let\addfontfeatures\@gobble
+  \def\ttdefault{lmtt}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{amssymb}}
+\RequirePackage{textcomp}
+\ifx\@heros\relax
+\else
+  \@ifpackageloaded{fontspec}
+    {\let\fontspecl@aded\relax
+     \RequirePackage{unicode-math}[2015/07/29 v0.8]}
+    {\IfFileExists{Calibri.sty}{}{\let\@heros\relax}}
+  \ifx\fontspecl@aded\relax
+    %cf. https://tex.stackexchange.com/questions/250336/how-can-you-check-if-fontspec-with-lualatex-can-load-a-font/250350:
+    \ExplSyntaxOn
+    \cs_set:Nn \__fontspec_load_font:
+     {
+      \__fontspec_font_set:Nnn    \l_fontspec_font
+         { \__fontspec_fullname:n {\l_fontspec_fontname_up_tl} } {\f@size pt}
+      \__fontspec_font_if_null:NT \l_fontspec_font {
+    \global\let\@heros\relax
+    \__fontspec_warning:nx {font-not-found} {\l_fontspec_fontname_up_tl} }
+      \__fontspec_set_font_type:
+      \__fontspec_font_gset:Nnn   \l_fontspec_font
+         { \__fontspec_fullname:n {\l_fontspec_fontname_up_tl} } {\f@size pt}
+      \l_fontspec_font % this is necessary for LuaLaTeX to check the scripts properly
+     }
+    \cs_set:Nn \__fontspec_load_fontname:n
+     {
+        \__fontspec_load_external_fontoptions:Nn \l_fontspec_fontname_tl {#1}
+        \prop_get:NVNF \g__fontspec_fontopts_prop \l_fontspec_fontname_tl \l__fontspec_fontopts_clist
+         { \clist_clear:N \l__fontspec_fontopts_clist }
+        \__fontspec_font_set:Nnn \l_fontspec_font {\__fontspec_fullname:n {\l_fontspec_fontname_tl}} {\f@size pt}
+        \__fontspec_font_if_null:NT \l_fontspec_font {
+    \global\let\@heros\relax
+    \__fontspec_warning:nx {font-not-found} {#1} }
+     }
+    \ExplSyntaxOff
+    \scrollmode\setsansfont{Calibri.otf}
+    \ifx\@heros\@undefined
+      \typeout{(Calibri found)}
+    \else
+      \typeout{(Calibri not found, will try TeX Gyre Heros)}
+    \fi
+    \errorstopmode
+  \fi
+\fi
+\ifx\@heros\@undefined
+  \ifx\fontspecl@aded\relax
+    \ifx\XeTeXcharclass\@undefined
+      \setsansfont{Calibri}[
+        FontFace = {l}{\updefault}{Calibril.otf} ,
+        FontFace = {l}{\itdefault}{Calibrili.otf} ]
+    \else
+      \setsansfont{Calibri}[ Extension = .otf ,
+        ItalicFont = Calibrii ,
+        BoldFont = Calibrib ,
+        BoldItalicFont = Calibriz ,
+        FontFace = {l}{\updefault}{Calibril} ,
+        FontFace = {l}{\itdefault}{Calibrili} ]
+    \fi
+    \edef\Calibri@figurestyle{OsF}
+    \edef\Calibri@figurealign{}
+    \ifx\@calibriformeln\relax
+      \setmathfont{latinmodern-math.otf}
+      \@ifpackagelater{unicode-math}{2015/07/29}%
+       {\setmathfontface\mathrm{Calibri.otf}
+        \setmathfontface\mathrm{Calibrib.otf}[version=bold]
+        \setmathfontface\mathit{Calibrii.otf}
+        \setmathfontface\mathit{Calibriz.otf}[version=bold]
+        \setmathfontface\mathbf{Calibrib.otf}
+        \setmathfontface\mathsf{Calibri.otf}
+        \setmathfontface\mathsf{Calibrib.otf}[version=bold]}%
+       {%This is under construction ....
+        \setmathfont[version={bold},range={\mathit->it}]{Calibriz.otf}
+        \setmathfont[range={\mathup}]{Calibri.otf}
+        \setmathfont[range={\mathbfup->up}]{Calibrib.otf}
+        \setmathfont[range={\mathbfit->it}]{Calibrib.otf}
+        \setmathfont[range={\mathit->it}]{Calibrii.otf}}%
+    \fi
+  \else
+    \RequirePackage[lining,tabular]{Calibri}
+    \ifx\@calibriformeln\relax
+      \def\encodingdefault{T1}
+      \let\@tempa\Calibri@figurestyle\edef\Calibri@figurestyle{LF}
+      \let\@tempb\Calibri@figurealign\edef\Calibri@figurealign{T}
+      \usepackage[italic,LGRgreeks,itgreek,defaultmathsizes,asterisk]{mathastext}
+      \DeclareSymbolFont{mtextsymfont}{TS1}{\mst@fam}{\mst@ser}{\mst@opsh}
+      \DeclareMathSymbol{\times}{\mathbin}{mtextsymfont}{"D6}
+      \let\Calibri@figurestyle\@tempa
+      \let\Calibri@figurealign\@tempb
+    \fi
+  \fi
+  \AtEndOfPackage{%
+    \iflanguage{ngerman}
+     {\defaulthyphenchar127
+    \RequirePackage{hyphsubst}
+    \HyphSubstLet{ngerman}{ngerman-x-latest}}
+     {}}
+  \let\textreferencemark\@undefined
+  \let\textcopyleft\@undefined
+  \let\textlquill\@undefined
+  \let\textrquill\@undefined
+  \let\textdiscount\@undefined
+  \let\textpilcrow\@undefined
+  \let\textrecipe\@undefined
+  \let\textguarani\@undefined
+  \let\textblank\@undefined
+  \let\textdblhyphen\@undefined
+  \let\textlangle\@undefined
+  \let\textrangle\@undefined
+  \let\textmho\@undefined
+  \let\textbigcircle\@undefined
+  \let\textborn\@undefined
+  \let\textdivorced\@undefined
+  \let\textdied\@undefined
+  \let\textleaf\@undefined
+  \let\textmarried\@undefined
+  \let\textmusicalnote\@undefined
+  \let\textcentoldstyle\@undefined
+  \newcommand\lfdefault{l}
+  \DeclareRobustCommand\lfseries
+          {\not@math@alphabet\lfseries\mathlf
+           \fontseries\lfdefault\selectfont}
+  \DeclareTextFontCommand{\textlf}{\lfseries}
+  \def\thestandardf@@tnote{\@arabic\c@footnote}
+  \def\@makefnmark{%
+    \hbox{%
+      \ifx\thefootnote\thestandardf@@tnote
+        \expandafter\ifx\thempfn\thempfootnote
+          \@textsuperscript{\selectfont\thempfn}%
+        \else
+          \fontencoding{U}\fontfamily{Calibri-\Calibri@figurealign\Calibri@figurestyle}\upshape\@thefnmark
+        \fi
+      \else
+        \@textsuperscript{\upshape\@thefnmark}%
+      \fi}}%
+\else
+  \ifx\fontspecl@aded\relax
+    \ifx\XeTeXcharclass\@undefined
+      \setsansfont{TeX Gyre Heros}
+    \else
+      \setsansfont{texgyreheros}[ Extension = .otf ,
+        UprightFont = *-regular ,
+        ItalicFont = *-italic ,
+        BoldFont = *-bold ,
+        BoldItalicFont = *-bolditalic , ]
+    \fi
+  \else
+    \RequirePackage[scale]{tgheros}
+  \fi
+\fi
+  \let\familydefault\sfdefault
+\@ifpackagewith{inputenc}{utf8}{\DeclareUnicodeCharacter{2007}{\leavevmode\hphantom{0}}}{}
+\let\old@classoptionslist\@classoptionslist
+\edef\@classoptionslist{ngerman,\old@classoptionslist}
+\RequirePackage{babel}
+\let\@classoptionslist\old@classoptionslist
+\addto\captionsngerman{%
+  \def\figurename{Abb.}%
+  \def\tablename{Tab.}}
+\RequirePackage{ragged2e}
+\RequirePackage{xcolor}
+\definecolor{spot}{RGB}{0,106,178}
+\RequirePackage{graphicx}
+\RequirePackage{array}
+\newcolumntype{e}{!{\extracolsep{\fill}}}
+\RequirePackage{multirow}
+\RequirePackage{tabularx}[2014/10/28]
+\def\TX@endtabularx{%
+   \expandafter\expandafter\expandafter
+     \TX@find@endtabularxa\csname end\TX@\endcsname
+     \endtabularx\TX@\endtabularx\TX@find@endtabularxa
+  \expandafter\TX@newcol\expandafter{\tabularxcolumn{\TX@col@width}}%
+  \let\verb\TX@verb
+  \def\@elt##1{\value{##1}\the\value{##1}\relax}%
+  \edef\TX@ckpt{\cl@@ckpt}%
+  \let\@elt\relax
+  \TX@old@table\maxdimen
+  \TX@col@width\TX@target
+  \global\TX@cols\@ne
+  \TX@typeout@
+    {\@spaces Table Width\@spaces Column Width\@spaces X Columns}%
+  \TX@trial{\def\NC@rewrite@X{%
+          \global\advance\TX@cols\@ne\NC@find p{\TX@col@width}}}%
+  \loop
+    \TX@arith
+    \ifTX@
+    \TX@trial{}%
+  \repeat
+  {\let\@footnotetext\TX@ftntext\let\@xfootnotenext\TX@xftntext
+    \csname tabular*\expandafter\endcsname\expandafter\TX@target
+      \the\toks@
+    \csname endtabular*\endcsname}%
+  \global\TX@ftn\expandafter{\expandafter}\the\TX@ftn
+  \ifnum0=`{\fi}%
+   \expandafter\expandafter\expandafter
+   \TX@find@endtabularxbb
+    \expandafter\end\expandafter{\TX@}%
+    \endtabularx\TX@\endtabularx\TX@find@endtabularxb}
+\RequirePackage{bigstrut}
+\RequirePackage{longtable}
+\LTright\z@
+\LTleft\z@
+\RequirePackage{booktabs}
+\heavyrulewidth=0.5bp
+\lightrulewidth\heavyrulewidth
+\newenvironment{noten}
+ {\par\nobreak\vskip1ex
+  \RaggedRight\fontsize{8bp}{10bp}\selectfont}
+ {\par}
+\long\def\note#1{\par\hangindent1em\leavevmode\hb@xt@\hangindent{\textsuperscript{#1}\hss}\ignorespaces}
+\long\def\quelle#1{\par\nobreak\vskip1ex{\RaggedLeft\fontsize{8bp}{10bp}\selectfont#1\par}}
+\RequirePackage[%
+  singlelinecheck=false%
+  ,listof%
+  ,listformat=simple%
+  ,position=top%
+  ,justification=RaggedRight
+  ,format=hang%
+  ,font={bf,large,color=spot}%
+  ,labelsep=none]
+  {caption}
+\def\plist@figure{\figurename\space}
+\def\plist@table{\tablename\space}
+\def\caption@@addcontentsline#1#2{%
+  {\let\\\space
+   \@ifundefined{ext@#1}%
+     {\caption@Error{No float type '#1' defined}}%
+     {\caption@@@addcontentsline
+       {\csname ext@#1\endcsname}%
+       {#1}%
+       {\caption@lstfmt{\@nameuse{plist@#1}}{\@nameuse{the#1}}}%
+       {\ignorespaces #2}}}}
+\DeclareCaptionLabelFormat{forts}{#1~#2 (fortgesetzt)}
+\captionsetup[ContinuedFloat]{labelformat=forts}
+\def\figurefl@atname{figure}
+\let\old@Ginclude@graphics\Ginclude@graphics
+\RequirePackage[strict]{changepage}
+\DeclareRobustCommand{\checkoddpage}{%
+  \let\oddpage\@undefined
+  \ifstrictpagecheck%
+    \stepcounter{cp@cntr}\pmemlabel{\cplabel\thecp@cntr}%
+    \cp@tempcnt=\pmemlabelref{\cplabel\thecp@cntr}\relax
+    \ifodd\cp@tempcnt\let\oddpage\relax\fi
+  \else
+    \ifodd\c@page\let\oddpage\relax\fi
+  \fi}
+\g@addto@macro\@floatboxreset{%
+  \ifx\@captype\figurefl@atname
+    \def\Ginclude@graphics#1{%
+      \setbox\z@\hbox{\old@Ginclude@graphics{#1}}%
+      \ifx\gr@phikohnelinie\@undefined
+        \setbox\z@\hb@xt@\wd\z@{\vbox{%
+          \hrule\@width\wd\z@\@height0.5bp\vskip3bp
+          \old@Ginclude@graphics{#1}%
+          \vskip3bp\hrule\@width\wd\z@\@height0.5bp}}%
+       \fi
+       \ifdim\wd\z@>\textwidth
+         \@tempdima\wd\z@ \advance\@tempdima-\textwidth
+         \immediate\write\@auxout{\string\expandafter\gdef\string\csname\space fig\the\c@figure extrawidth\endcsname{\the\@tempdima}}%
+         \checkoddpage\ifx\oddpage\relax
+         \else
+           \hskip-\@tempdima\hskip\z@skip
+         \fi
+       \fi
+       \unhbox\z@}%
+     \expandafter\ifx\csname fig\the\numexpr\c@figure+\@ne\relax extrawidth\endcsname\relax
+     \else
+       \captionsetup{margin={0mm,-\@nameuse{fig\the\numexpr\c@figure+\@ne\relax extrawidth}}}%
+     \fi
+  \fi}
+\DeclareRobustCommand*\graphikohnelinie{\let\gr@phikohnelinie\relax}
+\RequirePackage[outercaption,ragged,wide]{sidecap}
+\def\sidecaptionrelwidth{20}
+\edef\sidecaptionsep{\the\marginparsep}
+\RequirePackage[figuresright]{rotating}
+\setlength\rotFPtop{0\p@ \@plus 1fil}
+\RequirePackage{multicol}
+\RequirePackage{natbib}
+\setlength\bibhang\bibindent
+\def\bibfont{\small}
+\bibsep0.5\baselineskip
+\def\bibsection{\chapter*{\bibname}}
+\let\oldthebibliography\thebibliography
+\expandafter\def\expandafter\thebibliography
+  \expandafter#\expandafter1\expandafter{%
+    \oldthebibliography{#1}\clubpenalty\@M\widowpenalty\@M\fussy}
+\RequirePackage{makeidx}\makeindex
+\ifx\m@de d
+  \ifx\XeTeXcharclass\@undefined
+    \@tempdima20mm\relax
+    \voffset\dimexpr\@tempdima-1in\relax
+    \hoffset\dimexpr\@tempdima-1in\relax
+    \edef\l@offset{\strip@pt\dimexpr\@tempdima*7200/7227\relax}
+    \edef\r@offset{\strip@pt\dimexpr(\@tempdima+\paperwidth)*7200/7227\relax}
+    \edef\u@offset{\strip@pt\dimexpr(1001bp-\@tempdima-\paperheight)*7200/7227\relax}
+    \edef\o@offset{\strip@pt\dimexpr(1001bp-\@tempdima)*7200/7227\relax}
+    \edef\b@l@offset{\strip@pt\dimexpr(\@tempdima-\bleed)*7200/7227\relax}
+    \edef\b@r@offset{\strip@pt\dimexpr(\@tempdima+\paperwidth+\bleed)*7200/7227\relax}
+    \edef\b@u@offset{\strip@pt\dimexpr(1001bp-\@tempdima-\paperheight-\bleed)*7200/7227\relax}
+    \edef\b@o@offset{\strip@pt\dimexpr(1001bp-\@tempdima+\bleed)*7200/7227\relax}
+    \ifnum\pdfoutput=\z@
+      \let\@processPdfBoxSpec\@empty
+      \def\@setPdfBox#1#2{%
+        \xdef\@processPdfBoxSpec{%
+          \@processPdfBoxSpec
+          [ {ThisPage} << /#1 [#2] >> /PUT pdfmark}}
+      \def\@setPdfBoxes{%
+        \ifx\@processPdfBoxSpec\@empty
+          \relax
+        \else
+          \special{!userdict begin
+            /bop-hook {^^J
+            \@processPdfBoxSpec} def
+           end}%
+        \fi}
+      \@setPdfBox{TrimBox}{\l@offset\space\u@offset\space\r@offset\space\o@offset}
+      \@setPdfBox{BleedBox}{\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset}
+      %%\@setPdfBox{CropBox}{\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset}
+      %%\@setPdfBox{MediaBox}{\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset}
+      \@setPdfBoxes
+      \@onlypreamble\@setPdfBoxes
+    \else
+      \edef\@tempa{%
+        /TrimBox [\l@offset\space\u@offset\space\r@offset\space\o@offset]
+        /BleedBox[\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset]
+        %%/CropBox[\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset]
+        %%/MediaBox[\b@l@offset\space\b@u@offset\space\b@r@offset\space\b@o@offset]
+        }
+      \expandafter\pdfpageattr\expandafter{\@tempa}
+    \fi
+  \else
+    \advance\voffset-1in
+    \advance\hoffset-1in
+  \fi
+\else
+  \advance\voffset-1in
+  \advance\hoffset-1in
+\fi
+\ifx\m@de b
+\else
+  \RequirePackage[\ifx\m@de d b4\fi]{crop}
+  \renewcommand*\CROP@marks{%
+    \CROP@setmarkcolor
+    \CROP@user@b
+    \vskip1in\hskip1in\relax
+    \CROP@ulc\null\hfill\CROP@@@info\CROP@upedge\hfill\null\CROP@urc\hskip-1in\null
+    \vfill
+    \CROP@ledge\hfill\CROP@redge
+    \vfill
+    \hskip1in\relax
+    \CROP@llc\null\hfill\CROP@loedge\hfill\null\CROP@lrc\hskip-1in\null
+    \vskip-1in}
+  %\let\CROP@horigin\z@
+  %\let\CROP@vorigin\z@
+  \ifx\m@de d
+    \def\camcross{%
+      \smash{\rlap{%
+        \kern-0.15\p@
+        \vrule\@width0.3\p@\@height1.7mm\@depth1.7mm\relax
+        \kern-0.15\p@
+        \kern-1.7mm\relax
+        \vrule\@width0.3\p@\@height1.7mm\@depth1.7mm\relax
+        \kern-0.3\p@
+        \raise1.7mm\rlap{\vrule\@width3.4mm\@height\z@\@depth0.3\p@}%
+        \lower1.7mm\rlap{\vrule\@width3.4mm\@height0.3\p@\@depth\z@}%
+        \hbox{\vrule\@width3.4mm\@height0.15\p@\@depth0.15\p@}%
+        \kern-0.3\p@
+        \vrule\@width0.3\p@\@height1.7mm\@depth1.7mm\relax}}}
+    \def\cammcrossleft{%
+      \llap{\camcross\vrule\@width6mm\@height0.15\p@\@depth0.15\p@\kern4mm}}
+    \def\cammcrossright{%
+      \rlap{\kern4mm\vrule\@width6mm\@height0.15\p@\@depth0.15\p@\camcross}}
+    \def\cammcrossup{%
+      \rlap{\smash{\raise10mm\hbox{\camcross}%
+                   \kern-0.15\p@\vrule\@width0.3\p@\@height10mm\@depth-4mm}}}%
+    \def\cammcrossdown{%
+      \rlap{\smash{\lower10mm\hbox{\camcross}%
+                   \kern-0.15\p@\vrule\@width0.3\p@\@height-4mm\@depth10mm}}}%
+    \def\CROP@@ulc{\cammcrossup\cammcrossleft}
+    \def\CROP@@urc{\cammcrossup\cammcrossright}
+    \def\CROP@@llc{\cammcrossdown\cammcrossleft}
+    \def\CROP@@lrc{\cammcrossdown\cammcrossright}
+    \def\CROP@@info{{%
+      \global\advance\CROP@index\@ne
+      \def\x{\discretionary{}{}{\hbox{\kern.5em---\kern.5em}}}%
+      \advance\paperwidth-20\p@
+      \dimen@6pt
+      \ifx\CROP@pagecolor\@empty
+      \else
+        \advance\dimen@\CROP@overlap
+      \fi
+      \hb@xt@\z@{%
+        \hss
+        \vbox to\z@{%
+            \centering
+            \hsize\paperwidth
+            \vss
+            \normalfont
+            \normalsize
+            \expandafter\csname\CROP@font\endcsname{%
+                \@author:\enskip
+                \@title\x
+                \the\year/\the\month/\the\day\x
+                %\CROP@time\x
+                page\kern.5em\thepage\strut
+            }%
+            \vskip\dimen@
+        }%
+        \hss}}}
+    \crop[cam]%
+  \else
+    \let\CROP@horigin\z@
+    \@tempdima\dimexpr\textheight-\topskip\relax
+    \divide\@tempdima by\baselineskip
+    \multiply\@tempdima by65536\relax
+    \edef\cnt@baselines{\strip@pt\@tempdima}%
+    \def\rls{%
+      \@tempcnta\z@
+      \loop\advance\@tempcnta\@ne
+        \vrule\@width1.2em\@height0.2\p@\@depth0.02\p@
+        \llap{\smash{\vrule\@width0.165\marginparsep\@height6.6\p@\@depth-6.5\p@}}%
+        \llap{\smash{\textcolor[rgb]{0,0,0.5}{\the\@tempcnta\,}}}%
+        \rlap{%
+          \vrule\@width\columnwidth\@height0.00005\p@\@depth0\p@
+          \if@twocolumn
+            \kern\columnsep\vrule\@width\columnwidth\@height0.00005\p@\@depth0\p@
+          \fi}%
+        \\
+        \ifnum\@tempcnta<\cnt@baselines
+      \repeat}
+    \renewcommand*\CROP@@frame{%
+      \vskip0in%
+      \color[rgb]{0.7,1,0.7}%
+      \ifodd\count\z@\let\@themargin\oddsidemargin\else\let\@themargin\evensidemargin\fi
+      \moveright\@themargin
+      \vbox to\z@{\baselineskip\z@skip\lineskip\z@skip\lineskiplimit\z@
+      \vskip\topmargin\vbox to\z@{\vss\hrule width\textwidth}%
+      \vskip\headheight\vbox to\z@{\vss\hrule width\textwidth}%
+      \vskip\headsep\vbox to\z@{\vss\hrule width\textwidth}%
+      \hbox to\textwidth{%
+        \llap{\vbox to\textheight{\tiny\let\@tempa\f@size\normalsize\let\f@size\@tempa\selectfont
+                                  \hsize1.2em\relax
+                                  \vskip\topskip\rls\null\vss}}%
+        \llap{\vrule height\textheight}%
+        \if@twocolumn
+          \hskip\columnwidth\rlap{\vrule height\textheight}%
+          \hskip\columnsep\rlap{\vrule height\textheight}%
+        \fi
+        \hfil\vrule height\textheight}%
+      \vbox to\z@{\vss\hrule width\textwidth}%
+      \vskip\footskip\vbox to\z@{\vss\hrule width\textwidth}%
+      \vss}%
+      \vbox to\z@{\baselineskip\z@skip\lineskip\z@skip\lineskiplimit\z@
+      \rlap{%
+      \vbox to\z@{\vbox to\z@{\vss\hrule width\paperwidth}%
+      \hbox to \paperwidth{\llap{\vrule height\paperheight}\hfil
+      \vrule height\paperheight}%
+      \vbox to\z@{\vss\hrule width\paperwidth}%
+      \vss}}\vss}}
+    \crop[frame,noinfo]
+  \fi
+\fi
+\RequirePackage[hyphens]{url}
+\urlstyle{same}
+\RequirePackage
+ [breaklinks
+  \ifx\m@de e ,bookmarks=false\fi,bookmarksnumbered
+  ,pdfborder={0 0 0},colorlinks,urlcolor=spot
+  \ifx\m@de b, linkcolor=black,citecolor=black\fi
+  \ifx\m@de d, draft\fi
+  ,pdflang=de
+  ,pdfdisplaydoctitle]
+ {hyperref}
+\ifHy@draft
+  \AtBeginDocument{\let\hyper@anchorstart\@gobble}%hyperref-Problem konfrontieren
+\else
+  \AtBeginDocument{\hypersetup{%
+    pdfauthor={\@author},
+    pdftitle={\@title},
+    pdfsubject={\@subject}}}%
+\fi
+\ifx\XeTeXcharclass\@undefined\ifnum\pdfoutput=\z@
+  \RequirePackage[\ifx\m@de d preserveurlmacro,\fi hyphenbreaks]{breakurl}
+  \bgroup
+    \catcode`\&=12\relax
+    \hyper@normalise\burl@addtocharlistafter{=}
+  \egroup
+  \burl@defifstructure
+  \ifx\m@de d%
+    \let\burl\nolinkurl
+    \def\burlalt#1#2{\nolinkurl{#2}}%
+  \fi
+\fi\fi
+\IfFileExists{doi.sty}
+  {\RequirePackage{doi}%
+   \renewcommand*{\doitext}{}}
+  {\def\doi##1{\href{http://dx.doi.org/##1}{##1}}}
+\RequirePackage{hyperxmp}
+\def\hyxmp@construct@packet{%
+  \gdef\hyxmp@xml{}%
+  \hyxmp@add@to@xml{<?xpacket begin="\hyxmp@bom" %
+id="W5M0MpCehiHzreSzNTczkc9d"?>^^J%
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="3.1-702">^^J%
+___<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns\hyxmp@hash">^^J%
+  }%
+  \hyxmp@pdf@schema
+  \hyxmp@xmpRights@schema
+  \hyxmp@dc@schema
+  \hyxmp@photoshop@schema
+  \hyxmp@photometa@schema
+  \hyxmp@xmp@basic@schema
+  \hyxmp@pdfa@id@schema
+  \hyxmp@mm@schema
+  \hyxmp@add@to@xml{%
+    ______<rdf:Description rdf:about="" xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/" xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema\hyxmp@hash" xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property\hyxmp@hash" xmlns:pdfuaid="http://www.aiim.org/pdfua/ns/id/">^^J%
+    ________<pdfaExtension:schemas>^^J%
+    __________<rdf:Bag>^^J%
+    ____________<rdf:li rdf:parseType="Resource">^^J%
+    ______________<pdfaSchema:schema>PDF/UA Universal Accessibility Schema</pdfaSchema:schema>^^J%
+    ______________<pdfaSchema:namespaceURI>http://www.aiim.org/pdfua/ns/id/</pdfaSchema:namespaceURI>^^J%
+    ______________<pdfaSchema:prefix>pdfuaid</pdfaSchema:prefix>^^J%
+    ______________<pdfaSchema:property>^^J%
+    ______________<rdf:Seq>^^J%
+    ________________<rdf:li rdf:parseType="Resource">^^J%
+    __________________<pdfaProperty:name>part</pdfaProperty:name>^^J%
+    __________________<pdfaProperty:valueType>Integer</pdfaProperty:valueType>^^J%
+    __________________<pdfaProperty:category>internal</pdfaProperty:category>^^J%
+    __________________<pdfaProperty:description>Indicates, which part of ISO 14289 standard is followed</pdfaProperty:description>^^J%
+    ________________</rdf:li>^^J%
+    ______________</rdf:Seq>^^J%
+    ______________</pdfaSchema:property>^^J%
+    ____________</rdf:li>^^J%
+    __________</rdf:Bag>^^J%
+    ________</pdfaExtension:schemas>^^J%
+    ________<pdfuaid:part>1</pdfuaid:part>^^J%
+    ______</rdf:Description>^^J%
+    ___</rdf:RDF>^^J%
+</x:xmpmeta>^^J%
+\hyxmp@padding
+<?xpacket end="w"?>^^J%
+  }%
+}
+\endinput
+%%
+%% End of file `dsreport.sty'.
