@@ -1,9 +1,9 @@
 #
-# dzhw/variablereport
+# dzhw/dsreport-docker
 #
 # This is an image with a basic TeX Live installation and,
 # additional resources for DZHW-FDZ variable reports.
-# Source: https://github.com/dzhw/variablereport-docker/
+# Source: https://github.com/dzhw/dsreport-docker/
 # License: GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007
 # The license applies to the way the image is built, while the
 # software components inside the image are under the respective

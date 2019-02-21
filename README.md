@@ -1,16 +1,15 @@
 # Erstellung von Dataset-Reports
 
-Um einen Datensatzreport zu erstellen, ist zunächst der Template-Ordner ins MDM
-hochzuladen. Diesen findet man [hier](https://github.com/dzhw/metadatamanagement-io/tree/master/datasetreport/template).
+Um einen Datensatzreport zu erstellen, muss zunächst das `template` Verzeichnis ins MDM hochgeladen werden.
 
-Man erhält ein zip-File, welches extrahiert werden muss.
-Wenn man das dsreport-docker repo gecloned hat, wechselt man in den image
-Ordner, führt den docker build Befehl aus und startet das image wie folgt:
+Man erhält ein zip-File, welches in das `input` Verzeichnis extrahiert werden muss.
 
-```
-cd image
-docker build --tag=dsreport-docker .
-docker run -v "pathtogeneratedtexfiles":/doc/ -t -i dsreport-docker
+Das benötigte Docker Image kann man mit folgendem Befehl erstellen:
+```shell
+./bin/build-image.sh
 ```
 
-Anschließend muss noch `make` bzw. `make clean && make` ausgeführt werden.
+Anschließend wird mit folgendem Befehl ein PDF aus den LaTex Dateien in dem `input` Verzeichnis erstellt und in das `output` Verzeichnis kopiert.
+```shell
+./bin/compile-report.sh ./output/report.pdf
+```
