@@ -11,5 +11,5 @@ Das benötigte Docker Image kann man mit folgendem Befehl erstellen:
 
 Anschließend wird mit folgendem Befehl ein PDF aus den LaTex Dateien in dem `input` Verzeichnis erstellt und in das `output` Verzeichnis kopiert.
 ```shell
-./bin/compile-report.sh ./output/report.pdf
+./bin/compile-report.sh ./input ./output/report.pdf
 ```
