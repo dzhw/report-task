@@ -18,4 +18,4 @@ if [ $? -ne 0 ]; then
 fi
 docker run -v "${INPUT_DIRECTORY}":/doc/ -t -i dzhw/dsreport-docker make clean
 docker run -v "${INPUT_DIRECTORY}":/doc/ -t -i dzhw/dsreport-docker make
-cp ./input/Main.pdf ${OUTPUT}
+cp ${INPUT_DIRECTORY}/Main.pdf ${OUTPUT}
