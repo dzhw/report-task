@@ -91,20 +91,20 @@
 
 					\multicolumn{1}{X}{${validResponse.value!"-"}} &
 					${(validResponse.label.de)!"-"} &
-					${validResponse.absoluteFrequency!"-"} &
-					${validResponse.validRelativeFrequency!"-"} &
-					${validResponse.relativeFrequency!"-"} \\
+					\num{${validResponse.absoluteFrequency!"-"}} &
+					\num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} &
+					\num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
 					<#else>-\\
 
 					</#list>
 						%DIFFERENT OBSERVATIONS >20
 						<#else>
 							<#list firstTenValidResponses[variable.id] as validResponse>
-								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.de)!"-"} & ${validResponse.absoluteFrequency!"-"} & ${validResponse.validRelativeFrequency!"-"} & ${validResponse.relativeFrequency!"-"} \\
+								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.de)!"-"} & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
 							</#list>
 							... & ... & ... & ... & ... \\
 							<#list lastTenValidResponses[variable.id] as validResponse>
-								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.de)!"-"} & ${validResponse.absoluteFrequency!"-"} & ${validResponse.validRelativeFrequency!"-"} & ${validResponse.relativeFrequency!"-"} \\
+								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.de)!"-"} & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
 							</#list>
 						</#if>
 					<#else>
@@ -112,21 +112,21 @@
 					</#if>
 					\midrule
 					<#if variable.distribution.validResponses??>
-						\multicolumn{2}{l}{Summe (gültig)} & ${variable.distribution.totalValidAbsoluteFrequency!"-"} &
-						\textbf{\normaltext{\num{100}}} &
-					    ${variable.distribution.totalValidRelativeFrequency!"-"} \\
+						\multicolumn{2}{l}{Summe (gültig)} & \textbf{\num{${variable.distribution.totalValidAbsoluteFrequency!"-"}}} &
+						\textbf{\num{100}} &
+					    \textbf{\num[round-mode=places,round-precision=2]{${variable.distribution.totalValidRelativeFrequency!"-"}}} \\
 					</#if>
 					\multicolumn{5}{l}{\textbf{Fehlende Werte}}\\
 					<#if variable.distribution.missings??>
 						<#list variable.distribution.missings as missing>
-							${missing.code!"-"} & ${missing.label.de!"-"} & ${missing.absoluteFrequency!"-"} & - & ${missing.relativeFrequency!"-"} \\
+							${missing.code!"-"} & ${missing.label.de!"-"} & \num{${missing.absoluteFrequency!"-"}} & - & \num[round-mode=places,round-precision=2]{${missing.relativeFrequency!"-"}} \\
 
 						</#list>
 					<#else>
 						& & 0 & 0 & 0 \\
 					</#if>
 					\midrule
-					\multicolumn{2}{l}{\textbf{Summe (gesamt)}} & \textbf{${variable.distribution.totalAbsoluteFrequency!"-"}} & \textbf{-} & \textbf{\num{100}} \\
+					\multicolumn{2}{l}{\textbf{Summe (gesamt)}} & \textbf{\num{${variable.distribution.totalAbsoluteFrequency!"-"}}} & \textbf{-} & \textbf{\num{100}} \\
 					\bottomrule
 					\caption{Werte der Variable ${variable.name}}
 					\end{longtable}
@@ -217,7 +217,7 @@
 							</#list>
 						</#if>
 					<#else>
-						& & 0 & 0 & 0 \\
+						& & \num{0} & \num{0} & \num{0} \\
 					</#if>
 					\midrule
 					<#if variable.distribution.validResponses??>
