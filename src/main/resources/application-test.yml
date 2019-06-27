@@ -1,0 +1,4 @@
+mdm:
+  endpoint: ${vcap.services.mdm.credentials.endpoint}
+  username: ${vcap.services.mdm.credentials.username}
+  password: ${vcap.services.mdm.credentials.password}

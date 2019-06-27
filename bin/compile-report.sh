@@ -16,6 +16,6 @@ if [ $? -ne 0 ]; then
   echo "Please provide a valid output file (e.g.: ./output/report.pdf)!"
   exit -1
 fi
-docker run -v "${INPUT_DIRECTORY}":/doc/ -t -i dzhw/dsreport-docker make clean
-docker run -v "${INPUT_DIRECTORY}":/doc/ -t -i dzhw/dsreport-docker make
+docker run -v "${INPUT_DIRECTORY}":/doc/ dzhw/dsreport-docker make clean
+docker run -v "${INPUT_DIRECTORY}":/doc/ dzhw/dsreport-docker make
 cp ${INPUT_DIRECTORY}/Main.pdf ${OUTPUT}

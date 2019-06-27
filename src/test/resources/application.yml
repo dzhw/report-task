@@ -1,0 +1,15 @@
+task:
+  latex-input-dir: input
+  latex-process-working-dir: .
+  pdf-report: output/report.pdf
+  data-set-id: dat-gra2005-ds2$
+  on-behalf-of: rreitmann
+  version: 2.0.15
+mdm:
+  endpoint: http://localhost:8080
+  username: ${MDM_TASK_USER}
+  password: ${MDM_TASK_PASSWORD}
+logging:
+  level:
+    root: warn
+    eu.dzhw.fdz.metadatamanagement: debug 
