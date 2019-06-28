@@ -52,6 +52,12 @@ public class TaskProperties {
   private FileSystemResource latexProcessWorkingDir;
   
   /**
+   * Command which needs to be executed in order to compile the latex report.
+   */
+  @NotEmpty
+  private String latexProcessCommand;
+  
+  /**
    * Absolute name of the pdf report file which will be generated.
    */
   @NotNull

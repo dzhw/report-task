@@ -1,7 +1,8 @@
 task:
-  latex-input-dir: input
-  latex-process-working-dir: .
-  pdf-report: output/report.pdf
+  latex-input-dir: /app/doc
+  latex-process-working-dir: /app/doc
+  pdf-report: /app/doc/Main.pdf
+  latex-process-command: make
 mdm:
   endpoint: http://localhost:8080
   username: aerjaeklrj
@@ -9,4 +10,4 @@ mdm:
 logging:
   level:
     root: warn
-    eu.dzhw.fdz.metadatamanagement: debug 
+    eu.dzhw.fdz.metadatamanagement: debug

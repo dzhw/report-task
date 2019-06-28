@@ -1,4 +1,11 @@
 *.md
+!README.md
+target
+!target/*.jar
+src
+eclipseconfig
+build
+bin
 Dockerfile
 .dockerignore
 */temp*

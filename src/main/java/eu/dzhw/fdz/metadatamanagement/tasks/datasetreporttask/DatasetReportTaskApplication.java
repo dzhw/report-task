@@ -50,18 +50,30 @@ public class DatasetReportTaskApplication {
     return args -> {
       byte[] filledTemplate = mdmClient.fillTemplate(zippedTemplate, taskProperties.getDataSetId(),
           taskProperties.getVersion());
-      FileUtils.cleanDirectory(new File(taskProperties.getLatexInputDir().getFile(), "variables"));
+      File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
+      if (variablesDir.exists()) {
+        FileUtils.cleanDirectory(variablesDir);
+      } else {
+        if (variablesDir.mkdir()) {
+          log.debug("Created variables directory.");
+        }
+      }
       ZipUtils.unzip(filledTemplate, taskProperties.getLatexInputDir().getFile());
       log.info("Successfully unzipped template to folder: "
           + taskProperties.getLatexInputDir().getFile().getAbsolutePath());
-      RunProcess latexCompileProcess = new RunProcess(
-          taskProperties.getLatexProcessWorkingDir().getFile(), "./bin/compile-report.sh",
-          taskProperties.getLatexInputDir().getPath(), taskProperties.getPdfReport().getPath());
-      latexCompileProcess.run(true);
-      log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
-      mdmClient.uploadReport(taskProperties.getPdfReport(), taskProperties.getDataSetId(),
-          taskProperties.getOnBehalfOf());
-      log.info("Successfully uploaded report to the MDM.");
+      RunProcess latexCompileProcess =
+          new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
+              taskProperties.getLatexProcessCommand());
+      if (latexCompileProcess.run(true) == 0) {
+        log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
+        mdmClient.uploadReport(taskProperties.getPdfReport(), taskProperties.getDataSetId(),
+            taskProperties.getOnBehalfOf());
+        log.info("Successfully uploaded report to the MDM.");
+      } else {
+        throw new RuntimeException(
+            "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
+                + "', command '" + taskProperties.getLatexProcessCommand() + "'");
+      }
     };
   }
 }

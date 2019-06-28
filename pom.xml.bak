@@ -33,16 +33,16 @@
     </dependencyManagement>
 
     <dependencies>
-    	<dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
             <version>3.1.12</version>
             <scope>provided</scope>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -98,7 +98,7 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings 
+                <!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
@@ -132,6 +132,25 @@
                                     <action>
                                         <ignore />
                                     </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                	<pluginExecutionFilter>
+                                		<groupId>
+                                			org.codehaus.mojo
+                                		</groupId>
+                                		<artifactId>
+                                			exec-maven-plugin
+                                		</artifactId>
+                                		<versionRange>
+                                			[1.6.0,)
+                                		</versionRange>
+                                		<goals>
+                                			<goal>exec</goal>
+                                		</goals>
+                                	</pluginExecutionFilter>
+                                	<action>
+                                		<ignore></ignore>
+                                	</action>
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
@@ -252,7 +271,33 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>exec-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>fix-resource-permissions</id>
+                  <goals>
+                    <goal>exec</goal>
+                  </goals>
+                  <phase>process-test-resources</phase>
+                  <configuration>
+                    <executable>/bin/sh</executable>
+                    <arguments>
+                      <argument>-c</argument>
+                      <argument>
+                        set -x
+
+                        SRC="${basedir}/src/test/resources"
+                        DST="${project.build.directory}/test-classes"
+
+                        find "$$SRC" -printf "%P\0" | xargs --verbose -0 -I {} chmod --reference="$$SRC/{}" -f "$$DST/{}"
+                      </argument>
+                    </arguments>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
         </plugins>
     </build>
-
 </project>
