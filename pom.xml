@@ -10,7 +10,7 @@
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>dataset-report-task</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.86-SNAPSHOT</version>
     <name>dataset-report-task</name>
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
@@ -214,6 +214,13 @@
                         <configuration>
                             <tag>latest</tag>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-current-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
                     </execution>
                 </executions>
                 <configuration>
