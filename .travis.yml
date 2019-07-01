@@ -7,4 +7,6 @@ services:
 after_success:
   - mvn -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
-deploy: mvn dockerfile:push -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
+deploy:
+  - provider: script
+    script: mvn dockerfile:push -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
