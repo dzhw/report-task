@@ -8,4 +8,4 @@ after_success:
   - mvn -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
 deploy:
-  - mvn dockerfile:push -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=DOCKER_PASSWORD
+  - mvn dockerfile:push -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
