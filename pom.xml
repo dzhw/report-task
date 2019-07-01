@@ -291,31 +291,6 @@
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>fix-resource-permissions</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>/bin/sh</executable>
-                            <arguments>
-                                <argument>-c</argument>
-                                <argument>set -x
-
-                        SRC="${basedir}/src/test/resources"
-                        DST="${project.build.directory}/test-classes"
-
-                        find "$$SRC" -printf "%P\0" | xargs --verbose -0 -I {} chmod --reference="$$SRC/{}" -f "$$DST/{}"</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- report code coverage to coveralls -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
