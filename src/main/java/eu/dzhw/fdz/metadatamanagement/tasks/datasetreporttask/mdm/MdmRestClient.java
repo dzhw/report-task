@@ -112,13 +112,17 @@ public class MdmRestClient {
 
     log.debug("MDM report upload starting for dataSetId: " + dataSetId);
 
-    ResponseEntity<String> response = mdmTemplate.postForEntity(
-        "/api/data-sets/{dataSetId}/report", requestEntity, String.class, dataSetId);
+    ResponseEntity<String> response = mdmTemplate.postForEntity("/api/data-sets/{dataSetId}/report",
+        requestEntity, String.class, dataSetId);
     if (response.getStatusCode() != HttpStatus.OK) {
       log.error("MDM report upload failed with status {}: {}", response.getStatusCode(),
           response.getBody());
     }
   }
 
+  public void postTaskError(String dataSetId, String onBehalfOf, String errorMessage) {
+    log.debug("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}",
+        dataSetId, onBehalfOf, errorMessage);
+  }
 
 }

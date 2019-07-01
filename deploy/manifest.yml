@@ -1,0 +1,16 @@
+---
+# this is the cloudfoundry manifest deploying this task to PWS
+applications:
+- name: dataset-report-task
+  docker:
+    image: dzhw/dataset-report-task 
+  memory: 100M
+  disk_quota: 1024M
+  instances: 0
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+   - mdm
+  health-check-type: process
+  no-route: true
+  

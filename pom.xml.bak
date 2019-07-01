@@ -10,7 +10,7 @@
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>dataset-report-task</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.86-SNAPSHOT</version>
     <name>dataset-report-task</name>
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
@@ -194,6 +194,36 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.10</version>
+                <executions>
+                    <execution>
+                        <id>build-docker-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-docker-image-latest</id>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <tag>latest</tag>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>dzhw/${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.0.0</version>
@@ -290,36 +320,69 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- report code coverage to coveralls -->
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.10</version>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.3.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <serviceName>My Travis</serviceName>
+                    <jacocoReports>
+                        <jacocoReport>${project.testresult.directory}/coverage/jacoco/jacoco.xml</jacocoReport>
+                    </jacocoReports>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.basedir}</sourceDirectory>
+                    </sourceDirectories>
+                    <scanForSources>true</scanForSources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
                 <executions>
                     <execution>
-                        <id>build-docker-image</id>
-                        <phase>package</phase>
+                        <id>pre-unit-tests</id>
                         <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>tag-docker-image-latest</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>tag</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
                         <configuration>
-                            <tag>latest</tag>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</destFile>
+                            <!-- Sets the name of the property containing the settings for JaCoCo runtime agent. -->
+                            <propertyName>surefireArgLine</propertyName>
+                            <excludes>
+                                <exclude>**/builders/</exclude>
+                                <exclude>**/domain/Q*.*</exclude>
+                                <exclude>**/org/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</dataFile>
+                            <outputDirectory>${project.testresult.directory}/coverage/jacoco</outputDirectory>
+                            <excludes>
+                                <exclude>**/builders/</exclude>
+                                <exclude>**/domain/Q*.*</exclude>
+                                <exclude>**/org/**</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <repository>dzhw/${project.artifactId}</repository>
-                    <tag>${project.version}</tag>
-                    <buildArgs>
-						            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-					          </buildArgs>
-                </configuration>
             </plugin>
         </plugins>
     </build>

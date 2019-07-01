@@ -1,3 +1,7 @@
+spring:
+  cloud: 
+    task:
+      external-execution-id: ${cf.instance.index}
 mdm:
   endpoint: ${vcap.services.mdm.credentials.endpoint}
   username: ${vcap.services.mdm.credentials.username}
