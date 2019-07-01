@@ -3,9 +3,14 @@ jdk:
   - openjdk11
 services:
   - docker
+cache:
+  directories:
+  - $HOME/.m2
 
-after_success:
-  - mvn -DrepoToken=$COVERALLS_TOKEN coveralls:report
+install: true
+
+script:
+  - mvn clean package -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
 deploy:
   - provider: script
