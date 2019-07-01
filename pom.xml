@@ -17,6 +17,7 @@
     <properties>
         <java.version>11</java.version>
         <maven-sortpom-plugin.version>2.10.0</maven-sortpom-plugin.version>
+        <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
@@ -289,6 +290,22 @@
                 </executions>
                 <configuration>
                     <linkXRef>false</linkXRef>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Xmx2048m ${surefireArgLine}</argLine>
+                    <!-- Force alphabetical order to have a reproducible build -->
+                    <runOrder>alphabetical</runOrder>
+                    <includes>
+                        <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Abstract*.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <!-- report code coverage to coveralls -->

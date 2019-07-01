@@ -18,6 +18,7 @@
         <java.version>11</java.version>
         <maven-sortpom-plugin.version>2.10.0</maven-sortpom-plugin.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
     </properties>
 
     <dependencyManagement>
@@ -291,35 +292,6 @@
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>fix-resource-permissions</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>/bin/sh</executable>
-                            <arguments>
-                                <argument>-c</argument>
-                                <argument>set -x
-
-                        SRC="${basedir}/src/test/resources"
-                        DST="${project.build.directory}/test-classes"
-
-                        find "$$SRC" -printf "%P\0" | xargs --verbose -0 -I {} chmod --reference="$$SRC/{}" -f "$$DST/{}"</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <!-- report code coverage to coveralls -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
@@ -383,6 +355,10 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
