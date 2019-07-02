@@ -1,12 +1,12 @@
 package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.task.listener.annotation.FailedTask;
+import org.springframework.cloud.task.listener.TaskExecutionListener;
 import org.springframework.cloud.task.repository.TaskExecution;
 import org.springframework.stereotype.Component;
 
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.TaskProperties;
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.MdmRestClient;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This component attempts to notify the MDM user who initiated this task in case any error occurred
@@ -14,17 +14,27 @@ import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.MdmRestClient;
  * 
  * @author René Reitmann
  */
+@RequiredArgsConstructor
 @Component
-public class TaskExceptionHandler {
-  @Autowired
-  private MdmRestClient mdmClient;
+public class TaskExceptionHandler implements TaskExecutionListener {
+  private final MdmRestClient mdmClient;
 
-  @Autowired
-  private TaskProperties taskProperties;
+  private final TaskProperties taskProperties;
 
-  @FailedTask
-  public void handleError(TaskExecution taskExecution, Throwable throwable) {
+  @Override
+  public void onTaskStartup(TaskExecution taskExecution) {
+    // do nothing
+  }
+
+  @Override
+  public void onTaskEnd(TaskExecution taskExecution) {
+    // do nothing
+  }
+
+  @Override
+  public void onTaskFailed(TaskExecution taskExecution, Throwable throwable) {
+    Throwable cause = throwable.getCause();
     mdmClient.postTaskError(taskProperties.getDataSetId(), taskProperties.getOnBehalfOf(),
-        throwable.getMessage());
+        cause != null ? cause.toString() : throwable.toString());
   }
 }

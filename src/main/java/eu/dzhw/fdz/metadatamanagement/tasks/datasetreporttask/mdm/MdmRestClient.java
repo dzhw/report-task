@@ -129,7 +129,7 @@ public class MdmRestClient {
    * @param errorMessage A message indicating the error.
    */
   public void postTaskError(String dataSetId, String onBehalfOf, String errorMessage) {
-    log.debug("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}",
+    log.error("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}",
         dataSetId, onBehalfOf, errorMessage);
     TaskErrorNotification errorNotification =
         TaskErrorNotification.builder().domainObjectId(dataSetId).onBehalfOf(onBehalfOf)
