@@ -201,15 +201,25 @@
                 <executions>
                     <execution>
                         <id>build-docker-image</id>
-                        <phase>package</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>tag-docker-image-latest</id>
+                        <phase>install</phase>
                         <goals>
                             <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <tag>latest</tag>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-image-latest</id>
+                        <goals>
+                            <goal>push</goal>
                         </goals>
                         <configuration>
                             <tag>latest</tag>

@@ -4,7 +4,7 @@ task:
   latex-process-command: src/test/resources/compile-report.sh
   pdf-report: target/report.pdf
   data-set-id: dat-gra2005-ds2$
-  on-behalf-of: rreitmann
+  on-behalf-of: dataprovider
   version: 2.0.15
 mdm:
   endpoint: ${MDM_ENDPOINT}

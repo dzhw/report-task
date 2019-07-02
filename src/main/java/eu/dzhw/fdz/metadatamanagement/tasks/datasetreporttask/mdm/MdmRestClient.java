@@ -18,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.MdmProperties;
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task;
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task.TaskState;
+import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task.TaskType;
+import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.TaskErrorNotification;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -120,9 +122,24 @@ public class MdmRestClient {
     }
   }
 
+  /**
+   * Send a notification to the user if any error occurred during task execution.
+   * @param dataSetId The id of the dataSet for which the report should have been generated.
+   * @param onBehalfOf The name of the user who has started the report generation.
+   * @param errorMessage A message indicating the error.
+   */
   public void postTaskError(String dataSetId, String onBehalfOf, String errorMessage) {
     log.debug("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}",
         dataSetId, onBehalfOf, errorMessage);
+    TaskErrorNotification errorNotification =
+        TaskErrorNotification.builder().domainObjectId(dataSetId).onBehalfOf(onBehalfOf)
+            .errorMessage(errorMessage).taskType(TaskType.DATA_SET_REPORT).build();
+    ResponseEntity<String> response =
+        mdmTemplate.postForEntity("/api/tasks/error-notification", errorNotification, String.class);
+    if (response.getStatusCode() != HttpStatus.OK) {
+      log.error("MDM error notification failed with status {}: {}", response.getStatusCode(),
+          response.getBody());
+    }
   }
 
 }

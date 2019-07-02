@@ -3,9 +3,9 @@
 applications:
 - name: dataset-report-task
   docker:
-    image: dzhw/dataset-report-task 
-  memory: 100M
-  disk_quota: 1024M
+    image: dzhw/dataset-report-task
+  memory: 512M
+  disk_quota: 2048M
   instances: 0
   env:
     SPRING_PROFILES_ACTIVE: cloud
@@ -13,4 +13,3 @@ applications:
    - mdm
   health-check-type: process
   no-route: true
-  

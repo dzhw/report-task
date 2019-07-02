@@ -1,28 +1,33 @@
 #
 # dzhw/dataset-report-task
 #
-# This is an image with a basic TeX Live installation and,
+# This is an image with a basic TeX Live installation and
 # additional resources for DZHW-FDZ variable reports.
-# Source: https://github.com/dzhw/dataset-report-task/
-# License: GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007
-# The license applies to the way the image is built, while the
-# software components inside the image are under the respective
-# licenses chosen by their respective copyright holders.
 #
-FROM thomasweise/texlive
-MAINTAINER Robert Birkelbach <birkelbach@dzhw.eu>
+# Source: https://github.com/dzhw/dataset-report-task
+#
+FROM ubuntu:19.10
+MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 
-RUN mkdir /usr/share/texlive/texmf-dist/tex/latex/calibri
+RUN apt-get update &&\
+    apt-get install -f -y language-pack-en language-pack-de
 
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' DEBIAN_FRONTEND=noninteractive
+
+# install texlive
+RUN apt-get install -f -y apt-utils &&\
+    apt-get install -f -y texlive-latex-base texlive-lang-german texlive-science fontconfig make
+
+# install calibri package
+RUN mkdir /usr/share/texlive/texmf-dist/tex/latex/calibri
 COPY latex-packages/fonts/Calibri /usr/share/texlive/texmf-dist/
 RUN echo "Map Calibri.map" >> /usr/share/texlive/texmf-dist/web2c/updmap.cfg
-RUN fc-cache && texhash && mktexlsr && sudo updmap-sys
+RUN fc-cache && texhash && mktexlsr && updmap-sys
 
 # install java
 # see https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/11/jdk/ubuntu/Dockerfile.hotspot.releases.full
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-
+RUN apt-get install -f -y curl
 RUN set -eux; \
     ARCH="$(dpkg --print-architecture)"; \
     case "${ARCH}" in \
@@ -64,5 +69,3 @@ ENV JAVA_HOME=/opt/java/openjdk \
 # COPY the spring boot task jar
 COPY ${JAR_FILE} /app/dataset-report-task.jar
 COPY latex-packages/doc /app/doc
-
-ENTRYPOINT ["/bin/__boot__.sh"]
