@@ -15,7 +15,7 @@ install:
   - sudo apt-get install cf-cli -y --allow-unauthenticated
 
 script:
-  - mvn --batch-mode --no-transfer-progress clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
+  - mvn --quiet clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
 deploy:
   - provider: script
