@@ -3,8 +3,8 @@
 applications:
 - name: dataset-report-task
   docker:
-    image: dzhw/dataset-report-task
-  memory: 128M
+    image: dzhw/dataset-report-task:((version))
+  memory: 256M
   disk_quota: 2048M
   instances: 0
   env:
