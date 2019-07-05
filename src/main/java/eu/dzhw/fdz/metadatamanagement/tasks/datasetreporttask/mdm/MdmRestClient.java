@@ -64,8 +64,8 @@ public class MdmRestClient {
     body.add("version", version);
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-    URI taskLocation = mdmTemplate.postForLocation("/api/data-sets/{dataSetId}/fill-template",
-        requestEntity, dataSetId);
+    URI taskLocation = mdmTemplate.postForLocation(
+        "/api/data-sets/{dataSetId}/report/fill-template", requestEntity, dataSetId);
     if (taskLocation != null) {
       log.debug("MDM started filling template under location: " + taskLocation);
 
@@ -124,6 +124,7 @@ public class MdmRestClient {
 
   /**
    * Send a notification to the user if any error occurred during task execution.
+   * 
    * @param dataSetId The id of the dataSet for which the report should have been generated.
    * @param onBehalfOf The name of the user who has started the report generation.
    * @param errorMessage A message indicating the error.

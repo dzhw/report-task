@@ -4,11 +4,12 @@ applications:
 - name: dataset-report-task
   docker:
     image: dzhw/dataset-report-task
-  memory: 512M
+  memory: 128M
   disk_quota: 2048M
   instances: 0
   env:
     SPRING_PROFILES_ACTIVE: cloud
+    JDK_JAVA_OPTIONS: -Xmx64m -Xms64m
   services:
    - mdm
   health-check-type: process
