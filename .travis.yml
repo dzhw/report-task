@@ -15,11 +15,12 @@ install:
   - sudo apt-get install cf-cli -y --allow-unauthenticated
 
 script:
-  - mvn --quiet clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
+  - mvn clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
 deploy:
+  skip_cleanup: true
   - provider: script
-    script: deploy/deploy.sh $CF_USERNAME $CF_PASSWORD $TRAVIS_BRANCH $DOCKER_USER $DOCKER_PASSWORD
+    script: ./deploy/deploy.sh $CF_USERNAME $CF_PASSWORD $TRAVIS_BRANCH $DOCKER_USER $DOCKER_PASSWORD
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH =~ ^master|development|test$

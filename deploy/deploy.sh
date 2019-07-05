@@ -10,7 +10,7 @@ PASSWORD="$2"
 TRAVIS_BRANCH="$3"
 DOCKER_USER="$4"
 DOCKER_PASSWORD="$5"
-mvn --quiet dockerfile:push dockerfile:push@push-image-latest -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
+mvn dockerfile:push dockerfile:push@push-image-latest -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
 if [ $? -ne 0 ]; then
     echo "docker push failed!"
     exit -1
@@ -33,7 +33,7 @@ if [ $? -ne 0 ]; then
     echo "cf login failed!"
     exit -1
 fi
-VERSION=$(mvn --quiet help:evaluate -Dexpression=project.version -q -DforceStdout)
+VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
 cf push -f deploy/manifest.yml --var version=${VERSION}
 if [ $? -ne 0 ]; then
     echo "cf push failed!"
