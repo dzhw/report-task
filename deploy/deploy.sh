@@ -8,7 +8,13 @@ fi
 USERNAME="$1"
 PASSWORD="$2"
 TRAVIS_BRANCH="$3"
-VERSION="$4"
+DOCKER_USER="$4"
+DOCKER_PASSWORD="$5"
+mvn --batch-mode --no-transfer-progress dockerfile:push dockerfile:push@push-image-latest -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
+if [ $? -ne 0 ]; then
+    echo "docker push failed!"
+    exit -1
+fi
 if [ "${TRAVIS_BRANCH}" = "master" ]; then
   PROFILE="prod"
 fi
@@ -27,6 +33,7 @@ if [ $? -ne 0 ]; then
     echo "cf login failed!"
     exit -1
 fi
+VERSION=$(mvn --batch-mode --no-transfer-progress help:evaluate -Dexpression=project.version -q -DforceStdout)
 cf push -f deploy/manifest.yml --var version=${VERSION}
 if [ $? -ne 0 ]; then
     echo "cf push failed!"
