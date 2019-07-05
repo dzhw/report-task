@@ -18,8 +18,8 @@ script:
   - mvn clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
 
 deploy:
-  skip_cleanup: true
   - provider: script
+    skip_cleanup: true
     script: ./deploy/deploy.sh $CF_USERNAME $CF_PASSWORD $TRAVIS_BRANCH $DOCKER_USER $DOCKER_PASSWORD
     on:
       all_branches: true
