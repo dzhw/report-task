@@ -19,6 +19,9 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8' DEBIAN_FRONTEND=
 RUN apt-get install -f -y apt-utils &&\
     apt-get install -f -y texlive-latex-base texlive-lang-german texlive-science fontconfig make
 
+# install additional latex packages
+RUN apt-get install -f -y texlive-latex-extra
+
 # install calibri package
 RUN mkdir /usr/share/texlive/texmf-dist/tex/latex/calibri
 COPY latex-packages/fonts/Calibri /usr/share/texlive/texmf-dist/
