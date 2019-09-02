@@ -7,16 +7,15 @@ services:
 cache:
   directories:
   - $HOME/.m2
-
 install:
   - wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
   - echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
   - sudo apt-get update -qq
   - sudo apt-get install cf-cli -y --allow-unauthenticated
-
 script:
-  - mvn clean install -DrepoToken=$COVERALLS_TOKEN coveralls:report
-
+  - mvn clean install
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
     skip_cleanup: true
