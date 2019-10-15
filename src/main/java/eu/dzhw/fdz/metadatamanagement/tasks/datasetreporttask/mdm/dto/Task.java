@@ -53,7 +53,6 @@ public class Task {
    * type of tasks.
    */
   public enum TaskType {
-    DATA_SET_REPORT,
-    PROJECT_RELEASE
+    DATA_SET_REPORT
   }
 }

@@ -10,7 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.loader.tools.RunProcess;
 import org.springframework.cloud.task.configuration.EnableTask;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.FileSystemResource;
 
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.MdmProperties;
 import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.TaskProperties;
@@ -34,45 +33,52 @@ public class DatasetReportTaskApplication {
 
   /**
    * Run the task for instance with 'java --jar dataset-report-task.jar
-   * --task.data-set-id=dat-cmp2014-ds1$ --task.on-behalf-of=rreitmann --task.version=1.0.0'.
+   * --task.data-set-id=dat-cmp2014-ds1$ --task.languages=de,en --task.on-behalf-of=rreitmann
+   * --task.version=1.0.0'.
    * 
    * @param mdmClient The fully configured {@link MdmRestClient}
    * @param taskProperties All properties for this task.
-   * @param zippedTemplate The zipped template folder.
    * @return springs {@link CommandLineRunner}
    * @throws Exception if anything goes wrong.
    */
   @Bean
-  public CommandLineRunner run(MdmRestClient mdmClient, TaskProperties taskProperties,
-      FileSystemResource zippedTemplate) throws Exception {
-    log.info("Start report generation for dataset '{}' on behalf of '{}'.",
-        taskProperties.getDataSetId(), taskProperties.getOnBehalfOf());
+  public CommandLineRunner run(MdmRestClient mdmClient, TaskProperties taskProperties)
+      throws Exception {
+    log.info("Start report generation for dataset '{}' on behalf of '{}' in languages '{}'.",
+        taskProperties.getDataSetId(), taskProperties.getOnBehalfOf(),
+        taskProperties.getLanguages());
     return args -> {
-      byte[] filledTemplate = mdmClient.fillTemplate(zippedTemplate, taskProperties.getDataSetId(),
-          taskProperties.getVersion());
-      File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
-      if (variablesDir.exists()) {
-        FileUtils.cleanDirectory(variablesDir);
-      } else {
-        if (variablesDir.mkdir()) {
-          log.debug("Created variables directory.");
+      for (String language : taskProperties.getLanguages()) {
+        byte[] filledTemplate = mdmClient.fillTemplate(language, taskProperties.getDataSetId(),
+            taskProperties.getVersion());
+        File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
+        if (variablesDir.exists()) {
+          FileUtils.cleanDirectory(variablesDir);
+        } else {
+          if (variablesDir.mkdir()) {
+            log.debug("Created variables directory.");
+          }
         }
-      }
-      ZipUtils.unzip(filledTemplate, taskProperties.getLatexInputDir().getFile());
-      log.info("Successfully unzipped template to folder: "
-          + taskProperties.getLatexInputDir().getFile().getAbsolutePath());
-      RunProcess latexCompileProcess =
-          new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
-              taskProperties.getLatexProcessCommand());
-      if (latexCompileProcess.run(true) == 0) {
-        log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
-        mdmClient.uploadReport(taskProperties.getPdfReport(), taskProperties.getDataSetId(),
-            taskProperties.getOnBehalfOf());
-        log.info("Successfully uploaded report to the MDM.");
-      } else {
-        throw new RuntimeException(
-            "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
-                + "', command '" + taskProperties.getLatexProcessCommand() + "'");
+        ZipUtils.unzip(filledTemplate, taskProperties.getLatexInputDir().getFile());
+        log.info("Successfully unzipped template to folder: "
+            + taskProperties.getLatexInputDir().getFile().getAbsolutePath());
+        RunProcess latexCompileProcess =
+            new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
+                taskProperties.getLatexProcessCommand());
+        if (latexCompileProcess.run(true) == 0) {
+          log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
+          mdmClient.uploadReport(language, taskProperties.getPdfReport(),
+              taskProperties.getDataSetId(), taskProperties.getOnBehalfOf());
+          boolean deleted = taskProperties.getPdfReport().getFile().delete();
+          if (!deleted) {
+            log.warn("Unable to delete file:" + taskProperties.getPdfReport().getPath());
+          }
+          log.info("Successfully uploaded '{}'-report to the MDM.", language);
+        } else {
+          throw new RuntimeException(
+              "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
+                  + "', command '" + taskProperties.getLatexProcessCommand() + "'");
+        }
       }
     };
   }
