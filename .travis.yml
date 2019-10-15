@@ -13,7 +13,7 @@ install:
   - sudo apt-get update -qq
   - sudo apt-get install cf-cli -y --allow-unauthenticated
 script:
-  - mvn clean install
+  - mvn --no-transfer-progress clean install
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 deploy:
