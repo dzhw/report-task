@@ -44,41 +44,39 @@ public class DatasetReportTaskApplication {
   @Bean
   public CommandLineRunner run(MdmRestClient mdmClient, TaskProperties taskProperties)
       throws Exception {
-    log.info("Start report generation for dataset '{}' on behalf of '{}' in languages '{}'.",
+    log.info("Start report generation for dataset '{}' on behalf of '{}' in language '{}'.",
         taskProperties.getDataSetId(), taskProperties.getOnBehalfOf(),
-        taskProperties.getLanguages());
+        taskProperties.getLanguage());
     return args -> {
-      for (String language : taskProperties.getLanguages()) {
-        byte[] filledTemplate = mdmClient.fillTemplate(language, taskProperties.getDataSetId(),
-            taskProperties.getVersion());
-        File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
-        if (variablesDir.exists()) {
-          FileUtils.cleanDirectory(variablesDir);
-        } else {
-          if (variablesDir.mkdir()) {
-            log.debug("Created variables directory.");
-          }
+      byte[] filledTemplate = mdmClient.fillTemplate(taskProperties.getLanguage(),
+          taskProperties.getDataSetId(), taskProperties.getVersion());
+      File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
+      if (variablesDir.exists()) {
+        FileUtils.cleanDirectory(variablesDir);
+      } else {
+        if (variablesDir.mkdir()) {
+          log.debug("Created variables directory.");
         }
-        ZipUtils.unzip(filledTemplate, taskProperties.getLatexInputDir().getFile());
-        log.info("Successfully unzipped template to folder: "
-            + taskProperties.getLatexInputDir().getFile().getAbsolutePath());
-        RunProcess latexCompileProcess =
-            new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
-                taskProperties.getLatexProcessCommand());
-        if (latexCompileProcess.run(true) == 0) {
-          log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
-          mdmClient.uploadReport(language, taskProperties.getPdfReport(),
-              taskProperties.getDataSetId(), taskProperties.getOnBehalfOf());
-          boolean deleted = taskProperties.getPdfReport().getFile().delete();
-          if (!deleted) {
-            log.warn("Unable to delete file:" + taskProperties.getPdfReport().getPath());
-          }
-          log.info("Successfully uploaded '{}'-report to the MDM.", language);
-        } else {
-          throw new RuntimeException(
-              "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
-                  + "', command '" + taskProperties.getLatexProcessCommand() + "'");
+      }
+      ZipUtils.unzip(filledTemplate, taskProperties.getLatexInputDir().getFile());
+      log.info("Successfully unzipped template to folder: "
+          + taskProperties.getLatexInputDir().getFile().getAbsolutePath());
+      RunProcess latexCompileProcess =
+          new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
+              taskProperties.getLatexProcessCommand());
+      if (latexCompileProcess.run(true) == 0) {
+        log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
+        mdmClient.uploadReport(taskProperties.getLanguage(), taskProperties.getPdfReport(),
+            taskProperties.getDataSetId(), taskProperties.getOnBehalfOf());
+        boolean deleted = taskProperties.getPdfReport().getFile().delete();
+        if (!deleted) {
+          log.warn("Unable to delete file:" + taskProperties.getPdfReport().getPath());
         }
+        log.info("Successfully uploaded '{}'-report to the MDM.", taskProperties.getLanguage());
+      } else {
+        throw new RuntimeException(
+            "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
+                + "', command '" + taskProperties.getLatexProcessCommand() + "'");
       }
     };
   }

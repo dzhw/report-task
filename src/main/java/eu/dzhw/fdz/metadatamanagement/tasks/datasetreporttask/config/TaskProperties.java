@@ -1,7 +1,5 @@
 package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config;
 
-import java.util.List;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -42,11 +40,11 @@ public class TaskProperties {
   private String version;
   
   /**
-   * Languages in which the report will be generated. Currently supported:
+   * Language in which the report will be generated. Currently supported:
    * de, en
    */
   @NotEmpty
-  private List<String> languages;
+  private String language;
 
   /**
    * The input folder containing all files for the latex to pdf compilation.
