@@ -9,19 +9,18 @@
 \usepackage{verbatim}
 
 %formatting numbers
-\usepackage[locale = DE]{siunitx}
+\usepackage[locale = EN]{siunitx}
 
 %support bold siunitx formatted numbers in table cells
 \usepackage{etoolbox}
 \robustify\bfseries
 
 %siunitx defaults
-%numbers in german notation using thousand seperators
-%zahlen werden auf zwei stellen gerundet, integer erhalten keine nachfolgenden nullen
+%numbers in english notation using thousand seperators
 %detect-weight and detect-inline-weight are used to make a single cell bold
 \sisetup{%
-	output-decimal-marker={,},
-	group-separator={.},
+	output-decimal-marker={.},
+	group-separator={,},
 	group-digits=integer,
 	group-minimum-digits=4,
 	detect-weight=true,
@@ -52,7 +51,7 @@
 
 \subject{Datensatzreport}
 %\author{Autor(in) 1 / Autor(in) 2}
-\title{${study.title.de}}
+\title{${study.title.en}}
 \subtitle{Datensatz ${dataSet.number}}
 \version{Version ${version}}
 %\date{März \number\year}
