@@ -42,7 +42,7 @@ public class MdmRestClient {
    * @param mdmProperties Properties holding username and password of the mdm.
    * @param templateBuilder Springs {@link RestTemplateBuilder}.
    * @param zippedGermanTemplate The zipped german template folder.
-   * @param zippedEnglishTemplate The zipped english template folder. 
+   * @param zippedEnglishTemplate The zipped english template folder.
    */
   public MdmRestClient(MdmProperties mdmProperties, RestTemplateBuilder templateBuilder,
       FileSystemResource zippedGermanTemplate, FileSystemResource zippedEnglishTemplate) {
@@ -63,14 +63,15 @@ public class MdmRestClient {
    * @return A byte array containing a zip file with the latex files.
    * @throws InterruptedException We need to sleep until the mdm has finished processing the
    *         template.
+   * @throws FillTemplateException In case the mdm task returns an error.
    */
   public byte[] fillTemplate(String language, String dataSetId, String version)
-      throws InterruptedException {
+      throws InterruptedException, FillTemplateException {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
     if (language.equals("de")) {
-      body.add("file", zippedGermanTemplate);      
+      body.add("file", zippedGermanTemplate);
     } else if (language.equals("en")) {
       body.add("file", zippedEnglishTemplate);
     } else {
@@ -106,7 +107,12 @@ public class MdmRestClient {
           log.error("Error occurred during download: " + filledTemplate.getStatusCodeValue());
         }
       } else {
-        log.error("MDM task errored: " + task != null ? task.toString() : " No Task found!");
+        if (task != null && task.getErrorList() != null
+            && task.getErrorList().getErrors().size() > 0) {
+          throw new FillTemplateException(task.getErrorList());
+        } else {
+          log.error("MDM task errored: " + (task != null ? task.toString() : " No Task found!"));
+        }
       }
     }
     return new byte[0];

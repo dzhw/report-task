@@ -1,15 +1,15 @@
-\documentclass[ngerman]{book}
+\documentclass[english]{book}
 
 \ifx\directlua\undefined\ifx\XeTeXcharclass\undefined
   \usepackage[utf8]{inputenc}                %pdftex engine
   \else\RequirePackage[no-math]{fontspec}\fi %xetex engine
   \else\RequirePackage[no-math]{fontspec}\fi %luatex engine
 
-\usepackage[marginalspalte]{dsreport}
+\usepackage[marginalspalte]{dsreport_en}
 \usepackage{verbatim}
 
 %formatting numbers
-\usepackage[locale = EN]{siunitx}
+\usepackage[locale = US]{siunitx}
 
 %support bold siunitx formatted numbers in table cells
 \usepackage{etoolbox}
