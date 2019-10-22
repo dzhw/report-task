@@ -1,5 +1,6 @@
 package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import lombok.ToString;
  * Object.
  */
 @ToString
-public class ErrorListDto {
+public class ErrorListDto implements Serializable {
+  private static final long serialVersionUID = -5649104570542092290L;
+  
   /* A List for ErrorDtos */
   private List<ErrorDto> errorDtos = new ArrayList<>();
   

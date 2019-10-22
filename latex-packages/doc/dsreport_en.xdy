@@ -1,0 +1,9 @@
+;; $Id: .xdy,v 1.0 2017/03/01 16:37:17 dsreport_en Exp $ -*- Lisp -*-
+;; ------------------------------------------------------------
+;;
+;; Xindy-Style, for index processing according to the dsreport_en-style.
+;;
+(markup-letter-group :open-head "~n \textbf{\textcolor{spot}{" :close-head "}}\nopagebreak")
+(markup-locclass-list :open "\enskip " :sep ", ")
+(markup-indexentry :open "~n \item --\enskip")
+;;
