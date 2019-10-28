@@ -30,37 +30,53 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class MdmRestClient {
-  private RestTemplate mdmTemplate;
+  private final RestTemplate mdmTemplate;
+
+  private final FileSystemResource zippedGermanTemplate;
+
+  private final FileSystemResource zippedEnglishTemplate;
 
   /**
    * Create the {@link RestTemplate} from the {@link MdmProperties}.
    * 
    * @param mdmProperties Properties holding username and password of the mdm.
    * @param templateBuilder Springs {@link RestTemplateBuilder}.
+   * @param zippedGermanTemplate The zipped german template folder.
+   * @param zippedEnglishTemplate The zipped english template folder.
    */
-  public MdmRestClient(MdmProperties mdmProperties, RestTemplateBuilder templateBuilder) {
+  public MdmRestClient(MdmProperties mdmProperties, RestTemplateBuilder templateBuilder,
+      FileSystemResource zippedGermanTemplate, FileSystemResource zippedEnglishTemplate) {
     super();
     mdmTemplate = templateBuilder
         .basicAuthentication(mdmProperties.getUsername(), mdmProperties.getPassword())
         .rootUri(mdmProperties.getEndpoint()).build();
+    this.zippedGermanTemplate = zippedGermanTemplate;
+    this.zippedEnglishTemplate = zippedEnglishTemplate;
   }
 
   /**
    * Fill the given freemarker latex templates with the data from the mdm for the given dataset.
    * 
-   * @param zippedTemplate The zip file containing freemarker latex templates.
+   * @param language The language of the template which needs to be uploaded.
    * @param dataSetId The id of the dataset for which the report will be generated.
    * @param version The version of the report.
    * @return A byte array containing a zip file with the latex files.
    * @throws InterruptedException We need to sleep until the mdm has finished processing the
    *         template.
+   * @throws FillTemplateException In case the mdm task returns an error.
    */
-  public byte[] fillTemplate(FileSystemResource zippedTemplate, String dataSetId, String version)
-      throws InterruptedException {
+  public byte[] fillTemplate(String language, String dataSetId, String version)
+      throws InterruptedException, FillTemplateException {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-    body.add("file", zippedTemplate);
+    if (language.equals("de")) {
+      body.add("file", zippedGermanTemplate);
+    } else if (language.equals("en")) {
+      body.add("file", zippedEnglishTemplate);
+    } else {
+      throw new IllegalArgumentException("Unsupported language '" + language + "'!");
+    }
     body.add("version", version);
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
@@ -91,7 +107,12 @@ public class MdmRestClient {
           log.error("Error occurred during download: " + filledTemplate.getStatusCodeValue());
         }
       } else {
-        log.error("MDM task errored: " + task != null ? task.toString() : " No Task found!");
+        if (task != null && task.getErrorList() != null
+            && task.getErrorList().getErrors().size() > 0) {
+          throw new FillTemplateException(task.getErrorList());
+        } else {
+          log.error("MDM task errored: " + (task != null ? task.toString() : " No Task found!"));
+        }
       }
     }
     return new byte[0];
@@ -100,11 +121,13 @@ public class MdmRestClient {
   /**
    * Upload the compiled pdf report to the MDM.
    * 
+   * @param language in which the report has been generated.
    * @param report The compiled report.
    * @param dataSetId The id of the dataSet for which the report has been generated.
    * @param onBehalfOf The name of the user who has started the report generation.
    */
-  public void uploadReport(FileSystemResource report, String dataSetId, String onBehalfOf) {
+  public void uploadReport(String language, FileSystemResource report, String dataSetId,
+      String onBehalfOf) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
@@ -114,8 +137,9 @@ public class MdmRestClient {
 
     log.debug("MDM report upload starting for dataSetId: " + dataSetId);
 
-    ResponseEntity<String> response = mdmTemplate.postForEntity("/api/data-sets/{dataSetId}/report",
-        requestEntity, String.class, dataSetId);
+    ResponseEntity<String> response =
+        mdmTemplate.postForEntity("/api/data-sets/{dataSetId}/report/{language}", requestEntity,
+            String.class, dataSetId, language);
     if (response.getStatusCode() != HttpStatus.OK) {
       log.error("MDM report upload failed with status {}: {}", response.getStatusCode(),
           response.getBody());

@@ -23,7 +23,7 @@ mvn clean install
 
 If you want to run the task against an [MDM] instance running on your local machine, you can run:
 ```shell
-docker run -it --network=host dzhw/dataset-report-task java -jar /app/dataset-report-task.jar --task.dataSetId=dat-gra2005-ds2$ --task.version=1.2.3 --task.onBehalfOf=dataprovider --mdm.username=${MDM_TASK_USER} --mdm.password=${MDM_TASK_PASSWORD} --mdm.endpoint=http://127.0.0.1:8080
+docker run -it --network=host dzhw/dataset-report-task java -jar /app/dataset-report-task.jar --task.dataSetId=dat-gra2005-ds2$ --task.version=1.2.3 --task.onBehalfOf=dataprovider --task.languages=de,en --mdm.username=${MDM_TASK_USER} --mdm.password=${MDM_TASK_PASSWORD} --mdm.endpoint=http://127.0.0.1:8080
 ```
 
 For further configuration options you should get familiar with [Spring Boot @ConfigurationProperties](https://www.baeldung.com/configuration-properties-in-spring-boot) and have a look into `src/main/java/eu/dzhw/fdz/metadatamanagement/tasks/datasetreporttask/config`.
