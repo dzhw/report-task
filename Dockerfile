@@ -13,7 +13,7 @@ ARG JAR_FILE
 # install texlive
 RUN apt-get update \
  &&  apt-get install -y --no-install-recommends \
-     texlive-latex-base texlive-lang-german texlive-science texlive-latex-extra fontconfig make\
+     texlive-latex-base texlive-lang-german texlive-lang-english texlive-science texlive-latex-extra fontconfig make\
  &&  rm -rf /var/lib/apt/lists/*
 
 # install calibri package

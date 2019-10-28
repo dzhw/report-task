@@ -38,6 +38,13 @@ public class TaskProperties {
    */
   @NotEmpty
   private String version;
+  
+  /**
+   * Language in which the report will be generated. Currently supported:
+   * de, en
+   */
+  @NotEmpty
+  private String language;
 
   /**
    * The input folder containing all files for the latex to pdf compilation.

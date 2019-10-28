@@ -5,6 +5,7 @@ task:
   pdf-report: target/report.pdf
   data-set-id: dat-gra2005-ds2$
   on-behalf-of: dataprovider
+  language: en
   version: 2.0.15
 mdm:
   endpoint: ${MDM_ENDPOINT}
