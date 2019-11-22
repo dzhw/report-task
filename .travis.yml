@@ -16,6 +16,7 @@ install:
   - unzip -qq apache-maven-3.6.1-bin.zip
   - export M2_HOME=$PWD/apache-maven-3.6.1
   - export PATH=$M2_HOME/bin:$PATH
+  - pip install --user awscli
 script:
   - mvn --no-transfer-progress clean install
 after_success:

@@ -10,7 +10,8 @@ PASSWORD="$2"
 TRAVIS_BRANCH="$3"
 DOCKER_USER="$4"
 DOCKER_PASSWORD="$5"
-mvn dockerfile:push dockerfile:push@push-image-latest -Ddockerfile.username=$DOCKER_USER -Ddockerfile.password=$DOCKER_PASSWORD
+$(aws ecr get-login --no-include-email --region eu-central-1)
+mvn dockerfile:push dockerfile:push@push-image-latest
 if [ $? -ne 0 ]; then
     echo "docker push failed!"
     exit -1
