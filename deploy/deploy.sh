@@ -8,9 +8,7 @@ fi
 USERNAME="$1"
 PASSWORD="$2"
 TRAVIS_BRANCH="$3"
-DOCKER_USER="$4"
-DOCKER_PASSWORD="$5"
-$(aws ecr get-login --no-include-email --region eu-central-1)
+$(aws ecr get-login --no-include-email --region eu-central-1 --profile mdm)
 mvn dockerfile:push dockerfile:push@push-image-latest
 if [ $? -ne 0 ]; then
     echo "docker push failed!"

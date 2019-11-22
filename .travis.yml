@@ -17,6 +17,7 @@ install:
   - export M2_HOME=$PWD/apache-maven-3.6.1
   - export PATH=$M2_HOME/bin:$PATH
   - pip install --user awscli
+  - cp ./deploy/aws/config ~/.aws/config
 script:
   - mvn --no-transfer-progress clean install
 after_success:
@@ -24,7 +25,7 @@ after_success:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ./deploy/deploy.sh $CF_USERNAME $CF_PASSWORD $TRAVIS_BRANCH $DOCKER_USER $DOCKER_PASSWORD
+    script: ./deploy/deploy.sh $CF_USERNAME $CF_PASSWORD $TRAVIS_BRANCH
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH =~ ^master|development|test$
