@@ -16,7 +16,7 @@ MDM_TASK_PASSWORD
 
 The docker image can be build with:
 ```shell
-mvn clean install
+mvn -Pdev clean install
 ```
 
 If you want to run the task against an [MDM] instance running on your local machine, you can run:

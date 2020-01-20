@@ -14,13 +14,13 @@ install:
   - export PATH=$M2_HOME/bin:$PATH
   - pip install --user awscli
 script:
-  - mvn --no-transfer-progress clean install
+  - "./deploy/build.sh unused $TRAVIS_BRANCH"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
-    skip_cleanup: true
-    script: ./deploy/deploy.sh
+    cleanup: false
+    script: "./deploy/deploy.sh unused $TRAVIS_BRANCH"
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH =~ ^master|development|test$

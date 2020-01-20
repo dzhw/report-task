@@ -213,7 +213,7 @@
                             <goal>tag</goal>
                         </goals>
                         <configuration>
-                            <tag>latest</tag>
+                            <tag>latest-${project.activeProfiles[0].id}</tag>
                         </configuration>
                     </execution>
                     <execution>
@@ -222,7 +222,7 @@
                             <goal>push</goal>
                         </goals>
                         <configuration>
-                            <tag>latest</tag>
+                            <tag>latest-${project.activeProfiles[0].id}</tag>
                         </configuration>
                     </execution>
                 </executions>
