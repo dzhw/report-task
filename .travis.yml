@@ -13,10 +13,6 @@ install:
   - export M2_HOME=$PWD/apache-maven-3.6.1
   - export PATH=$M2_HOME/bin:$PATH
   - pip install --user awscli
-  - mkdir ~/.aws
-  - cp ./deploy/aws/* ~/.aws/
-  - echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
-  - echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
 script:
   - mvn --no-transfer-progress clean install
 after_success:
