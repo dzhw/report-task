@@ -28,8 +28,9 @@
 	<#else>
 	Keine Zugangswege!
 	</#list> \\
-	<#if variable.generationDetails.description??>
-	Generierungsbeschreibung: & ${variable.generationDetails.description}\\<#else></#if>
+	<#if variable.generationDetails?? && variable.generationDetails.description??>
+	Generierungsbeschreibung: & ${variable.generationDetails.description}\\
+	<#else></#if>
     \end{tabularx}
 
 
