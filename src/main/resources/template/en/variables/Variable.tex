@@ -33,6 +33,8 @@
 	<#else></#if>
 	<#if variable.annotations?? && variable.annotations.en??>
 	Annotations: & ${variable.annotations.en} \\
+	<#if derivedVariables??>
+	Derived variables: & ${derivedVariables} \\
 	<#else></#if>
     \end{tabularx}
 

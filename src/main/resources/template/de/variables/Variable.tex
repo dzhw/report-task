@@ -34,6 +34,9 @@
 	<#if variable.annotations?? && variable.annotations.de??>
 	Anmerkungen: & ${variable.annotations.de} \\
 	<#else></#if>
+	<#if derivedVariables??>
+	Abgeleitete Variablen: & ${derivedVariables} \\
+	<#else></#if>
     \end{tabularx}
 
 
