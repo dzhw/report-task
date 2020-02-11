@@ -31,8 +31,8 @@
 	<#if variable.generationDetails?? && variable.generationDetails.description?? && variable.generationDetails.description.de??>
 	Generierungsbeschreibung: & ${variable.generationDetails.description.de}\\
 	<#else></#if>
-	<#if variable.annotations??>
-	Anmerkungen: & ${variable.annotations} \\
+	<#if variable.annotations?? && variable.annotations.de??>
+	Anmerkungen: & ${variable.annotations.de} \\
 	<#else></#if>
     \end{tabularx}
 
