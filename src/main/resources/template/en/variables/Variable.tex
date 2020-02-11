@@ -9,7 +9,7 @@
 
     %omit vertical space
     \vspace*{-1.8cm}
-	\section{${variable.name}<#if variable.label??> (${variable.label.en})</#if>}
+	\section{${variable.name}<#if variable.label?? && variable.label.en??> (${variable.label.en})</#if>}
 	<#noescape>\label{section:${variable.name}}</#noescape>
 
 
