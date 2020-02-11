@@ -28,6 +28,12 @@
 	<#else>
 	No access ways!
 	</#list> \\
+	<#if variable.generationDetails?? && variable.generationDetails.description?? && variable.generationDetails.description.en??>
+	Generation details: & ${variable.generationDetails.description.en}\\
+	<#else></#if>
+	<#if variable.annotations?? && variable.annotations.en??>
+	Annotations: & ${variable.annotations.en} \\
+	<#else></#if>
     \end{tabularx}
 
 
