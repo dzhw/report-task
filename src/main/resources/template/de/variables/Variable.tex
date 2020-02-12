@@ -37,8 +37,8 @@
 	<#if derivedVariables[variable.id]?has_content>
 	  Abgeleitete Variablen: & <#list derivedVariables[variable.id] as derivedVariable>${derivedVariable.name}<#sep>, </#sep></#list>
 	</#if>
-	<#if sameVariablesInPanel[panelIdentifier]?has_content>
-	  Panelvariablen: & <#list sameVariablesInPanel[panelIdentifier] as sameVariableInPanel>${sameVariableInPanel.name}<#sep>, </#sep></#list>
+	<#if sameVariablesInPanel[variable.panelIdentifier]?has_content>
+	  Panelvariablen: & <#list sameVariablesInPanel[variable.panelIdentifier] as sameVariableInPanel>${sameVariableInPanel.name}<#sep>, </#sep></#list>
     </#if>
 
     \end{tabularx}
