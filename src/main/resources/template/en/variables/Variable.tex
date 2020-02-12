@@ -33,8 +33,6 @@
 	</#if>
 	<#if variable.annotations?? && variable.annotations.en??>
 	  Annotations: & ${variable.annotations.en} \\
-	<#if derivedVariables?? && derivedVariables?size != 0>
-	  Derived variables: & ${derivedVariables} \\
 	</#if>
 	<#if derivedVariables[variable.id]?has_content>
 	  Derived variables: & <#list derivedVariables[variable.id] as derivedVariable>${derivedVariable.name}<#sep>, </#sep></#list>
