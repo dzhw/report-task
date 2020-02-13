@@ -35,10 +35,10 @@
 	  Anmerkungen: & ${variable.annotations.de} \\
 	</#if>
 	<#if derivedVariables[variable.id]?has_content>
-	  Abgeleitete Variablen: & <#list derivedVariables[variable.id] as derivedVariable>${derivedVariable.name}<#sep>, </#sep></#list>
+	  Abgeleitete Variablen: & <#list derivedVariables[variable.id] as derivedVariable>${derivedVariable.name}<#sep>, </#sep></#list> \\
 	</#if>
 	<#if sameVariablesInPanel[variable.id]?has_content>
-	  Panelvariablen: & <#list sameVariablesInPanel[variable.id] as sameVariableInPanel>${sameVariableInPanel.name}<#sep>, </#sep></#list>
+	  Panelvariablen: & <#list sameVariablesInPanel[variable.id] as sameVariableInPanel>${sameVariableInPanel.name}<#sep>, </#sep></#list> \\
     </#if>
 
     \end{tabularx}
