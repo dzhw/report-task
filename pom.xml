@@ -18,7 +18,7 @@
         <java.version>11</java.version>
         <maven-sortpom-plugin.version>2.10.0</maven-sortpom-plugin.version>
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
-        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
