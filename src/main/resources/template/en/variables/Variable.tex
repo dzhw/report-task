@@ -131,7 +131,7 @@
 					\multicolumn{5}{l}{\textbf{Missing values}}\\
 					<#if variable.distribution.missings??>
 						<#list variable.distribution.missings as missing>
-							${missing.code!"-"} & ${missing.label.en!"-"} & \num{${missing.absoluteFrequency!"-"}} & - & \num[round-mode=places,round-precision=2]{${missing.relativeFrequency!"-"}} \\
+							${missing.code!"-"} & ${(missing.label.en)!"-"} & \num{${missing.absoluteFrequency!"-"}} & - & \num[round-mode=places,round-precision=2]{${missing.relativeFrequency!"-"}} \\
 
 						</#list>
 					<#else>
@@ -161,7 +161,7 @@
 
 					${validResponse.value!"-"} &
 				% TODO try size/length gt 0; take over for other passages
-					\multicolumn{1}{X}{<#if validResponse.label.en?? && validResponse.label.en != ""> ${validResponse.label.en!"-"}  <#else> - </#if> } &
+					\multicolumn{1}{X}{<#if validResponse.label?? && validResponse.label.en?? && validResponse.label.en != ""> ${validResponse.label.en!"-"}  <#else> - </#if> } &
 
 
 					%${validResponse.absoluteFrequency!"-"} &
@@ -251,7 +251,7 @@
 					<#if variable.distribution.missings??>
 						<#list variable.distribution.missings as missing>
 							${missing.code!"-"} &
-							${missing.label.en!"-"} &
+							${(missing.label.en)!"-"} &
 							<#if missing.absoluteFrequency??>
 							  \num{${missing.absoluteFrequency}} &
 							<#else>
