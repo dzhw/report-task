@@ -1,12 +1,11 @@
-sudo: required
 language: java
 jdk:
-  - openjdk11
+- openjdk11
 services:
-  - docker
+- docker
 cache:
   directories:
-  - $HOME/.m2
+  - "$HOME/.m2"
 install:
   - wget https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.zip
   - unzip -qq apache-maven-3.6.1-bin.zip
@@ -16,7 +15,7 @@ install:
 script:
   - "./deploy/build.sh unused $TRAVIS_BRANCH"
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
     cleanup: false
@@ -24,3 +23,6 @@ deploy:
     on:
       all_branches: true
       condition: $TRAVIS_BRANCH =~ ^master|development|test$
+notifications:
+  slack:
+    secure: OpRX3GdEWi6Y4/d5nRfFWraFGfkvarT/ss5Gb44RRyUZ/ZgpDg6axwXD0PGcCTpxZOREwye+FoOUN3XHG5bImKbFPG0BBs7ey+KCvp2hmOvxJ+RLmPxIxBucPjB6G9VJa9UBwRrXsSELOzp4lWMOX2tuDl8XyvpCrdMOezGOOq1coN9Hh+Go7CNbXFjHfpgGOHEZUy8JBMjKWoCBFdxHf/GJYmnLh95Qc+pxWYmpcotiSuxX3Cz2v59oHBmuRGyMHa3Y3VnOPIWIMHbD4Ft+vDA6GkX1Zn3CMvgY05W/13LIQCzaINZ2uR5u2IFhoC+17No3CEas8ePfcF7NBs2RHthORUJtcOF9m0XigClYUm/urGFSTdtTiwEQCptGfr2wBLJ3QPC66ADzyWPvEwmXr9A01UnArMWtDhrW2QB7ErM9YNNVoZIuA+NC/pfk0rMiXaAlQHyNimP5zeS9YApZK1SYnTlgwG7iBAR0aMVCE8Ryqst8tYYL36GTiOXZoKLMgkmVub89i9a2wvJVHOlx3iCQhCD9moHFUsa7xSVRRe3/IgFG88Ro3C9x2BV5xFXQi7xwmxqxWFXIo/FvbV4mWZUcgiNmG9CcTkQwnpH/Q9vmPN9effsazan2Lz6QKAVu+gTmqNre0+UCLZ6j38gVYl1DVOq3UXTORPxlmMlcdM8=

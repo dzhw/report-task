@@ -4,13 +4,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.3.RELEASE</version>
+        <version>2.2.7.RELEASE</version>
         <relativePath />
         <!-- lookup parent from repository -->
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>dataset-report-task</artifactId>
-    <version>1.0.97-SNAPSHOT</version>
+    <version>1.0.100-SNAPSHOT</version>
     <name>dataset-report-task</name>
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>3.1.12</version>
+            <version>4.0.2</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -328,7 +328,7 @@
                     <dependency>
                         <groupId>javax.xml.bind</groupId>
                         <artifactId>jaxb-api</artifactId>
-                        <version>2.3.1</version>
+                        <version>2.3.3</version>
                     </dependency>
                 </dependencies>
                 <configuration>
