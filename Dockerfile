@@ -6,7 +6,7 @@
 #
 # Source: https://github.com/dzhw/dataset-report-task
 #
-FROM openjdk:11.0.3-slim
+FROM openjdk:13.0.2-slim
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 

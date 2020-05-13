@@ -15,7 +15,7 @@
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>13</java.version>
         <maven-sortpom-plugin.version>2.10.0</maven-sortpom-plugin.version>
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>4.0.2</version>
+            <version>4.0.3</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -178,7 +178,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.12</version>
+                <version>4.0.0</version>
                 <executions>
                     <execution>
                         <id>spotbugs</id>
@@ -285,7 +285,7 @@
                     </rules>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.11.0</version>
@@ -302,7 +302,7 @@
                 <configuration>
                     <linkXRef>false</linkXRef>
                 </configuration>
-            </plugin>
+            </plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
