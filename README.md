@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dzhw/dataset-report-task.svg?branch=development)](https://travis-ci.org/dzhw/dataset-report-task)[![codecov](https://codecov.io/gh/dzhw/dataset-report-task/branch/development/graph/badge.svg)](https://codecov.io/gh/dzhw/dataset-report-task)[![Known Vulnerabilities](https://snyk.io//test/github/dzhw/dataset-report-task/badge.svg?targetFile=pom.xml)](https://snyk.io//test/github/dzhw/dataset-report-task?targetFile=pom.xml)
+[![Build Status](https://travis-ci.com/dzhw/dataset-report-task.svg?branch=development)](https://travis-ci.com/dzhw/dataset-report-task)[![codecov](https://codecov.io/gh/dzhw/dataset-report-task/branch/development/graph/badge.svg)](https://codecov.io/gh/dzhw/dataset-report-task)[![Known Vulnerabilities](https://snyk.io//test/github/dzhw/dataset-report-task/badge.svg?targetFile=pom.xml)](https://snyk.io//test/github/dzhw/dataset-report-task?targetFile=pom.xml)
 
 # Dataset Report Task
 
@@ -40,6 +40,6 @@ If you find any issues or have questions regarding this task, feel free to file 
 [FreeMarker]: https://freemarker.apache.org/
 [AWS]: https://aws.amazon.com/?nc2=h_lg
 [Amazon ECR]: https://aws.amazon.com/ecr/?nc1=h_ls
-[TravisCI]: https://travis-ci.org/
+[TravisCI]: https://travis-ci.com/
 [Spring Cloud Task]: https://spring.io/projects/spring-cloud-task
 [SDKMAN!]: https://sdkman.io/
