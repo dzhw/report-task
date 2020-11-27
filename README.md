@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/dzhw/dataset-report-task.svg?branch=development)](https://travis-ci.com/dzhw/dataset-report-task)[![codecov](https://codecov.io/gh/dzhw/dataset-report-task/branch/development/graph/badge.svg)](https://codecov.io/gh/dzhw/dataset-report-task)[![Known Vulnerabilities](https://snyk.io//test/github/dzhw/dataset-report-task/badge.svg?targetFile=pom.xml)](https://snyk.io//test/github/dzhw/dataset-report-task?targetFile=pom.xml)
+[![Build and Deploy](https://github.com/dzhw/dataset-report-task/workflows/Build%20and%20Deploy/badge.svg)](https://github.com/dzhw/dataset-report-task/actions)[![codecov](https://codecov.io/gh/dzhw/dataset-report-task/branch/development/graph/badge.svg)](https://codecov.io/gh/dzhw/dataset-report-task)[![Known Vulnerabilities](https://snyk.io//test/github/dzhw/dataset-report-task/badge.svg?targetFile=pom.xml)](https://snyk.io//test/github/dzhw/dataset-report-task?targetFile=pom.xml)
 
 # Dataset Report Task
 
@@ -31,7 +31,7 @@ The latex files which are compiled within this task are generated with [FreeMark
 `/latex-packages/doc/`
 
 ## Continous Integration
-Every commit to the branches `development`, `test` or `master` will be pushed to [Amazon ECR]. [TravisCI] is used for executing the build and pushing to [AWS].
+Every commit to the branches `development`, `test` or `master` will be pushed to [Amazon ECR]. [Github Actions] are used for executing the build and pushing to [AWS].
 
 ## Issues
 If you find any issues or have questions regarding this task, feel free to file an issue in our [MDM].
@@ -40,6 +40,6 @@ If you find any issues or have questions regarding this task, feel free to file 
 [FreeMarker]: https://freemarker.apache.org/
 [AWS]: https://aws.amazon.com/?nc2=h_lg
 [Amazon ECR]: https://aws.amazon.com/ecr/?nc1=h_ls
-[TravisCI]: https://travis-ci.com/
+[Github Actions]: https://github.com/dzhw/dataset-report-task/actions
 [Spring Cloud Task]: https://spring.io/projects/spring-cloud-task
 [SDKMAN!]: https://sdkman.io/

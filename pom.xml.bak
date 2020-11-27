@@ -4,37 +4,22 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.3.RELEASE</version>
+        <version>2.3.5.RELEASE</version>
         <relativePath />
         <!-- lookup parent from repository -->
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>dataset-report-task</artifactId>
-    <version>1.0.97-SNAPSHOT</version>
+    <version>1.0.106-SNAPSHOT</version>
     <name>dataset-report-task</name>
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
     <properties>
-        <java.version>11</java.version>
-        <maven-sortpom-plugin.version>2.10.0</maven-sortpom-plugin.version>
+        <java.version>14</java.version>
+        <maven-sortpom-plugin.version>2.12.0</maven-sortpom-plugin.version>
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-              <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>test</id>
-        </profile>
-        <profile>
-            <id>prod</id>
-        </profile>
-    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -56,14 +41,20 @@
         <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>3.1.12</version>
+            <version>4.1.4</version>
             <scope>provided</scope>
             <optional>true</optional>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.json</groupId>
+            		<artifactId>json</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <version>2.8.0</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -193,7 +184,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>3.1.12</version>
+                <version>4.1.4</version>
                 <executions>
                     <execution>
                         <id>spotbugs</id>
@@ -212,7 +203,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.10</version>
+                <version>1.4.13</version>
                 <executions>
                     <execution>
                         <id>build-docker-image</id>
@@ -300,7 +291,7 @@
                     </rules>
                 </configuration>
             </plugin>
-            <plugin>
+            <!-- plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.11.0</version>
@@ -317,7 +308,7 @@
                 <configuration>
                     <linkXRef>false</linkXRef>
                 </configuration>
-            </plugin>
+            </plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -343,11 +334,11 @@
                     <dependency>
                         <groupId>javax.xml.bind</groupId>
                         <artifactId>jaxb-api</artifactId>
-                        <version>2.3.1</version>
+                        <version>2.3.3</version>
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <serviceName>My Travis</serviceName>
+                    <serviceName>Github Actions</serviceName>
                     <jacocoReports>
                         <jacocoReport>${project.testresult.directory}/coverage/jacoco/jacoco.xml</jacocoReport>
                     </jacocoReports>
@@ -360,7 +351,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <version>0.8.6</version>
                 <executions>
                     <execution>
                         <id>pre-unit-tests</id>
@@ -404,4 +395,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+        </profile>
+        <profile>
+            <id>prod</id>
+        </profile>
+    </profiles>
 </project>
