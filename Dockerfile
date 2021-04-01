@@ -6,7 +6,7 @@
 #
 # Source: https://github.com/dzhw/dataset-report-task
 #
-FROM adoptopenjdk:15.0.2_7-jre-hotspot-focal
+FROM openjdk:15.0.2-slim
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 
