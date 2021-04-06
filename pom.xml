@@ -10,7 +10,7 @@
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>dataset-report-task</artifactId>
-    <version>1.0.108</version>
+    <version>1.0.109-SNAPSHOT</version>
     <name>dataset-report-task</name>
     <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
 
