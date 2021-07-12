@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config;
 
 import javax.validation.constraints.NotEmpty;
 

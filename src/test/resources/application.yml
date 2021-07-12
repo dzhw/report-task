@@ -3,10 +3,11 @@ task:
   latex-process-working-dir: .
   latex-process-command: src/test/resources/compile-report.sh
   pdf-report: target/report.pdf
-  data-set-id: dat-gra2005-ds2$
+  id: dat-gra2005-ds2$
   on-behalf-of: dataprovider
   language: en
   version: 2.0.15
+  type: DATASET_REPORT
 mdm:
   endpoint: ${MDM_ENDPOINT}
   username: ${MDM_TASK_USER}

@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -22,10 +22,10 @@ import lombok.Setter;
 @Validated
 public class TaskProperties {
   /**
-   * Id of the dataset for which this task needs to generate the report.
+   * Id of the dataset or of the data package for which this task needs to generate the report.
    */
   @NotEmpty
-  private String dataSetId;
+  private String id;
 
   /**
    * Name of the user who triggered the report.
@@ -45,6 +45,12 @@ public class TaskProperties {
    */
   @NotEmpty
   private String language;
+  
+  /**
+   * One of: "DATASET_REPORT", "DATAPACKAGE_OVERVIEW". 
+   */
+  @NotNull
+  private TaskType type;
 
   /**
    * The input folder containing all files for the latex to pdf compilation.

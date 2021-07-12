@@ -1,6 +1,6 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.ErrorListDto;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.ErrorListDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;

@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto;
 
 import java.io.Serializable;
 

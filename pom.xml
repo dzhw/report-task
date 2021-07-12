@@ -4,15 +4,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.6</version>
+        <version>2.4.8</version>
         <relativePath />
         <!-- lookup parent from repository -->
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
-    <artifactId>dataset-report-task</artifactId>
-    <version>1.0.110-HOTFIX</version>
-    <name>dataset-report-task</name>
-    <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
+    <artifactId>report-task</artifactId>
+    <version>1.0.111-HOTFIX</version>
+    <name>report-task</name>
+    <description>Spring Cloud Task which generates a Reports for the MDM</description>
 
     <properties>
         <java.version>15</java.version>

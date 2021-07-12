@@ -1,11 +1,11 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask;
 
 import org.springframework.cloud.task.listener.TaskExecutionListener;
 import org.springframework.cloud.task.repository.TaskExecution;
 import org.springframework.stereotype.Component;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.TaskProperties;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.MdmRestClient;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config.TaskProperties;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.MdmRestClient;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -34,7 +34,7 @@ public class TaskExceptionHandler implements TaskExecutionListener {
   @Override
   public void onTaskFailed(TaskExecution taskExecution, Throwable throwable) {
     Throwable cause = throwable.getCause();
-    mdmClient.postTaskError(taskProperties.getDataSetId(), taskProperties.getOnBehalfOf(),
+    mdmClient.postTaskError(taskProperties.getId(), taskProperties.getOnBehalfOf(),
         cause != null ? cause.toString() : throwable.toString());
   }
 }

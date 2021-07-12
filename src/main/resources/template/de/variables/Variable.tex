@@ -24,7 +24,7 @@
 	Skalenniveau: & <#if variable.scaleLevel??>${variable.scaleLevel.de!"-"}<#else>-</#if> \\
 	Zugangswege: &
 	<#list variable.accessWays as accessWay>
-	  ${accessWay}<#sep>, </#sep>
+	  ${displayAccessWay(accessWay)}<#sep>, </#sep>
 	<#else>
 	Keine Zugangswege!
 	</#list> \\
