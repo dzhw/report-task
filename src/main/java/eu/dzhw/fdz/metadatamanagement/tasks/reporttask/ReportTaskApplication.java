@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask;
 
 import java.io.File;
 
@@ -11,13 +11,14 @@ import org.springframework.boot.loader.tools.RunProcess;
 import org.springframework.cloud.task.configuration.EnableTask;
 import org.springframework.context.annotation.Bean;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.MdmProperties;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.TaskProperties;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.MdmRestClient;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config.MdmProperties;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config.TaskProperties;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.MdmRestClient;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task.TaskType;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This Spring Boot Task generates one Dataset Report and uploads it to the MDM.
+ * This Spring Boot Task generates one report (of type {@link TaskType}) and uploads it to the MDM.
  *
  * @author René Reitmann
  */
@@ -25,17 +26,17 @@ import lombok.extern.slf4j.Slf4j;
 @EnableConfigurationProperties({TaskProperties.class, MdmProperties.class})
 @Slf4j
 @EnableTask
-public class DatasetReportTaskApplication {
+public class ReportTaskApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(DatasetReportTaskApplication.class, args);
+    SpringApplication.run(ReportTaskApplication.class, args);
   }
 
   /**
-   * Run the task for instance with 'java --jar dataset-report-task.jar
-   * --task.data-set-id=dat-cmp2014-ds1$ --task.languages=de,en --task.on-behalf-of=rreitmann
-   * --task.version=1.0.0'.
-   * 
+   * Run the task for instance with 'java --jar report-task.jar
+   * --task.data-set-id=dat-cmp2014-ds1$ --task.language=de --task.on-behalf-of=rreitmann
+   * --task.version=1.0.0 --task.type=DATASET_REPORT'.
+   *
    * @param mdmClient The fully configured {@link MdmRestClient}
    * @param taskProperties All properties for this task.
    * @return springs {@link CommandLineRunner}
@@ -44,12 +45,12 @@ public class DatasetReportTaskApplication {
   @Bean
   public CommandLineRunner run(MdmRestClient mdmClient, TaskProperties taskProperties)
       throws Exception {
-    log.info("Start report generation for dataset '{}' on behalf of '{}' in language '{}'.",
-        taskProperties.getDataSetId(), taskProperties.getOnBehalfOf(),
+    log.info("Start report generation '{}' for id '{}' on behalf of '{}' in language '{}'.",
+        taskProperties.getType(), taskProperties.getId(), taskProperties.getOnBehalfOf(),
         taskProperties.getLanguage());
     return args -> {
       byte[] filledTemplate = mdmClient.fillTemplate(taskProperties.getLanguage(),
-          taskProperties.getDataSetId(), taskProperties.getVersion());
+          taskProperties.getId(), taskProperties.getVersion());
       File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
       if (variablesDir.exists()) {
         FileUtils.cleanDirectory(variablesDir);
@@ -67,7 +68,7 @@ public class DatasetReportTaskApplication {
       if (latexCompileProcess.run(true) == 0) {
         log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
         mdmClient.uploadReport(taskProperties.getLanguage(), taskProperties.getPdfReport(),
-            taskProperties.getDataSetId(), taskProperties.getOnBehalfOf());
+            taskProperties.getId(), taskProperties.getOnBehalfOf());
         boolean deleted = taskProperties.getPdfReport().getFile().delete();
         if (!deleted) {
           log.warn("Unable to delete file:" + taskProperties.getPdfReport().getPath());

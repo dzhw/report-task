@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.ZipUtils;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.ZipUtils;
 
 /**
  * Prepare the template folder for uploading by zipping it.

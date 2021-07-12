@@ -9,10 +9,10 @@
         <!-- lookup parent from repository -->
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
-    <artifactId>dataset-report-task</artifactId>
+    <artifactId>report-task</artifactId>
     <version>1.0.112-SNAPSHOT</version>
-    <name>dataset-report-task</name>
-    <description>Spring Cloud Task which generates a Dataset Report for the MDM</description>
+    <name>report-task</name>
+    <description>Spring Cloud Task which generates a Reports for the MDM</description>
 
     <properties>
         <java.version>15</java.version>

@@ -1,10 +1,10 @@
 #
-# dzhw/dataset-report-task
+# dzhw/report-task
 #
 # This is an image with a basic TeX Live installation and
-# additional resources for DZHW-FDZ dataset reports.
+# additional resources for FDZ-DZHW reports.
 #
-# Source: https://github.com/dzhw/dataset-report-task
+# Source: https://github.com/dzhw/report-task
 #
 FROM openjdk:15.0.2-slim
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
@@ -25,4 +25,4 @@ RUN fc-cache && texhash && mktexlsr && updmap-sys
 # copy other document assets
 COPY latex-packages/doc /app/doc
 # COPY the spring boot task jar
-COPY ${JAR_FILE} /app/dataset-report-task.jar
+COPY ${JAR_FILE} /app/report-task.jar

@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

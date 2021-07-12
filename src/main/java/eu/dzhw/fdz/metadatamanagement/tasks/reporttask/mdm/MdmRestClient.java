@@ -1,4 +1,4 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm;
 
 import java.net.URI;
 
@@ -15,11 +15,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.config.MdmProperties;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task.TaskState;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task.TaskType;
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.TaskErrorNotification;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config.MdmProperties;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.TaskErrorNotification;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task.TaskState;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task.TaskType;
 import lombok.extern.slf4j.Slf4j;
 
 /**
