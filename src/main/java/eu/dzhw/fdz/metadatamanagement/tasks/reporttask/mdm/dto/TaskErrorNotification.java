@@ -1,9 +1,9 @@
-package eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto;
+package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import eu.dzhw.fdz.metadatamanagement.tasks.datasetreporttask.mdm.dto.Task.TaskType;
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task.TaskType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
