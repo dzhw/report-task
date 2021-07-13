@@ -1,0 +1,87 @@
+\documentclass[ngerman]{book}
+
+\ifx\directlua\undefined\ifx\XeTeXcharclass\undefined
+  \usepackage[utf8]{inputenc}                %pdftex engine
+  \else\RequirePackage[no-math]{fontspec}\fi %xetex engine
+  \else\RequirePackage[no-math]{fontspec}\fi %luatex engine
+
+\usepackage[marginalspalte]{dsreport}
+\usepackage{verbatim}
+
+%formatting numbers
+\usepackage[locale = DE]{siunitx}
+
+%support bold siunitx formatted numbers in table cells
+\usepackage{etoolbox}
+\robustify\bfseries
+
+%siunitx defaults
+%numbers in german notation using thousand seperators
+%zahlen werden auf zwei stellen gerundet, integer erhalten keine nachfolgenden nullen
+%detect-weight and detect-inline-weight are used to make a single cell bold
+\sisetup{%
+	output-decimal-marker={,},
+	group-separator={.},
+	group-digits=integer,
+	group-minimum-digits=4,
+	detect-weight=true,
+	detect-inline-weight=math,
+        detect-all
+}
+
+%Definitionen aus alter Datei, was wird davon gebraucht?
+    \usepackage{pgfplots}
+    \usepackage{filecontents}
+
+    %For Debugging
+    %\tracingstats=1
+
+    %Disable Shorthands for Babel Package
+    \let\LanguageShortHands\languageshorthands
+    \def\languageshorthands#1{}
+
+    % PGF Plots Definitions
+    \pgfplotsset{compat=newest}
+    \usepgfplotslibrary{statistics}
+    \setlength{\columnsep}{1cm}
+
+\subject{Datenpaketübersicht}
+\author{René Reitmann / Andreas Daniel}
+\title{${dataPackage.title.de}}
+\version{Version ${version}}
+%\date{März \number\year}
+\bibliogrAngaben{}
+
+\newcolumntype{P}{>{\RaggedRight\arraybackslash}p}
+\newcolumntype{Q}{>{\RaggedRight\arraybackslash}X}
+\usepackage{filecontents}
+\usepackage{ltxtable}
+
+
+%The Styling of \section-Headline has to be finalised
+%Try 1
+    \usepackage[explicit]{titlesec}
+    \usepackage{lipsum}
+
+    \titleformat{\section}
+    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesection\quad#1}}}}
+    \titleformat{name=\section,numberless}
+    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
+
+%Try 2
+\begin{comment}
+    \usepackage{titlesec}
+    \newcommand\specialsection{%
+	    \titleformat*{\section}{\centering\scshape\Large}
+    }
+    \newcommand\regularsection{%
+	    \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+    }
+\end{comment}
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\mainmatter
+\end{document}
