@@ -29,59 +29,27 @@
         detect-all
 }
 
-%Definitionen aus alter Datei, was wird davon gebraucht?
-    \usepackage{pgfplots}
-    \usepackage{filecontents}
-
-    %For Debugging
-    %\tracingstats=1
-
-    %Disable Shorthands for Babel Package
-    \let\LanguageShortHands\languageshorthands
-    \def\languageshorthands#1{}
-
-    % PGF Plots Definitions
-    \pgfplotsset{compat=newest}
-    \usepgfplotslibrary{statistics}
-    \setlength{\columnsep}{1cm}
-
 \subject{Datenpaketübersicht}
-\author{René Reitmann / Andreas Daniel}
+\author{<#list dataPackage.dataCurators as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep> / </#sep></#list>}
 \title{${dataPackage.title.de}}
 \version{Version ${version}}
-%\date{März \number\year}
 \bibliogrAngaben{}
-
-\newcolumntype{P}{>{\RaggedRight\arraybackslash}p}
-\newcolumntype{Q}{>{\RaggedRight\arraybackslash}X}
-\usepackage{filecontents}
-\usepackage{ltxtable}
-
-
-%The Styling of \section-Headline has to be finalised
-%Try 1
-    \usepackage[explicit]{titlesec}
-    \usepackage{lipsum}
-
-    \titleformat{\section}
-    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesection\quad#1}}}}
-    \titleformat{name=\section,numberless}
-    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
-
-%Try 2
-\begin{comment}
-    \usepackage{titlesec}
-    \newcommand\specialsection{%
-	    \titleformat*{\section}{\centering\scshape\Large}
-    }
-    \newcommand\regularsection{%
-	    \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
-    }
-\end{comment}
 
 \begin{document}
 \frontmatter
 \maketitle
 
 \mainmatter
+
+\setlength{\extrarowheight}{0.2cm}
+\begin{longtable}{|p{0.3\textwidth}|p{0.9\textwidth}|}
+\hline
+<#if dataPackage.studySeries??>\textbf{Studienreihe} & ${dataPackage.studySeries.de} \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Erhebende Institutionen} & <#list dataPackage.institutions as institution><#if institution.de??>${institution.de}<#else>${institution.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline
+\textbf{Gefördert von} & <#list dataPackage.sponsors as sponsor><#if sponsor.de??>${sponsor.de}<#else>${sponsor.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline
+\end{longtable}
+
 \end{document}
