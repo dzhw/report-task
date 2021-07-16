@@ -11,6 +11,9 @@
 %formatting numbers
 \usepackage[locale = US]{siunitx}
 
+%formatting dates
+\usepackage[english]{isodate}
+
 %support bold siunitx formatted numbers in table cells
 \usepackage{etoolbox}
 \robustify\bfseries
@@ -45,41 +48,75 @@
     \setlength{\columnsep}{1cm}
 
 \subject{Data Package Overview}
-\author{René Reitmann / Andreas Daniel}
+\author{<#list dataPackage.dataCurators as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep> / </#sep></#list>}
 \title{${dataPackage.title.en}}
 \version{Version ${version}}
-%\date{März \number\year}
 \bibliogrAngaben{}
-
-\newcolumntype{P}{>{\RaggedRight\arraybackslash}p}
-\newcolumntype{Q}{>{\RaggedRight\arraybackslash}X}
-\usepackage{filecontents}
-\usepackage{ltxtable}
-
-%The Styling of \section-Headline has to be finalised
-%Try 1
-    \usepackage[explicit]{titlesec}
-    \usepackage{lipsum}
-
-    \titleformat{\section}
-    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{\thesection\quad#1}}}}
-    \titleformat{name=\section,numberless}
-    {\normalfont\Large\bfseries}{}{0em}{\colorbox{spot}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\textcolor{white}{#1}}}}
-
-%Try 2
-\begin{comment}
-    \usepackage{titlesec}
-    \newcommand\specialsection{%
-	    \titleformat*{\section}{\centering\scshape\Large}
-    }
-    \newcommand\regularsection{%
-	    \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
-    }
-\end{comment}
 
 \begin{document}
 \frontmatter
 \maketitle
 
 \mainmatter
+\setlength{\hsize}{166mm}
+\setlength{\headsep}{0.5cm}
+%\setlength{\evensidemargin}{\the\oddsidemargin}
+%\setlength{\oddsidemargin}{22mm}
+%\setlength{\marginparwidth}{-5cm}
+%\setlength{\marginparsep}{0mm}
+%\setlength{\leftmargin}{0mm}
+
+\chapter*{Overview of Data Package "`${dataPackage.title.en}"'}
+\markboth{\truncate{166mm}{${dataPackage.title.en}}}{}
+
+\setlength{\extrarowheight}{0.2cm}
+\begin{longtable}{|p{0.3\textwidth}|p{0.9\textwidth}|}
+\hline
+<#if dataPackage.studySeries??>\textbf{Study Series} & ${dataPackage.studySeries.en} \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Institutions} & <#list dataPackage.institutions as institution><#if institution.en??>${institution.en}<#else>${institution.de}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline
+\textbf{Sponsored by} & <#list dataPackage.sponsors as sponsor><#if sponsor.en??>${sponsor.en}<#else>${sponsor.de}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline
+\textbf{Project Contributors} & <#list dataPackage.projectContributors as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline
+\textbf{Data Curation} & <#list dataPackage.dataCurators as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline
+<#if dataPackage.tags.en?has_content>\textbf{Topics} & <#list dataPackage.tags.en as tag>${tag}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Survey Design} & ${dataPackage.surveyDesign.en} \vspace{0.18cm} \\
+\hline
+<#if surveyDataTypes?has_content>\textbf{Survey Data Type} & <#list surveyDataTypes as surveyDataType>${surveyDataType.en}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveys?has_content>\textbf{Surveys} & <#list surveys as survey>\textbf{Survey ${survey?counter}:} ${survey.title.en}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if populationDescriptionMapEn?has_content>\textbf{Population} & <#list populationDescriptionMapEn?keys as population>\textbf{Survey <#list populationDescriptionMapEn?api.get(population) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${population}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveySampleMapEn?has_content>\textbf{Sampling Procedure} & <#list surveySampleMapEn?keys as sample>\textbf{Survey <#list surveySampleMapEn?api.get(sample) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${sample}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyMethodMapEn?has_content>\textbf{Survey Method} & <#list surveyMethodMapEn?keys as surveyMethod>\textbf{Survey <#list surveyMethodMapEn?api.get(surveyMethod) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} ${surveyMethod}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyPeriodMap?has_content>\textbf{Field Period} & <#list surveyPeriodMap?keys as period>\textbf{Survey <#list surveyPeriodMap?api.get(period) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \daterange{${period.start}}{${period.end}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveys?has_content>\textbf{Net Sample Size} & <#list surveys as survey>\textbf{Survey ${survey?counter}:} n = \num{${survey.sampleSize}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if cleanedResponseRatesMap?has_content>\textbf{Response Rate} & <#list cleanedResponseRatesMap?keys as surveyNumber>\textbf{Survey ${surveyNumber}:} \num[round-mode=places,round-precision=2]{${cleanedResponseRatesMap?api.get(surveyNumber)}} \%<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyAnnotationsMapEn?has_content>\textbf{Remarks on the Surveys} & <#list surveyAnnotationsMapEn?keys as annotation>\textbf{Survey <#list surveyAnnotationsMapEn?api.get(annotation) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${annotation}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if accessWaysMap?has_content>\textbf{Data Products and Access Ways} & <#list accessWaysMap?keys as dataProduct>${dataProduct}<#list accessWaysMap[dataProduct] as accessWay>${accessWay}<#sep>, </#sep></#list> <#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if dataSets?has_content>\textbf{Data Set Structure} & <#list dataSets as dataSet>\textbf{Datensatz ${dataSet.number}: ${dataSet.type.en} in ${dataSet.format.en}-format} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if doi?has_content>\textbf{DOI} & \href{https://doi.org/${doi}}{${doi}} \vspace{0.18cm} \\
+\hline</#if>
+<#if dataPackage.annotations?? && dataPackage.annotations.en?has_content>\textbf{Annotations} & ${removeMarkdown(dataPackage.annotations.en)} \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Release Notes} & The release notes for this version of the data package can be found \href{<#noescape>${baseUrl}/en/data-packages/${dataPackage.masterId}?version=${version}</#noescape>}{here under "Documents related to this Data Package"}. \vspace{0.18cm} \\
+\hline
+\textbf{Data Package Publications} & Publications related to this data package can be looked up \href{<#noescape>${baseUrl}/en/data-packages/${dataPackage.masterId}?version=${version}&type=related_publications</#noescape>}{here under "Related Objects"}. \vspace{0.18cm} \\
+\hline
+\textbf{Further Information} &  \vspace{0.18cm} \\
+\hline
+\end{longtable}
 \end{document}

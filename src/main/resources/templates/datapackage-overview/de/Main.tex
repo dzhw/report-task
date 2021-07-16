@@ -6,10 +6,12 @@
   \else\RequirePackage[no-math]{fontspec}\fi %luatex engine
 
 \usepackage[marginalspalte]{dsreport}
-\usepackage{verbatim}
 
 %formatting numbers
 \usepackage[locale = DE]{siunitx}
+
+%formatting dates
+\usepackage[ngerman]{isodate}
 
 %support bold siunitx formatted numbers in table cells
 \usepackage{etoolbox}
@@ -40,16 +42,65 @@
 \maketitle
 
 \mainmatter
+\setlength{\hsize}{166mm}
+\setlength{\headsep}{0.5cm}
+%\setlength{\evensidemargin}{\the\oddsidemargin}
+%\setlength{\oddsidemargin}{22mm}
+%\setlength{\marginparwidth}{-5cm}
+%\setlength{\marginparsep}{0mm}
+%\setlength{\leftmargin}{0mm}
+
+\chapter*{Übersicht zum Datenpaket "`${dataPackage.title.de}"'}
+\markboth{\truncate{166mm}{${dataPackage.title.de}}}{}
 
 \setlength{\extrarowheight}{0.2cm}
 \begin{longtable}{|p{0.3\textwidth}|p{0.9\textwidth}|}
 \hline
 <#if dataPackage.studySeries??>\textbf{Studienreihe} & ${dataPackage.studySeries.de} \vspace{0.18cm} \\
 \hline</#if>
-\textbf{Erhebende Institutionen} & <#list dataPackage.institutions as institution><#if institution.de??>${institution.de}<#else>${institution.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\textbf{Institutionen} & <#list dataPackage.institutions as institution><#if institution.de??>${institution.de}<#else>${institution.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
 \textbf{Gefördert von} & <#list dataPackage.sponsors as sponsor><#if sponsor.de??>${sponsor.de}<#else>${sponsor.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
+\textbf{Projektmitarbeiter*innen} & <#list dataPackage.projectContributors as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline
+\textbf{Datenkuratierung} & <#list dataPackage.dataCurators as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline
+<#if dataPackage.tags.de?has_content>\textbf{Themen} & <#list dataPackage.tags.de as tag>${tag}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Erhebungsdesign} & ${dataPackage.surveyDesign.de} \vspace{0.18cm} \\
+\hline
+<#if surveyDataTypes?has_content>\textbf{Erhebungsdatentyp} & <#list surveyDataTypes as surveyDataType>${surveyDataType.de}<#sep>, </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveys?has_content>\textbf{Erhebungen} & <#list surveys as survey>\textbf{Erhebung ${survey?counter}:} ${survey.title.de}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if populationDescriptionMapDe?has_content>\textbf{Grundgesamtheit} & <#list populationDescriptionMapDe?keys as population>\textbf{Erhebung <#list populationDescriptionMapDe?api.get(population) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${population}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveySampleMapDe?has_content>\textbf{Stichprobe} & <#list surveySampleMapDe?keys as sample>\textbf{Erhebung <#list surveySampleMapDe?api.get(sample) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${sample}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyMethodMapDe?has_content>\textbf{Erhebungsmethode} & <#list surveyMethodMapDe?keys as surveyMethod>\textbf{Erhebung <#list surveyMethodMapDe?api.get(surveyMethod) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} ${surveyMethod}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyPeriodMap?has_content>\textbf{Feldzeit} & <#list surveyPeriodMap?keys as period>\textbf{Erhebung <#list surveyPeriodMap?api.get(period) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \daterange{${period.start}}{${period.end}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveys?has_content>\textbf{Nettostichprobe} & <#list surveys as survey>\textbf{Erhebung ${survey?counter}:} n = \num{${survey.sampleSize}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if cleanedResponseRatesMap?has_content>\textbf{Rücklaufquote} & <#list cleanedResponseRatesMap?keys as surveyNumber>\textbf{Erhebung ${surveyNumber}:} \num[round-mode=places,round-precision=2]{${cleanedResponseRatesMap?api.get(surveyNumber)}} \%<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if surveyAnnotationsMapDe?has_content>\textbf{Anmerkungen zu den Erhebungen} & <#list surveyAnnotationsMapDe?keys as annotation>\textbf{Erhebung <#list surveyAnnotationsMapDe?api.get(annotation) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${annotation}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if accessWaysMap?has_content>\textbf{Datenprodukte und Zugangswege} & <#list accessWaysMap?keys as dataProduct>${dataProduct}<#list accessWaysMap[dataProduct] as accessWay>${accessWay}<#sep>, </#sep></#list> <#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if dataSets?has_content>\textbf{Datensatzstruktur} & <#list dataSets as dataSet>\textbf{Datensatz ${dataSet.number}: ${dataSet.type.de} im ${dataSet.format.en}-Format} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if doi?has_content>\textbf{DOI} & \href{https://doi.org/${doi}}{${doi}} \vspace{0.18cm} \\
+\hline</#if>
+<#if dataPackage.annotations?? && dataPackage.annotations.de?has_content>\textbf{Anmerkungen} & ${removeMarkdown(dataPackage.annotations.de)} \vspace{0.18cm} \\
+\hline</#if>
+\textbf{Release Notes} & Die Release Notes zu dieser Version des Datenpakets sind \href{<#noescape>${baseUrl}/de/data-packages/${dataPackage.masterId}?version=${version}</#noescape>}{hier unter "Materialien zu diesem Datenpaket"} zu finden. \vspace{0.18cm} \\
+\hline
+\textbf{Publikationen zum Datenpaket} & Publikationen zu diesem Datenpaket können  \href{<#noescape>${baseUrl}/de/data-packages/${dataPackage.masterId}?version=${version}&type=related_publications</#noescape>}{hier unter "Verbundene Objekte"} nachgeschlagen werden. \vspace{0.18cm} \\
+\hline
+\textbf{Weitere Informationen} &  \vspace{0.18cm} \\
+\hline
 \end{longtable}
-
 \end{document}
