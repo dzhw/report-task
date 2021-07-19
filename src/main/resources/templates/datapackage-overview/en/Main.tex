@@ -58,19 +58,23 @@
 \maketitle
 
 \mainmatter
+\variablesmatter
+
 \setlength{\hsize}{166mm}
-\setlength{\headsep}{0.5cm}
+\setlength{\headsep}{0.7cm}
 %\setlength{\evensidemargin}{\the\oddsidemargin}
 %\setlength{\oddsidemargin}{22mm}
 %\setlength{\marginparwidth}{-5cm}
 %\setlength{\marginparsep}{0mm}
 %\setlength{\leftmargin}{0mm}
 
-\chapter*{Overview of Data Package "`${dataPackage.title.en}"'}
+{\color{spot}\huge\noindent
+Overview of Data Package ``${dataPackage.title.en}''
+}
 \markboth{\truncate{166mm}{${dataPackage.title.en}}}{}
 
 \setlength{\extrarowheight}{0.2cm}
-\begin{longtable}{|p{0.3\textwidth}|p{0.9\textwidth}|}
+\begin{longtable}{|p{0.3\textwidth}|p{0.65\textwidth}|}
 \hline
 <#if dataPackage.studySeries??>\textbf{Study Series} & ${dataPackage.studySeries.en} \vspace{0.18cm} \\
 \hline</#if>
@@ -88,25 +92,25 @@
 \hline
 <#if surveyDataTypes?has_content>\textbf{Survey Data Type} & <#list surveyDataTypes as surveyDataType>${surveyDataType.en}<#sep>, </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveys?has_content>\textbf{Surveys} & <#list surveys as survey>\textbf{Survey ${survey?counter}:} ${survey.title.en}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveys?has_content>\textbf{Surveys} & <#list surveys as survey><#if surveys?size gt 1>\textbf{Survey ${survey?counter}:} </#if>${survey.title.en}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if populationDescriptionMapEn?has_content>\textbf{Population} & <#list populationDescriptionMapEn?keys as population>\textbf{Survey <#list populationDescriptionMapEn?api.get(population) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${population}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if populationDescriptionMapEn?has_content>\textbf{Population} & <#list populationDescriptionMapEn?keys as population><#if surveys?size gt 1>\textbf{Survey <#list populationDescriptionMapEn?api.get(population) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline </#if>${population}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveySampleMapEn?has_content>\textbf{Sampling Procedure} & <#list surveySampleMapEn?keys as sample>\textbf{Survey <#list surveySampleMapEn?api.get(sample) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${sample}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveySampleMapEn?has_content>\textbf{Sampling Procedure} & <#list surveySampleMapEn?keys as sample><#if surveys?size gt 1>\textbf{Survey <#list surveySampleMapEn?api.get(sample) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline </#if>${sample}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveyMethodMapEn?has_content>\textbf{Survey Method} & <#list surveyMethodMapEn?keys as surveyMethod>\textbf{Survey <#list surveyMethodMapEn?api.get(surveyMethod) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} ${surveyMethod}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveyMethodMapEn?has_content>\textbf{Survey Method} & <#list surveyMethodMapEn?keys as surveyMethod><#if surveys?size gt 1>\textbf{Survey <#list surveyMethodMapEn?api.get(surveyMethod) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} </#if>${surveyMethod}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveyPeriodMap?has_content>\textbf{Field Period} & <#list surveyPeriodMap?keys as period>\textbf{Survey <#list surveyPeriodMap?api.get(period) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \daterange{${period.start}}{${period.end}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveyPeriodMap?has_content>\textbf{Field Period} & <#list surveyPeriodMap?keys as period><#if surveys?size gt 1>\textbf{Survey <#list surveyPeriodMap?api.get(period) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} </#if>\daterange{${period.start}}{${period.end}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveys?has_content>\textbf{Net Sample Size} & <#list surveys as survey>\textbf{Survey ${survey?counter}:} n = \num{${survey.sampleSize}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveys?has_content>\textbf{Net Sample Size} & <#list surveys as survey><#if surveys?size gt 1>\textbf{Survey ${survey?counter}:} </#if>n = \num{${survey.sampleSize}}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if cleanedResponseRatesMap?has_content>\textbf{Response Rate} & <#list cleanedResponseRatesMap?keys as surveyNumber>\textbf{Survey ${surveyNumber}:} \num[round-mode=places,round-precision=2]{${cleanedResponseRatesMap?api.get(surveyNumber)}} \%<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if cleanedResponseRatesMap?has_content>\textbf{Response Rate} & <#list cleanedResponseRatesMap?keys as surveyNumber><#if surveys?size gt 1>\textbf{Survey ${surveyNumber}:} </#if>\num[round-mode=places,round-precision=2]{${cleanedResponseRatesMap?api.get(surveyNumber)}} \%<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if surveyAnnotationsMapEn?has_content>\textbf{Remarks on the Surveys} & <#list surveyAnnotationsMapEn?keys as annotation>\textbf{Survey <#list surveyAnnotationsMapEn?api.get(annotation) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline ${annotation}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+<#if surveyAnnotationsMapEn?has_content>\textbf{Remarks on the Surveys} & <#list surveyAnnotationsMapEn?keys as annotation><#if surveys?size gt 1>\textbf{Survey <#list surveyAnnotationsMapEn?api.get(annotation) as surveyNumber>${surveyNumber}<#sep>, </#sep></#list>:} \newline </#if>${annotation}<#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
 <#if accessWaysMap?has_content>\textbf{Data Products and Access Ways} & <#list accessWaysMap?keys as dataProduct>${dataProduct}<#list accessWaysMap[dataProduct] as accessWay>${accessWay}<#sep>, </#sep></#list> <#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if dataSets?has_content>\textbf{Data Set Structure} & <#list dataSets as dataSet>\textbf{Datensatz ${dataSet.number}: ${dataSet.type.en} in ${dataSet.format.en}-format} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
+<#if dataSets?has_content>\textbf{Data Set Structure} & <#list dataSets as dataSet>\textbf{<#if dataSets?size gt 1>Dataset ${dataSet.number}: </#if>${dataSet.type.en}<#if dataSet.format??> in ${dataSet.format.en}-format</#if>} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
 <#if doi?has_content>\textbf{DOI} & \href{https://doi.org/${doi}}{${doi}} \vspace{0.18cm} \\
 \hline</#if>
