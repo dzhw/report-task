@@ -55,7 +55,7 @@
 {\color{spot}\huge\noindent
 Übersicht zum Datenpaket "`${dataPackage.title.de}"'
 }
-\markboth{\truncate{166mm}{${dataPackage.title.de}}}{}
+\markboth{\truncate{166mm}{${dataPackage.title.de}}}{Datenpaketübersicht}
 
 \setlength{\extrarowheight}{0.2cm}
 \begin{longtable}{|p{0.3\textwidth}|p{0.65\textwidth}|}
@@ -94,7 +94,9 @@
 \hline</#if>
 <#if accessWaysMap?has_content>\textbf{Datenprodukte und Zugangswege} & <#list accessWaysMap?keys as dataProduct>${dataProduct}<#list accessWaysMap[dataProduct] as accessWay>${accessWay}<#sep>, </#sep></#list> <#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
-<#if dataSets?has_content>\textbf{Datensatzstruktur} & <#list dataSets as dataSet>\textbf{<#if dataSets?size gt 1>Datensatz ${dataSet.number}: </#if>${dataSet.type.de}<#if dataSet.format??> im ${dataSet.format.en}-Format</#if>} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
+<#if nonQualiDataSets?has_content>\textbf{Datensatzstruktur} & <#list nonQualiDataSets as dataSet>\textbf{<#if nonQualiDataSets?size gt 1>Datensatz ${dataSet.number}: </#if>${dataSet.type.de}<#if dataSet.format??> im ${dataSet.format.en}-Format</#if>} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
+\hline</#if>
+<#if qualiDataSets?has_content>\textbf{Datenkollektion} & <#list qualiDataSets as dataSet>\textbf{<#if qualiDataSets?size gt 1>Kollektion ${dataSet?counter}: </#if><#if dataSet.description.de?has_content>${dataSet.description.de}<#else>${dataSet.description.en}</#if>} \newline <#list numberOfObservationsMap?api.get(dataSet.number)?keys as dataProduct>${dataProduct}<#list numberOfObservationsMap?api.get(dataSet.number)?api.get(dataProduct) as pair>${pair.key} (n = \num{${pair.value}})<#sep>, </#sep></#list><#sep> \newline </#sep></#list><#sep> \newline \newline </#sep></#list> \vspace{0.18cm} \\
 \hline</#if>
 <#if doi?has_content>\textbf{DOI} & \href{https://doi.org/${doi}}{${doi}} \vspace{0.18cm} \\
 \hline</#if>
