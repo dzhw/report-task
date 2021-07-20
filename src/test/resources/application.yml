@@ -7,7 +7,7 @@ task:
   on-behalf-of: dataprovider
   language: en
   version: 2.0.15
-  type: DATASET_REPORT
+  type: DATA_SET_REPORT
 mdm:
   endpoint: ${MDM_ENDPOINT}
   username: ${MDM_TASK_USER}
