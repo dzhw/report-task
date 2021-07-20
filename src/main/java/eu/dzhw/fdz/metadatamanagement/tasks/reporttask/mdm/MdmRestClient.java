@@ -32,56 +32,86 @@ import lombok.extern.slf4j.Slf4j;
 public class MdmRestClient {
   private final RestTemplate mdmTemplate;
 
-  private final FileSystemResource zippedGermanTemplate;
+  private final FileSystemResource zippedGermanTemplateDataSetReport;
 
-  private final FileSystemResource zippedEnglishTemplate;
+  private final FileSystemResource zippedEnglishTemplateDataSetReport;
+
+  private final FileSystemResource zippedGermanTemplateDataPackageOverview;
+
+  private final FileSystemResource zippedEnglishTemplateDataPackageOverview;
 
   /**
    * Create the {@link RestTemplate} from the {@link MdmProperties}.
    * 
    * @param mdmProperties Properties holding username and password of the mdm.
    * @param templateBuilder Springs {@link RestTemplateBuilder}.
-   * @param zippedGermanTemplate The zipped german template folder.
-   * @param zippedEnglishTemplate The zipped english template folder.
+   * @param zippedGermanTemplateDataSetReport The zipped german data set report template folder.
+   * @param zippedEnglishTemplateDataSetReport The zipped english data set report template folder.
    */
   public MdmRestClient(MdmProperties mdmProperties, RestTemplateBuilder templateBuilder,
-      FileSystemResource zippedGermanTemplate, FileSystemResource zippedEnglishTemplate) {
+      FileSystemResource zippedGermanTemplateDataSetReport,
+      FileSystemResource zippedEnglishTemplateDataSetReport,
+      FileSystemResource zippedGermanTemplateDataPackageOverview,
+      FileSystemResource zippedEnglishTemplateDataPackageOverview) {
     super();
     mdmTemplate = templateBuilder
         .basicAuthentication(mdmProperties.getUsername(), mdmProperties.getPassword())
         .rootUri(mdmProperties.getEndpoint()).build();
-    this.zippedGermanTemplate = zippedGermanTemplate;
-    this.zippedEnglishTemplate = zippedEnglishTemplate;
+    this.zippedGermanTemplateDataSetReport = zippedGermanTemplateDataSetReport;
+    this.zippedEnglishTemplateDataSetReport = zippedEnglishTemplateDataSetReport;
+    this.zippedGermanTemplateDataPackageOverview = zippedGermanTemplateDataPackageOverview;
+    this.zippedEnglishTemplateDataPackageOverview = zippedEnglishTemplateDataPackageOverview;
   }
 
   /**
-   * Fill the given freemarker latex templates with the data from the mdm for the given dataset.
+   * Fill the given freemarker latex templates with the data from the mdm for the given dataset or
+   * data package.
    * 
    * @param language The language of the template which needs to be uploaded.
-   * @param dataSetId The id of the dataset for which the report will be generated.
+   * @param id The id of the dataset or data package for which the report/overview will be
+   *        generated.
    * @param version The version of the report.
+   * @param type the type of report to be filled in
    * @return A byte array containing a zip file with the latex files.
    * @throws InterruptedException We need to sleep until the mdm has finished processing the
    *         template.
    * @throws FillTemplateException In case the mdm task returns an error.
    */
-  public byte[] fillTemplate(String language, String dataSetId, String version)
+  public byte[] fillTemplate(String language, String id, String version, TaskType type)
       throws InterruptedException, FillTemplateException {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-    if (language.equals("de")) {
-      body.add("file", zippedGermanTemplate);
-    } else if (language.equals("en")) {
-      body.add("file", zippedEnglishTemplate);
-    } else {
-      throw new IllegalArgumentException("Unsupported language '" + language + "'!");
-    }
     body.add("version", version);
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+    URI taskLocation = null;
+    switch (type) {
+      case DATA_SET_REPORT:
+        if (language.equals("de")) {
+          body.add("file", zippedGermanTemplateDataSetReport);
+        } else if (language.equals("en")) {
+          body.add("file", zippedEnglishTemplateDataSetReport);
+        } else {
+          throw new IllegalArgumentException("Unsupported language '" + language + "'!");
+        }
+        taskLocation = mdmTemplate.postForLocation("/api/data-sets/{id}/report/fill-template",
+            requestEntity, id);
+        break;
+      case DATA_PACKAGE_OVERVIEW:
+        if (language.equals("de")) {
+          body.add("file", zippedGermanTemplateDataPackageOverview);
+        } else if (language.equals("en")) {
+          body.add("file", zippedEnglishTemplateDataPackageOverview);
+        } else {
+          throw new IllegalArgumentException("Unsupported language '" + language + "'!");
+        }
+        taskLocation = mdmTemplate.postForLocation("/api/data-packages/{id}/overview/fill-template",
+            requestEntity, id);
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported type '" + type + "'!");
+    }
 
-    URI taskLocation = mdmTemplate.postForLocation(
-        "/api/data-sets/{dataSetId}/report/fill-template", requestEntity, dataSetId);
     if (taskLocation != null) {
       log.debug("MDM started filling template under location: " + taskLocation);
 
@@ -119,15 +149,15 @@ public class MdmRestClient {
   }
 
   /**
-   * Upload the compiled pdf report to the MDM.
+   * Upload the compiled pdf report/overview to the MDM.
    * 
-   * @param language in which the report has been generated.
+   * @param language in which the report/overview has been generated.
    * @param report The compiled report.
-   * @param dataSetId The id of the dataSet for which the report has been generated.
+   * @param id The id of the dataSet for which the report has been generated.
    * @param onBehalfOf The name of the user who has started the report generation.
    */
-  public void uploadReport(String language, FileSystemResource report, String dataSetId,
-      String onBehalfOf) {
+  public void uploadReport(String language, FileSystemResource report, String id, String onBehalfOf,
+      TaskType type) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
@@ -135,11 +165,21 @@ public class MdmRestClient {
     body.add("onBehalfOf", onBehalfOf);
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-    log.debug("MDM report upload starting for dataSetId: " + dataSetId);
+    log.debug("MDM report upload starting for id: " + id);
 
-    ResponseEntity<String> response =
-        mdmTemplate.postForEntity("/api/data-sets/{dataSetId}/report/{language}", requestEntity,
-            String.class, dataSetId, language);
+    ResponseEntity<String> response = null;
+    switch (type) {
+      case DATA_SET_REPORT:
+        response = mdmTemplate.postForEntity("/api/data-sets/{id}/report/{language}", requestEntity,
+            String.class, id, language);
+        break;
+      case DATA_PACKAGE_OVERVIEW:
+        response = mdmTemplate.postForEntity("/api/data-packages/{id}/overview/{language}",
+            requestEntity, String.class, id, language);
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported type '" + type + "'!");
+    }
     if (response.getStatusCode() != HttpStatus.OK) {
       log.error("MDM report upload failed with status {}: {}", response.getStatusCode(),
           response.getBody());
@@ -149,16 +189,17 @@ public class MdmRestClient {
   /**
    * Send a notification to the user if any error occurred during task execution.
    * 
-   * @param dataSetId The id of the dataSet for which the report should have been generated.
+   * @param id The id of the dataSet or data package for which the report should have been
+   *        generated.
    * @param onBehalfOf The name of the user who has started the report generation.
    * @param errorMessage A message indicating the error.
+   * @param taskType one of {@link TaskType}
    */
-  public void postTaskError(String dataSetId, String onBehalfOf, String errorMessage) {
-    log.error("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}",
-        dataSetId, onBehalfOf, errorMessage);
-    TaskErrorNotification errorNotification =
-        TaskErrorNotification.builder().domainObjectId(dataSetId).onBehalfOf(onBehalfOf)
-            .errorMessage(errorMessage).taskType(TaskType.DATA_SET_REPORT).build();
+  public void postTaskError(String id, String onBehalfOf, String errorMessage, TaskType taskType) {
+    log.error("Sending error during report generation for '{}' on behalf of '{}' to MDM: {}", id,
+        onBehalfOf, errorMessage);
+    TaskErrorNotification errorNotification = TaskErrorNotification.builder().domainObjectId(id)
+        .onBehalfOf(onBehalfOf).errorMessage(errorMessage).taskType(taskType).build();
     ResponseEntity<String> response =
         mdmTemplate.postForEntity("/api/tasks/error-notification", errorNotification, String.class);
     if (response.getStatusCode() != HttpStatus.OK) {

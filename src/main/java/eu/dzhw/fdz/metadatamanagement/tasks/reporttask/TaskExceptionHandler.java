@@ -35,6 +35,6 @@ public class TaskExceptionHandler implements TaskExecutionListener {
   public void onTaskFailed(TaskExecution taskExecution, Throwable throwable) {
     Throwable cause = throwable.getCause();
     mdmClient.postTaskError(taskProperties.getId(), taskProperties.getOnBehalfOf(),
-        cause != null ? cause.toString() : throwable.toString());
+        cause != null ? cause.toString() : throwable.toString(), taskProperties.getType());
   }
 }

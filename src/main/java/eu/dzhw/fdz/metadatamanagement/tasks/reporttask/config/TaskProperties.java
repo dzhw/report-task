@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.validation.annotation.Validated;
 
+import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm.dto.Task.TaskType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,7 +48,7 @@ public class TaskProperties {
   private String language;
   
   /**
-   * One of: "DATASET_REPORT", "DATAPACKAGE_OVERVIEW". 
+   * One of: "DATA_SET_REPORT", "DATA_PACKAGE_OVERVIEW". 
    */
   @NotNull
   private TaskType type;

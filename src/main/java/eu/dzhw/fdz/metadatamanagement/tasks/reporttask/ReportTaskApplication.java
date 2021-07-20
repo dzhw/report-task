@@ -33,9 +33,9 @@ public class ReportTaskApplication {
   }
 
   /**
-   * Run the task for instance with 'java --jar report-task.jar
-   * --task.data-set-id=dat-cmp2014-ds1$ --task.language=de --task.on-behalf-of=rreitmann
-   * --task.version=1.0.0 --task.type=DATASET_REPORT'.
+   * Run the task for instance with 'java --jar report-task.jar --task.data-set-id=dat-cmp2014-ds1$
+   * --task.language=de --task.on-behalf-of=rreitmann --task.version=1.0.0
+   * --task.type=DATA_SET_REPORT'.
    *
    * @param mdmClient The fully configured {@link MdmRestClient}
    * @param taskProperties All properties for this task.
@@ -50,7 +50,7 @@ public class ReportTaskApplication {
         taskProperties.getLanguage());
     return args -> {
       byte[] filledTemplate = mdmClient.fillTemplate(taskProperties.getLanguage(),
-          taskProperties.getId(), taskProperties.getVersion());
+          taskProperties.getId(), taskProperties.getVersion(), taskProperties.getType());
       File variablesDir = new File(taskProperties.getLatexInputDir().getFile(), "variables");
       if (variablesDir.exists()) {
         FileUtils.cleanDirectory(variablesDir);
@@ -66,14 +66,16 @@ public class ReportTaskApplication {
           new RunProcess(taskProperties.getLatexProcessWorkingDir().getFile(),
               taskProperties.getLatexProcessCommand());
       if (latexCompileProcess.run(true) == 0) {
-        log.info("Successfully created report: " + taskProperties.getPdfReport().getPath());
+        log.info(
+            "Successfully created report/overview: " + taskProperties.getPdfReport().getPath());
         mdmClient.uploadReport(taskProperties.getLanguage(), taskProperties.getPdfReport(),
-            taskProperties.getId(), taskProperties.getOnBehalfOf());
+            taskProperties.getId(), taskProperties.getOnBehalfOf(), taskProperties.getType());
         boolean deleted = taskProperties.getPdfReport().getFile().delete();
         if (!deleted) {
           log.warn("Unable to delete file:" + taskProperties.getPdfReport().getPath());
         }
-        log.info("Successfully uploaded '{}'-report to the MDM.", taskProperties.getLanguage());
+        log.info("Successfully uploaded '{}'-report/overview to the MDM.",
+            taskProperties.getLanguage());
       } else {
         throw new RuntimeException(
             "Latex compilation failed: directory '" + taskProperties.getLatexProcessWorkingDir()
