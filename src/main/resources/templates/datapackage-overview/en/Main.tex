@@ -122,7 +122,7 @@ Overview of Data Package ``${dataPackage.title.en}''
 \hline
 \textbf{Data Package Publications} & Publications related to this data package can be looked up \href{<#noescape>${baseUrl}/en/data-packages/${dataPackage.masterId}?version=${version}&type=related_publications</#noescape>}{here under "Related Objects"}. \vspace{0.18cm} \\
 \hline
-\textbf{Further Information} &  \vspace{0.18cm} \\
-\hline
+<#if dataPackage.additionalLinks?has_content>\textbf{Additional Links} & <#list dataPackage.additionalLinks as link>\href{${link.url}}{<#if link.displayText??><#if link.displayText.en?has_content>${link.displayText.en}<#else>${link.displayText.de}</#if><#else>${link.url}</#if>}<#sep> \newline </#sep></#list>  \vspace{0.18cm} \\
+\hline</#if>
 \end{longtable}
 \end{document}
