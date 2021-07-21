@@ -106,7 +106,7 @@
 \hline
 \textbf{Publikationen zum Datenpaket} & Publikationen zu diesem Datenpaket können  \href{<#noescape>${baseUrl}/de/data-packages/${dataPackage.masterId}?version=${version}&type=related_publications</#noescape>}{hier unter "Verbundene Objekte"} nachgeschlagen werden. \vspace{0.18cm} \\
 \hline
-\textbf{Weitere Informationen} &  \vspace{0.18cm} \\
-\hline
+<#if dataPackage.additionalLinks?has_content>\textbf{Weiterführende Links} & <#list dataPackage.additionalLinks as link>\href{${link.url}}{<#if link.displayText??><#if link.displayText.de?has_content>${link.displayText.de}<#else>${link.displayText.en}</#if><#else>${link.url}</#if>}<#sep> \newline </#sep></#list>  \vspace{0.18cm} \\
+\hline</#if>
 \end{longtable}
 \end{document}
