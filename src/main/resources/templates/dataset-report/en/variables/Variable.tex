@@ -101,8 +101,8 @@
 						<#if validResponseSize <= 20>
 							<#list variable.distribution.validResponses as validResponse>
 
-					\multicolumn{1}{X}{${validResponse.value!"-"}} &
-					${(validResponse.label.en)!"-"} &
+					\multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if>} &
+					<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if> &
 					\num{${validResponse.absoluteFrequency!"-"}} &
 					\num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} &
 					\num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
@@ -112,11 +112,11 @@
 						%DIFFERENT OBSERVATIONS >20
 						<#else>
 							<#list firstTenValidResponses[variable.id] as validResponse>
-								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.en)!"-"} & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
+								\multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if>} & <#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if> & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
 							</#list>
 							... & ... & ... & ... & ... \\
 							<#list lastTenValidResponses[variable.id] as validResponse>
-								\multicolumn{1}{X}{${validResponse.value!"-"}} & ${(validResponse.label.en)!"-"} & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
+								\multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if>} & <#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if> & \num{${validResponse.absoluteFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.validRelativeFrequency!"-"}} & \num[round-mode=places,round-precision=2]{${validResponse.relativeFrequency!"-"}} \\
 							</#list>
 						</#if>
 					<#else>
@@ -158,9 +158,9 @@
 						<#if validResponseSize <= 20>
 							<#list variable.distribution.validResponses as validResponse>
 
-					${validResponse.value!"-"} &
+					<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if> &
 				% TODO try size/length gt 0; take over for other passages
-					\multicolumn{1}{X}{<#if validResponse.label?? && validResponse.label.en?? && validResponse.label.en != ""> ${validResponse.label.en!"-"}  <#else> - </#if> } &
+					\multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if>} &
 
 
 					%${validResponse.absoluteFrequency!"-"} &
@@ -187,7 +187,7 @@
 						%DIFFERENT OBSERVATIONS >20
 						<#else>
 							<#list firstTenValidResponses[variable.id] as validResponse>
-								${validResponse.value!"-"} & \multicolumn{1}{X}{${(validResponse.label.en)!"-"}} & %${validResponse.absoluteFrequency!"-"} &
+								<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if> & \multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if>} & %${validResponse.absoluteFrequency!"-"} &
 								<#if validResponse.absoluteFrequency??>
 								  \num{${validResponse.absoluteFrequency}} &
 								<#else>
@@ -207,7 +207,7 @@
 							</#list>
 							... & ... & ... & ... & ... \\
 							<#list lastTenValidResponses[variable.id] as validResponse>
-								${validResponse.value!"-"} & \multicolumn{1}{X}{${(validResponse.label.en)!"-"}} & %${validResponse.absoluteFrequency!"-"} &
+								<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${validResponse.value!"-"}<#else>anonymized</#if> & \multicolumn{1}{X}{<#if !anonymizeValidResponses[variable.id] || validResponse.absoluteFrequency gte 10>${(validResponse.label.en)!"-"}<#else>anonymized</#if>} & %${validResponse.absoluteFrequency!"-"} &
 								<#if validResponse.absoluteFrequency??>
 								  \num{${validResponse.absoluteFrequency}} &
 								<#else>
@@ -283,11 +283,11 @@
 				\vspace*{-\baselineskip}
                 <#if variable.distribution.validResponses??>
                     <#assign measures = []/>
-                    <#if variable.distribution.statistics.minimum??>
+                    <#if variable.distribution.statistics.minimum?? && !anonymizeValidResponses[variable.id]>
                       <#assign measures = measures + [{"name":"Minimum ($min$)",
                       	 "value":"${variable.distribution.statistics.minimum}"}] />
                     </#if>
-                   	<#if variable.distribution.statistics.maximum??>
+                   	<#if variable.distribution.statistics.maximum?? && !anonymizeValidResponses[variable.id]>
                    	  <#assign measures = measures + [{"name":"Maximum ($max$)",
                    	  	 "value":"${variable.distribution.statistics.maximum}"}] />
                    	</#if>
