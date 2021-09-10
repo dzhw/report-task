@@ -6,7 +6,7 @@
 #
 # Source: https://github.com/dzhw/report-task
 #
-FROM openjdk:16.0.2-slim
+FROM openjdk:16.0.2-slim-buster
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 
