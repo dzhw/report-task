@@ -6,7 +6,7 @@
 #
 # Source: https://github.com/dzhw/report-task
 #
-FROM openjdk:15.0.2-slim
+FROM adoptopenjdk:16.0.1_9-jre-hotspot-focal
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 
