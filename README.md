@@ -5,7 +5,7 @@
 This repository contains the implementation for a containerized [Spring Cloud Task]. The task generates reports by getting the relevant data from our [MDM], compiling a PDF and uploading it to the [MDM].
 
 ## Developers
-Developers need to have at least `maven` and `docker` on their machines. Currently you need to install java 16 sdk on your system. On Ubuntu you should use [SDKMAN!].
+Developers need to have at least `maven` and `docker` on their machines. Currently you need to install java 15 sdk on your system. On Ubuntu you should use [SDKMAN!].
 
 The following environment variables have to be set for running the JUnit test:
 ```shell
