@@ -20,6 +20,7 @@
 \ProvidesPackage{dsreport_en}
     [2017/05/26 v0.95 DZHW Berichte]
 \usepackage[breakwords]{truncate}
+\usepackage{datetime}
 \ifx\directlua\undefined\else\ifnum\luatexversion>84\relax
   \IfFileExists{luatex85.sty}{\RequirePackage{luatex85}}{}
 \fi\fi
@@ -43,7 +44,7 @@
 \let\@subtitle\nobreakspace
 \def\version#1{\gdef\@version{#1}}
 \let\@version\nobreakspace
-\gdef\@date{\month\space\the\year}
+\gdef\@date{\monthname\space\the\year}
 \long\def\impressum#1{\gdef\@impressum{#1}}
 \let\@impressum\nobreakspace
 \def\bibliogrAngaben#1{\gdef\@bibliogrAngaben{#1}}
