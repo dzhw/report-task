@@ -10,7 +10,7 @@
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>report-task</artifactId>
-    <version>1.0.113</version>
+    <version>1.0.114</version>
     <name>report-task</name>
     <description>Spring Cloud Task which generates a Reports for the MDM</description>
 
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>4.3.0</version>
+            <version>4.4.1</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
