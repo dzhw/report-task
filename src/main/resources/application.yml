@@ -1,8 +1,20 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          dzhw:
+            issuer-uri: ${DZHW_ISSUER_URI}
+        registration:
+          dzhw:
+            client-id: ${DZHW_CLIENT_ID}
+            client-secret: ${DZHW_CLIENT_SECRET}
 task:
   latex-input-dir: /app/doc
   latex-process-working-dir: /app/doc
   pdf-report: /app/doc/Main.pdf
   latex-process-command: make
+
 mdm:
   endpoint: http://localhost:8080
   username: aerjaeklrj
