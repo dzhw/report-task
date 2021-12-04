@@ -21,8 +21,6 @@ task:
   type: DATA_SET_REPORT
 mdm:
   endpoint: ${MDM_ENDPOINT}
-  username: ${MDM_TASK_USER}
-  password: ${MDM_TASK_PASSWORD}
 logging:
   level:
     root: warn

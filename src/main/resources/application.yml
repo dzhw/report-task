@@ -17,8 +17,6 @@ task:
 
 mdm:
   endpoint: http://localhost:8080
-  username: aerjaeklrj
-  password: kajfja
 logging:
   level:
     root: warn
