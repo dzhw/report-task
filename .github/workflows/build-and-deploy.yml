@@ -36,6 +36,7 @@ jobs:
       run: ./deploy/build.sh unused ${BRANCH_NAME}
       env:
         MDM_ENDPOINT: ${{ secrets.MDM_ENDPOINT }}
+        FDZ_ISSUER_URI: ${{ secrets.FDZ_ISSUER_URI }}
         FDZ_CLIENT_ID: ${{ secrets.FDZ_CLIENT_ID }}
         FDZ_CLIENT_SECRET: ${{ secrets.FDZ_CLIENT_SECRET }}
     - name: Deploy to AWS
