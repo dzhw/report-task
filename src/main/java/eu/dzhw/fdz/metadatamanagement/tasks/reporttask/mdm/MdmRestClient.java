@@ -219,7 +219,7 @@ public class MdmRestClient {
 
   private String generateAuthorizationHeaderValue() {
     var request = OAuth2AuthorizeRequest
-            .withClientRegistrationId("dzhw")
+            .withClientRegistrationId("fdz")
             .principal("report_task")
             .build();
     var client = this.authorizedClientManager

@@ -10,8 +10,8 @@ Developers need to have at least `maven` and `docker` on their machines. Current
 The following environment variables have to be set for running the JUnit test:
 ```shell
 MDM_ENDPOINT=https://dev.metadata.fdz.dzhw.eu
-DZHW_CLIENT_ID=**** (see Identity Provider)
-DZHW_CLIENT_SECRET=**** (see s3://metadatamanagement-private/sensitive_variables.tf)
+FDZ_CLIENT_ID=**** (see Identity Provider)
+FDZ_CLIENT_SECRET=**** (see s3://metadatamanagement-private/sensitive_variables.tf)
 ```
 
 The docker image can be build with:

@@ -3,12 +3,12 @@ spring:
     oauth2:
       client:
         provider:
-          dzhw:
-            issuer-uri: ${DZHW_ISSUER_URI}
+          fdz:
+            issuer-uri: ${FDZ_ISSUER_URI}
         registration:
-          dzhw:
-            client-id: ${DZHW_CLIENT_ID}
-            client-secret: ${DZHW_CLIENT_SECRET}
+          fdz:
+            client-id: ${FDZ_CLIENT_ID}
+            client-secret: ${FDZ_CLIENT_SECRET}
 task:
   latex-input-dir: target/test-classes/doc
   latex-process-working-dir: .

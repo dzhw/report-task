@@ -36,8 +36,8 @@ jobs:
       run: ./deploy/build.sh unused ${BRANCH_NAME}
       env:
         MDM_ENDPOINT: ${{ secrets.MDM_ENDPOINT }}
-        DZHW_CLIENT_ID: ${{ secrets.DZHW_CLIENT_ID }}
-        DZHW_CLIENT_SECRET: ${{ secrets.DZHW_CLIENT_SECRET }}
+        FDZ_CLIENT_ID: ${{ secrets.FDZ_CLIENT_ID }}
+        FDZ_CLIENT_SECRET: ${{ secrets.FDZ_CLIENT_SECRET }}
     - name: Deploy to AWS
       run: ./deploy/deploy.sh unused ${BRANCH_NAME}
       env:

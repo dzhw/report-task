@@ -34,16 +34,16 @@ public class OAuth2ClientConfig {
    */
   @Bean
   public ClientRegistration dzhwClientRegistration(
-          @Value("${spring.security.oauth2.client.provider.dzhw.issuer-uri}")
+          @Value("${spring.security.oauth2.client.provider.fdz.issuer-uri}")
           final String issuerUri,
-          @Value("${spring.security.oauth2.client.registration.dzhw.client-id}")
+          @Value("${spring.security.oauth2.client.registration.fdz.client-id}")
           final String clientId,
-          @Value("${spring.security.oauth2.client.registration.dzhw.client-secret}")
+          @Value("${spring.security.oauth2.client.registration.fdz.client-secret}")
           final String clientSecret
   ) {
     return ClientRegistrations
             .fromIssuerLocation(issuerUri)
-            .registrationId("dzhw")
+            .registrationId("fdz")
             .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
             .clientId(clientId)
             .clientSecret(clientSecret)
@@ -57,14 +57,14 @@ public class OAuth2ClientConfig {
    * NOTE: Normally this would be added by Spring Boot, but since report-task does not have
    * a servlet this needs to be added manually.
    *
-   * @param dzhwClientRegistration information about a client registration
+   * @param fdzClientRegistration information about a client registration
    * @return a repository which stores client registration info
    */
   @Bean
   public ClientRegistrationRepository clientRegistrationRepository(
-          ClientRegistration dzhwClientRegistration
+          ClientRegistration fdzClientRegistration
   ) {
-    return new InMemoryClientRegistrationRepository(dzhwClientRegistration);
+    return new InMemoryClientRegistrationRepository(fdzClientRegistration);
   }
 
   /**
