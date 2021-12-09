@@ -2,6 +2,7 @@ package eu.dzhw.fdz.metadatamanagement.tasks.reporttask.mdm;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
@@ -11,10 +12,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.ClientAuthorizationException;
 import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthorizationException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import eu.dzhw.fdz.metadatamanagement.tasks.reporttask.config.MdmProperties;
@@ -53,6 +57,7 @@ public class MdmRestClient {
    * @param zippedEnglishTemplateDataSetReport The zipped english data set report template folder.
    */
   public MdmRestClient(
+      @Value("${spring.security.oauth2.client.registration.fdz.client-id}") final String clientId,
       AuthorizedClientServiceOAuth2AuthorizedClientManager authorizedClientManager,
       MdmProperties mdmProperties,
       RestTemplateBuilder templateBuilder,
@@ -64,7 +69,7 @@ public class MdmRestClient {
     super();
     this.authorizedClientManager = authorizedClientManager;
     mdmTemplate = templateBuilder
-        .defaultHeader("Authorization", generateAuthorizationHeaderValue())
+        .defaultHeader("Authorization", generateAuthorizationHeaderValue(clientId))
         .rootUri(mdmProperties.getEndpoint()).build();
     this.zippedGermanTemplateDataSetReport = zippedGermanTemplateDataSetReport;
     this.zippedEnglishTemplateDataSetReport = zippedEnglishTemplateDataSetReport;
@@ -217,14 +222,14 @@ public class MdmRestClient {
     }
   }
 
-  private String generateAuthorizationHeaderValue() {
+  private String generateAuthorizationHeaderValue(final String principal) {
     var request = OAuth2AuthorizeRequest
             .withClientRegistrationId("fdz")
-            .principal("report_task")
+            .principal(principal)
             .build();
+
     var client = this.authorizedClientManager
             .authorize(request);
-
     if (client == null) {
       throw new IllegalStateException("Could not obtain OAuth2 client");
     }
