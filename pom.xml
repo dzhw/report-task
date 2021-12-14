@@ -10,7 +10,7 @@
     </parent>
     <groupId>eu.dzhw.fdz.metadatamanagement.tasks</groupId>
     <artifactId>report-task</artifactId>
-    <version>1.0.117-SNAPSHOT</version>
+    <version>1.0.117</version>
     <name>report-task</name>
     <description>Spring Cloud Task which generates a Reports for the MDM</description>
 
