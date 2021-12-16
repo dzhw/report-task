@@ -34,7 +34,7 @@ public class ReportTaskApplication {
 
   /**
    * Run the task for instance with 'java --jar report-task.jar --task.data-set-id=dat-cmp2014-ds1$
-   * --task.language=de --task.on-behalf-of=rreitmann --task.version=1.0.0
+   * --task.language=de --task.on-behalf-of=localuser --task.version=1.0.0
    * --task.type=DATA_SET_REPORT'.
    *
    * @param mdmClient The fully configured {@link MdmRestClient}
