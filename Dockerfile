@@ -10,6 +10,9 @@ FROM openjdk:15.0.2-slim
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 ARG JAR_FILE
 
+# install all available package updates
+RUN apt-get update && apt-get upgrade -y -q && apt-get dist-upgrade -y -q
+
 # install texlive
 RUN apt-get update \
  &&  apt-get install -y --no-install-recommends \
