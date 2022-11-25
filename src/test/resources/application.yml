@@ -1,3 +1,14 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          fdz:
+            issuer-uri: ${FDZ_ISSUER_URI}
+        registration:
+          fdz:
+            client-id: ${FDZ_CLIENT_ID}
+            client-secret: ${FDZ_CLIENT_SECRET}
 task:
   latex-input-dir: target/test-classes/doc
   latex-process-working-dir: .
@@ -10,8 +21,6 @@ task:
   type: DATA_SET_REPORT
 mdm:
   endpoint: ${MDM_ENDPOINT}
-  username: ${MDM_TASK_USER}
-  password: ${MDM_TASK_PASSWORD}
 logging:
   level:
     root: warn
