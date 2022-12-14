@@ -75,7 +75,7 @@ Overview of Data Package ``${dataPackage.title.en}''
 \hline</#if>
 \textbf{Institutions} & <#list dataPackage.institutions as institution><#if institution.en??>${institution.en}<#else>${institution.de}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
-\textbf{Sponsored by} & <#list dataPackage.sponsors as sponsor><#if sponsor.name.en??>${sponsor.name.en}<#else>${sponsor.name.de}</#if><#if sponsor.fundingRef??> \newline \textbf{Funding reference:} ${sponsor.fundingRef} </#if><#sep> \vspace{0.18cm} \newline </#sep></#list> \vspace{0.18cm} \\
+\textbf{Sponsored by} & <#list dataPackage.sponsors as sponsor><#if sponsor.name.en??>${sponsor.name.en}<#else>${sponsor.name.de}</#if><#if sponsor.fundingRef??> \newline \textbf{Funding reference:} ${sponsor.fundingRef} </#if><#if sponsor.fundingProgram??> \newline \textbf{Associated funding program:} ${sponsor.fundingProgram} </#if><#sep> \vspace{0.18cm} \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
 \textbf{Project Contributors} & <#list dataPackage.projectContributors as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
 \hline
