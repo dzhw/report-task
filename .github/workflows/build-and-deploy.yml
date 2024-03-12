@@ -7,39 +7,37 @@ on:
       - master
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up JDK 15
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v4.1.0
       with:
-        java-version: 15
+        distribution: 'adopt'
+        java-version: '15'
     - name: Cache maven artifacts
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       env:
         cache-name: cache-maven-artifacts
       with:
         # npm cache files are stored in `~/.npm` on Linux/macOS
         path: ~/.m2
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
-    - name: Set up Python 2.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 2.7
     - name: Install AWS CLI
       run: pip install awscli
     - name: Install jq for commandline json parsing
       run: sudo apt-get -y install jq --allow-unauthenticated
-    - name: Get branch name
-      uses: nelonoel/branch-name@v1.0.1
+    - name: Extract branch name
+      shell: bash
+      run: echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
     - name: Build with Maven
-      run: ./deploy/build.sh unused ${BRANCH_NAME}
+      run: ./deploy/build.sh unused ${{ env.BRANCH }}
       env:
         MDM_ENDPOINT: ${{ secrets.MDM_ENDPOINT }}
         MDM_TASK_PASSWORD: ${{ secrets.MDM_TASK_PASSWORD }}
         MDM_TASK_USER: ${{ secrets.MDM_TASK_USER }}
     - name: Deploy to AWS
-      run: ./deploy/deploy.sh unused ${BRANCH_NAME}
+      run: ./deploy/deploy.sh unused ${{ env.BRANCH }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
@@ -49,7 +47,7 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
     - name: Report build status via Slack
-      uses: act10ns/slack@v1
+      uses: act10ns/slack@v2
       if: always()
       with:
         status: ${{ job.status }}
