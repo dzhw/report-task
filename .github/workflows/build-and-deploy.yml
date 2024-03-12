@@ -47,7 +47,7 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
     - name: Report build status via Slack
-      uses: act10ns/slack@v2
+      uses: slackapi/slack-github-action@v1.25.0
       if: always()
       with:
         status: ${{ job.status }}
