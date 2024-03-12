@@ -33,7 +33,7 @@ jobs:
         MDM_TASK_PASSWORD: ${{ secrets.MDM_TASK_PASSWORD }}
         MDM_TASK_USER: ${{ secrets.MDM_TASK_USER }}
     - name: Report build status via Slack
-      uses: slackapi/slack-github-action@v1.25.0
+      uses: act10ns/slack@v2
       if: always()
       with:
         status: ${{ job.status }}
