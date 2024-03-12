@@ -59,7 +59,7 @@
 \hline</#if>
 \textbf{Institutionen} & <#list dataPackage.institutions as institution><#if institution.de??>${institution.de}<#else>${institution.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
-\textbf{Gefördert von} & <#list dataPackage.sponsors as sponsor><#if sponsor.de??>${sponsor.de}<#else>${sponsor.en}</#if><#sep> \newline </#sep></#list> \vspace{0.18cm} \\
+\textbf{Gefördert von} & <#list dataPackage.sponsors as sponsor><#if sponsor.name.de??>${sponsor.name.de}<#else>${sponsor.name.en}</#if><#if sponsor.fundingRef??> \newline \textbf{Förderkennzeichen:} ${sponsor.fundingRef} </#if><#if sponsor.fundingProgram??> \newline \textbf{Zugehörige Förderlinie:} ${sponsor.fundingProgram} </#if><#sep> \vspace{0.18cm} \newline </#sep></#list> \vspace{0.18cm} \\
 \hline
 \textbf{Projektmitarbeiter*innen} & <#list dataPackage.projectContributors as person>${person.firstName}<#if person.middleName??> ${person.middleName}</#if> ${person.lastName}<#sep>, </#sep></#list> \vspace{0.18cm} \\
 \hline
