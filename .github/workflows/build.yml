@@ -7,7 +7,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 15
@@ -22,16 +22,17 @@ jobs:
         # npm cache files are stored in `~/.npm` on Linux/macOS
         path: ~/.m2
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
-    - name: Get branch name
-      uses: nelonoel/branch-name@v1.0.1
+    - name: Extract branch name
+      shell: bash
+      run: echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
     - name: Build with Maven
-      run: ./deploy/build.sh unused ${BRANCH_NAME}
+      run: ./deploy/build.sh unused ${{ env.BRANCH }}
       env:
         MDM_ENDPOINT: ${{ secrets.MDM_ENDPOINT }}
         MDM_TASK_PASSWORD: ${{ secrets.MDM_TASK_PASSWORD }}
         MDM_TASK_USER: ${{ secrets.MDM_TASK_USER }}
     - name: Report build status via Slack
-      uses: act10ns/slack@v1
+      uses: act10ns/slack@v2
       if: always()
       with:
         status: ${{ job.status }}
