@@ -6,7 +6,7 @@
 #
 # Source: https://github.com/dzhw/report-task
 #
-FROM adoptopenjdk:15.0.2_7-jre-hotspot-focal
+FROM eclipse-temurin:21-jre-jammy
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
 
 # install all available package updates
