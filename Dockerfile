@@ -8,7 +8,6 @@
 #
 FROM adoptopenjdk:15.0.2_7-jre-hotspot-focal
 MAINTAINER René Reitmann <reitmann@dzhw.eu>
-ARG JAR_FILE
 
 # install all available package updates
 RUN apt-get update && apt-get upgrade -y -q && apt-get dist-upgrade -y -q
@@ -23,9 +22,16 @@ RUN apt-get update \
 RUN mkdir /usr/share/texlive/texmf-dist/tex/latex/calibri
 COPY latex-packages/fonts/Calibri /usr/share/texlive/texmf-dist/
 RUN echo "Map Calibri.map" >> /usr/share/texlive/texmf-dist/web2c/updmap.cfg
-RUN fc-cache && texhash && mktexlsr && updmap-sys
+
+# copy memory limits config
+COPY latex-packages/config/memory-limits.cnf /etc/texmf/texmf.d/
+
+# update texlive
+RUN fc-cache && update-texmf && texhash && mktexlsr && updmap-sys
 
 # copy other document assets
 COPY latex-packages/doc /app/doc
+
 # COPY the spring boot task jar
+ARG JAR_FILE
 COPY ${JAR_FILE} /app/report-task.jar

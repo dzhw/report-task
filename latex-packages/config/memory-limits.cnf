@@ -1,0 +1,7 @@
+main_memory = 12000000
+extra_mem_top = 12000000
+extra_mem_bot = 12000000
+font_mem_size = 12000000
+pool_size = 12000000
+buf_size = 12000000
+save_size = 12000000
