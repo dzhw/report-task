@@ -34,8 +34,9 @@ jobs:
       run: ./deploy/build.sh unused ${{ env.BRANCH }}
       env:
         MDM_ENDPOINT: ${{ secrets.MDM_ENDPOINT }}
-        MDM_TASK_PASSWORD: ${{ secrets.MDM_TASK_PASSWORD }}
-        MDM_TASK_USER: ${{ secrets.MDM_TASK_USER }}
+        FDZ_ISSUER_URI: ${{ secrets.FDZ_ISSUER_URI }}
+        FDZ_CLIENT_ID: ${{ secrets.FDZ_CLIENT_ID }}
+        FDZ_CLIENT_SECRET: ${{ secrets.FDZ_CLIENT_SECRET }}
     - name: Deploy to AWS
       run: ./deploy/deploy.sh unused ${{ env.BRANCH }}
       env:

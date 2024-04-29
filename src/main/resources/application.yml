@@ -1,12 +1,22 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          fdz:
+            issuer-uri: ${FDZ_ISSUER_URI}
+        registration:
+          fdz:
+            client-id: ${FDZ_CLIENT_ID}
+            client-secret: ${FDZ_CLIENT_SECRET}
 task:
   latex-input-dir: /app/doc
   latex-process-working-dir: /app/doc
   pdf-report: /app/doc/Main.pdf
   latex-process-command: make
+
 mdm:
   endpoint: http://localhost:8080
-  username: aerjaeklrj
-  password: kajfja
 logging:
   level:
     root: warn

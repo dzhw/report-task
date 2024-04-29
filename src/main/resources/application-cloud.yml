@@ -1,4 +1,13 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          fdz:
+            issuer-uri: ${FDZ_ISSUER_URI}
+        registration:
+          fdz:
+            client-id: ${FDZ_CLIENT_ID}
+            client-secret: ${FDZ_CLIENT_SECRET}
 mdm:
   endpoint: ${vcap.services.mdm.credentials.endpoint}
-  username: ${vcap.services.mdm.credentials.username}
-  password: ${vcap.services.mdm.credentials.password}
